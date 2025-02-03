@@ -1,0 +1,514 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a202c;
+    color: #e2e8f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.carousel-item {
+    flex: 0 0 calc(33.333% - 2rem);
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+    height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+    background: linear-gradient(145deg, #222b3e, #1d2436);
+    box-shadow: 5px 5px 10px #161c2a, -5px -5px 10px #2a3448;
+    border-radius: 15px;
+}
+
+.carousel-item.active {
+    transform: scale(1.05);
+}
+
+.carousel-item:not(.active) {
+    opacity: 0.6;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(66, 153, 225, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 24px;
+    z-index: 10;
+}
+
+.arrow:hover {
+    background-color: rgba(66, 153, 225, 0.4);
+}
+
+.arrow-left {
+    left: -50px;
+}
+
+.arrow-right {
+    right: -50px;
+}
+
+.progress-container {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background-color: #4a5568;
+    margin-bottom: 20px;
+}
+
+.progress {
+    position: absolute;
+    height: 100%;
+    background-color: #4299e1;
+    transition: width 0.5s ease;
+}
+
+.return-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2d3748;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    text-align: center;
+}
+
+.tutorial-number {
+    display: inline-block;
+    background-color: #4299e1;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+@media (max-width: 1024px) {
+    .carousel-item {
+        flex: 0 0 calc(50% - 2rem);
+    }
+    .arrow-left {
+        left: -30px;
+    }
+    .arrow-right {
+        right: -30px;
+    }
+}
+
+@media (max-width: 640px) {
+    .carousel-item {
+        flex: 0 0 calc(100% - 2rem);
+    }
+    .arrow-left {
+        left: -20px;
+    }
+    .arrow-right {
+        right: -20px;
+    }
+}
+.code-block {
+    background-color: #2d3748;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+}
+.tooltip {
+    display: none;
+    background-color: #4a5568;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    max-width: 200px;
+    z-index: 10;
+}
+.term {
+    cursor: help;
+    text-decoration: underline dotted;
+}
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+.image-frame {
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-frame:hover {
+    transform: scale(1.05);
+}
+.in-tutorial-toggle-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.step-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease-out;
+}
+.in-tutorial-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.in-tutorial-toggle:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.toggle-arrow {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.sticky-progress {
+    position: sticky;
+    top: 0;
+    background-color: #1a202c;
+    padding: 1rem 0;
+    z-index: 100;
+}
+
+.next-tutorial-btn {
+    display: block;
+    width: fit-content;
+    margin: 2rem auto;
+    background-color: #4299e1;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.next-tutorial-btn:hover {
+    background-color: #3182ce;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #3b82f6;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.custom-checkbox.checked {
+    background: #3b82f6;
+    position: relative;
+}
+.custom-checkbox.checked::after {
+    content: '✓';
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.quiz-container {
+    background-color: #2d3748;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+}
+.quiz-question {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #e2e8f0;
+}
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+}
+.quiz-option {
+    background-color: #4a5568;
+    color: #e2e8f0;
+    padding: 8px 16px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.quiz-option:hover {
+    background-color: #718096;
+}
+.quiz-option.selected {
+    background-color: #4299e1;
+}
+.quiz-option.correct {
+    background-color: #48bb78;
+}
+.quiz-option.incorrect {
+    background-color: #f56565;
+}
+.quiz-feedback {
+    margin-top: 12px;
+    font-weight: bold;
+    color: #e2e8f0;
+}
+.custom-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #3b82f6;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.custom-checkbox.checked {
+    background: #3b82f6;
+    position: relative;
+}
+.custom-checkbox.checked::after {
+    content: '✓';
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.code-block {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+    padding: 1em;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.image-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 0;
+}
+.image-frame img {
+    max-width: 100%;
+    height: auto;
+}
+.imgur-video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+}
+.imgur-video-container video {
+    max-width: 100%;
+    max-height: 80vh; /* Limit height to 80% of viewport height */
+    width: auto;
+    height: auto;
+}
+#buckles-container {
+    transition: all 0.3s ease;
+}
+
+#buckles-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.large-coin svg {
+    width: 100%;
+    height: 100%;
+}
+
+#glossary-panel {
+    overflow-y: auto;
+  }
+  
+  .glossary-item {
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+  }
+  
+  .glossary-item:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+  }
+  
+  .glossary-definition {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(75, 85, 99, 0.3);
+    border-radius: 0.25rem;
+  }
+  
+  .glossary-back {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #3b82f6;
+    cursor: pointer;
+  }
+  
+  .glossary-back:hover {
+    text-decoration: underline;
+  }
+
+  #glossary-panel {
+    overflow-y: auto;
+  }
+  
+  .glossary-item {
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+  }
+  
+  .glossary-item:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    transform: translateX(5px);
+  }
+  
+  .glossary-definition {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(75, 85, 99, 0.3);
+    border-radius: 0.25rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+  
+  .glossary-back {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #3b82f6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .glossary-back:hover {
+    text-decoration: underline;
+    transform: translateX(-5px);
+  }
+
+  .sticky-progress {
+    position: sticky;
+    top: 0;
+    background-color: #1a202c;
+    padding: 1rem 0;
+    z-index: 40;
+    transition: width 0.3s ease-in-out;
+}
+
+/* When the glossary is closed, make the progress bar full width */
+body:not(.glossary-open) .sticky-progress {
+    width: 100%;
+}
+
+#glossary-search {
+  background-color: rgba(75, 85, 99, 0.3);
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  transition: all 0.3s ease;
+}
+
+#glossary-search:focus {
+  background-color: rgba(75, 85, 99, 0.5);
+  border-color: #3b82f6;
+}
+
+@keyframes sparkle {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
+  }
+  
+  .sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    pointer-events: none;
+  }
+
+  .font-mono {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: rgba(75, 85, 99, 0.3);
+    padding: 0.1em 0.3em;
+    border-radius: 0.2em;
+}
+
+.exercise-step {
+    padding-left: 1.5em;
+    position: relative;
+    margin-bottom: 0.5em;
+}
+
+.exercise-step::before {
+    content: counter(step);
+    counter-increment: step;
+    position: absolute;
+    left: 0;
+    color: #4299e1;
+    font-weight: bold;
+}
+
+.excel-formula {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: #2d3748;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    border-left: 3px solid #4299e1;
+    margin: 1em 0;
+}
