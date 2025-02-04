@@ -1,0 +1,60 @@
+{
+    "title": "Excel Math Operations: Practice Problems",
+    "steps": [
+        {
+            "title": "Addition Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice with Addition</h2><p class=\"mb-4\">Let's start by practicing addition in Excel. Remember to start your formulas with an equals sign (=).</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 1: Basic Addition</h3><p class=\"mb-2\">Follow these steps to set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 15 in cell A1</li><li class=\"mb-2\">Enter the number 25 in cell B1</li><li class=\"mb-2\">Click on cell C1. In this cell, write a formula that adds the numbers from cells A1 and B1 together</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/XrC206D.png\" alt=\"Excel formula example showing =A1+B1\" /></div><p class=\"excel-hint\">The result will be 40</p></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 2: Multi-Cell Addition</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 10 in cell A1</li><li class=\"mb-2\">Enter the number 20 in cell B1</li><li class=\"mb-2\">Enter the number 30 in cell C1</li><li class=\"mb-2\">Click on cell D1. In this cell, write a formula that adds all three numbers (A1, B1, and C1) together</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "If A1 contains 45 and B1 contains 55, what formula would you write in C1 to add them?",
+                    "options": ["A1+B1", "=A1+B1", "=(A1+B1)", "C1=A1+B1"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Subtraction Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice with Subtraction</h2><p class=\"mb-4\">Now let's practice subtraction. Remember that order matters in subtraction!</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 1: Basic Subtraction</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 75 in cell A1</li><li class=\"mb-2\">Enter the number 25 in cell B1</li><li class=\"mb-2\">Click on cell C1. In this cell, write a formula that subtracts the value in B1 from the value in A1</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/endpXF7.png\" alt=\"Excel subtraction formula example\" /></div><p class=\"excel-hint\">The result will be 50</p></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 2: Advanced Subtraction</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 100 in cell A1</li><li class=\"mb-2\">Enter the number 20 in cell B1</li><li class=\"mb-2\">Enter the number 45 in cell C1</li><li class=\"mb-2\">Click on cell D1. In this cell, write a formula that subtracts BOTH B1 and C1 from A1.</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "If A1 contains 100 and B1 contains 30, what formula would you write in C1 to find their difference (A1 minus B1)?",
+                    "options": ["=A1-B1", "=B1-A1", "=100-30", "A1-B1"],
+                    "correctAnswer": 0
+                }
+            ]
+        },
+        {
+            "title": "Multiplication Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice with Multiplication</h2><p class=\"mb-4\">Let's practice multiplication using the * symbol.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 1: Basic Multiplication</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 12 in cell A1</li><li class=\"mb-2\">Enter the number 5 in cell B1</li><li class=\"mb-2\">Click on cell C1. In this cell, write a formula that multiplies the value in A1 by the value in B1</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/qvMKnvn.png\" alt=\"Excel multiplication formula example\" /></div><p class=\"excel-hint\">The result will be 60</p></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 2: Multi-Step Multiplication</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 5 in cell A1</li><li class=\"mb-2\">Enter the number 4 in cell B1</li><li class=\"mb-2\">Enter the number 3 in cell C1</li><li class=\"mb-2\">Click on cell D1. In this cell, write a formula that multiplies all three numbers together.</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "What symbol is used for multiplication in Excel formulas?",
+                    "options": ["x", "*", "×", "•"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Division Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice with Division</h2><p class=\"mb-4\">Finally, let's practice division using the / symbol.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 1: Basic Division</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 50 in cell A1</li><li class=\"mb-2\">Enter the number 10 in cell B1</li><li class=\"mb-2\">Click on cell C1. In this cell, write a formula that divides the value in A1 by the value in B1</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/6TulCZH.png\" alt=\"Excel division formula example\" /></div><p class=\"excel-hint\">The result will be 5</p></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Question 2: Complex Division</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 100 in cell A1</li><li class=\"mb-2\">Enter the number 2 in cell B1</li><li class=\"mb-2\">Enter the number 5 in cell C1</li><li class=\"mb-2\">Click on cell D1. In this cell, write a formula that first divides A1 by B1, then divides that result by C1.</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "If A1 contains 80 and B1 contains 4, what formula would you write in C1 to divide them?",
+                    "options": ["=A1/B1", "=B1/A1", "=80/4", "A1/B1"],
+                    "correctAnswer": 0
+                }
+            ]
+        },
+        {
+            "title": "Mixed Operations Challenge",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Challenge Problems</h2><p class=\"mb-4\">Now let's combine different operations! Remember to follow the order of operations.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Challenge 1</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 20 in cell A1</li><li class=\"mb-2\">Enter the number 5 in cell B1</li><li class=\"mb-2\">Enter the number 10 in cell C1</li><li class=\"mb-2\">Click on cell D1. In this cell, write a formula that first multiplies A1 by B1, then adds C1 to that result.</li></ol></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Challenge 2</h3><p class=\"mb-2\">Set up your worksheet:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Enter the number 100 in cell A1</li><li class=\"mb-2\">Enter the number 20 in cell B1</li><li class=\"mb-2\">Enter the number 5 in cell C1</li><li class=\"mb-2\">Enter the number 2 in cell D1</li><li class=\"mb-2\">Click on cell E1. In this cell, write a formula that: first subtracts B1 from A1, then multiplies that result by C1, and finally divides everything by D1.</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "Which formula would correctly calculate: (A1 + B1) × C1?",
+                    "options": ["=A1+B1*C1", "=(A1+B1)*C1", "=A1+B1×C1", "=(A1+B1)C1"],
+                    "correctAnswer": 1
+                }
+            ]
+        }
+    ]
+}
