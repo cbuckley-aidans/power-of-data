@@ -512,3 +512,12 @@ body:not(.glossary-open) .sticky-progress {
     border-left: 3px solid #4299e1;
     margin: 1em 0;
 }
+
+.sticky-progress {
+    position: sticky;
+    top: 0;
+    background-color: #1a202c;
+    padding: 1rem 0;
+    z-index: 30;
+    transition: width 0.3s ease-in-out;
+}

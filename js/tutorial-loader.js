@@ -2,6 +2,8 @@
 
 // tutorial-loader.js
 window.initTutorial = async function(tutorialId) {
+    createTutorialCarousel();
+
     const tutorialData = await loadTutorialContent(tutorialId);
     if (tutorialData) {
         await renderTutorialContent(tutorialData);
@@ -70,17 +72,87 @@ async function loadTutorialContent(tutorialId) {
     }
 }
 
+function createTutorialCarousel() {
+    window.TutorialCarousel = ({ images }) => {
+        const [currentIndex, setCurrentIndex] = React.useState(0);
+        
+        const nextSlide = () => {
+            setCurrentIndex((prevIndex) => 
+                prevIndex === images.length - 1 ? 0 : prevIndex + 1
+            );
+        };
+
+        const prevSlide = () => {
+            setCurrentIndex((prevIndex) => 
+                prevIndex === 0 ? images.length - 1 : prevIndex - 1
+            );
+        };
+
+        return React.createElement(
+            'div',
+            { className: 'relative w-full mb-6' },
+            [
+                React.createElement('div', { 
+                    className: 'overflow-hidden rounded-lg bg-gray-800 shadow-lg',
+                    key: 'container'
+                }, [
+                    React.createElement('div', {
+                        className: 'relative aspect-[16/9]',
+                        key: 'imageContainer'
+                    }, [
+                        React.createElement('img', {
+                            src: images[currentIndex].src,
+                            alt: images[currentIndex].alt,
+                            className: 'absolute w-full h-full object-contain',
+                            key: 'image'
+                        })
+                    ])
+                ]),
+                React.createElement('button', {
+                    onClick: prevSlide,
+                    className: 'absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all duration-200',
+                    key: 'prevButton'
+                }, 'Previous'),
+                React.createElement('button', {
+                    onClick: nextSlide,
+                    className: 'absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all duration-200',
+                    key: 'nextButton'
+                }, 'Next'),
+                React.createElement('div', {
+                    className: 'absolute top-2 right-2 bg-gray-800 bg-opacity-50 text-white px-2 py-1 rounded-full text-sm',
+                    key: 'counter'
+                }, `${currentIndex + 1} / ${images.length}`)
+            ]
+        );
+    };
+}
+
 // Function to render tutorial content
+// In tutorial-loader.js, modify the renderTutorialContent function:
 async function renderTutorialContent(tutorialData) {
     document.getElementById('tutorial-title').textContent = tutorialData.title;
     const tutorialContainer = document.getElementById('tutorial-steps');
-    tutorialContainer.innerHTML = ''; // Clear existing content
+    tutorialContainer.innerHTML = '';
+
+    // Add this line at the start
+    createTutorialCarousel();
 
     for (let index = 0; index < tutorialData.steps.length; index++) {
         const step = tutorialData.steps[index];
         const stepElement = await createTutorialStep(step, index);
         tutorialContainer.appendChild(stepElement);
     }
+
+    // Add this line after appending all steps
+    document.querySelectorAll('[id^="filter-carousel"]').forEach(carousel => {
+        if (carousel.hasAttribute('data-images')) {
+            const images = JSON.parse(carousel.getAttribute('data-images'));
+            ReactDOM.render(
+                React.createElement(window.TutorialCarousel, { images: images }),
+                carousel
+            );
+        }
+    });
 }
 
 // Function to create a tutorial step
@@ -533,7 +605,9 @@ function getTooltipContent(termId) {
         'range': 'A range is a group of cells next to each other. You write it like "A1:A10" which means "all cells from A1 to A10".',
         'absolute': 'When you put dollar signs in a cell reference (like $A$1), it tells Excel "always use this exact cell, even if I copy the formula somewhere else".',
         'relative': 'A normal cell reference (like A1) that changes when you copy it to a different place - it\'s like saying "use whatever\'s in the cell above me".',
-        'function': 'Special shortcuts in Excel that do math for you. For example, SUM adds up numbers, and AVERAGE finds the middle value.'
+        'function': 'Special shortcuts in Excel that do math for you. For example, SUM adds up numbers, and AVERAGE finds the middle value.',
+        'filter': 'A tool that temporarily hides rows that don\'t match your criteria. Filtered data isn\'t deleted, just hidden from view.',
+    'gotospecial': 'An Excel feature that helps you quickly find cells with specific characteristics like blanks, formulas, or errors.',
     };
     return tooltipContent[termId] || 'No tooltip content available';
 }
@@ -711,6 +785,5 @@ window.glossaryTerms = glossaryTerms;
 
 // Export functions that need to be globally accessible
 window.updateProgressBar = updateProgressBar;
-window.toggleCheckbox = toggleCheckbox;
 window.getTooltipContent = getTooltipContent;
 // Add any other functions that need to be globally accessible
