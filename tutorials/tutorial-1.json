@@ -3,7 +3,7 @@
     "steps": [
         {
             "title": "Understanding Cell References",
-            "content": "<h2 class=\"text-2xl font-bold mb-4\">Cell References in Excel</h2><p class=\"mb-4\">Before we dive into calculations, let's understand how to reference <span class=\"term\" id=\"cell\">cells</span> in Excel.</p><p class=\"mb-4\">Each cell in Excel has a unique address made up of its column letter and row number. For example, the first cell is A1, the cell below it is A2, and the cell to its right is B1.</p><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"/api/placeholder/400/200\" alt=\"Excel cell reference example\" /></div><p class=\"mb-4\">When performing calculations, you can click on cells instead of typing their references manually. This helps prevent errors and makes your formulas easier to understand.</p>",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Cell References in Excel</h2><p class=\"mb-4\">Before we dive into calculations, let's understand how to reference <span class=\"term\" id=\"cell\">cells</span> in Excel.</p><p class=\"mb-4\">Each cell in Excel has a unique address made up of its column letter and row number. For example, the first cell is A1, the cell below it is A2, and the cell to its right is B1.</p><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/d7NzrXe.png\" alt=\"Excel cell reference example\" /></div><p class=\"mb-4\">When performing calculations, you can click on cells instead of typing their references manually. This helps prevent errors and makes your formulas easier to understand.</p>",
             "quiz": [
                 {
                     "question": "What is the reference for a cell in column C, row 5?",
@@ -14,7 +14,7 @@
         },
         {
             "title": "Basic Math Operations",
-            "content": "<h2 class=\"text-2xl font-bold mb-4\">Performing Basic Math in Excel</h2><p class=\"mb-4\">Excel supports all basic math operations using these symbols:</p><ul class=\"list-disc list-inside mb-4\"><li>Addition: <span class=\"font-mono\">+</span></li><li>Subtraction: <span class=\"font-mono\">-</span></li><li>Multiplication: <span class=\"font-mono\">*</span></li><li>Division: <span class=\"font-mono\">/</span></li></ul><p class=\"mb-4\">To perform a calculation:</p><ol class=\"list-decimal list-inside mb-4\"><li>Click the cell where you want the result</li><li>Type = (equals sign) to start the formula</li><li>Click the first cell you want to use</li><li>Type the math operator (+, -, *, /)</li><li>Click the second cell</li><li>Press Enter</li></ol><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"/api/placeholder/400/250\" alt=\"Excel formula example\" /></div><p class=\"mb-4\">For example, to add cells A1 and B1, you would type: <span class=\"font-mono\">=A1+B1</span></p>",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Performing Basic Math in Excel</h2><p class=\"mb-4\">Excel supports all basic math operations using these symbols:</p><ul class=\"list-disc list-inside mb-4\"><li>Addition: <span class=\"font-mono\">+</span></li><li>Subtraction: <span class=\"font-mono\">-</span></li><li>Multiplication: <span class=\"font-mono\">*</span></li><li>Division: <span class=\"font-mono\">/</span></li></ul><p class=\"mb-4\">To perform a calculation:</p><ol class=\"list-decimal list-inside mb-4\"><li>Click the cell where you want the result</li><li>Type = (equals sign) to start the formula</li><li>Click the first cell you want to use</li><li>Type the math operator (+, -, *, /)</li><li>Click the second cell</li><li>Press Enter</li></ol><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/LRwbrCs.png\" alt=\"Excel formula example\" /></div><p class=\"mb-4\">For example, to add cells A1 and B1, you would type: <span class=\"font-mono\">=A1+B1</span></p>",
             "quiz": [
                 {
                     "question": "Which symbol is used for multiplication in Excel?",
@@ -22,17 +22,7 @@
                     "correctAnswer": 1
                 }
             ]
-        },
-        {
-            "title": "Practice with Cell Math",
-            "content": "<h2 class=\"text-2xl font-bold mb-4\">Let's Practice!</h2><p class=\"mb-4\">Try these exercises to practice cell math:</p><div class=\"bg-gray-700 p-4 rounded-lg mb-4\"><h3 class=\"font-bold mb-2\">Exercise 1: Addition</h3><p>1. In cell A1, type: 10</p><p>2. In cell A2, type: 20</p><p>3. In cell A3, create a formula to add A1 and A2</p></div><div class=\"bg-gray-700 p-4 rounded-lg mb-4\"><h3 class=\"font-bold mb-2\">Exercise 2: Mixed Operations</h3><p>1. In cell B1, type: 100</p><p>2. In cell B2, type: 5</p><p>3. In cell B3, create a formula to divide B1 by B2</p><p>4. In cell B4, create a formula to multiply B2 by 3</p></div><p class=\"mb-4\">Remember: Always start your formula with an equals sign (=)</p>",
-            "quiz": [
-                {
-                    "question": "To calculate the average of cells A1, A2, and A3, which formula would you use?",
-                    "options": ["=A1+A2+A3/3", "=(A1+A2+A3)/3", "=AVERAGE(A1+A2+A3)", "=SUM(A1:A3)/3"],
-                    "correctAnswer": 1
-                }
-            ]
         }
+        
     ]
 }

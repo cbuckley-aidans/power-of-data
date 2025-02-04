@@ -526,7 +526,7 @@ function showReminderCard() {
 // Add these to the getTooltipContent function in tutorial-loader.js
 function getTooltipContent(termId) {
     const tooltipContent = {
-        'cell': 'Think of a cell like a box in Excel where you can put numbers or text. It\'s named by its column letter and row number, like A1 or B2.',
+        'cell': 'A box in Excel where you can put numbers or text. It\'s named by its column letter and row number, like A1 or B2.',
         'formula': 'A formula is like a math problem you write in Excel. It always starts with an equals sign (=) and tells Excel to do some math for you.',
         'reference': 'This is how you point to a specific cell in Excel - like saying "the box at A1" or "the box at B2".',
         'operator': 'These are the math symbols you use in Excel: + for adding, - for subtracting, * for multiplying, and / for dividing.',
