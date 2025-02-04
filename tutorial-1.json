@@ -1,0 +1,27 @@
+{
+    "title": "Excel Basics: Cell Math Operations",
+    "steps": [
+        {
+            "title": "Understanding Cell References",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Cell References in Excel</h2><p class=\"mb-4\">Before we dive into calculations, let's understand how to reference <span class=\"term\" id=\"cell\">cells</span> in Excel.</p><p class=\"mb-4\">Each cell in Excel has a unique address made up of its column letter and row number. For example, the first cell is A1, the cell below it is A2, and the cell to its right is B1.</p><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/d7NzrXe.png\" alt=\"Excel cell reference example\" /></div><h3 class=\"text-xl font-semibold mb-3 mt-6\">Navigating and Selecting Cells</h3><p class=\"mb-4\">There are several ways to select cells in Excel:</p><ul class=\"list-disc list-inside mb-4 space-y-2\"><li><span class=\"font-semibold\">Arrow Keys:</span> Use the keyboard arrow keys to move between cells one at a time</li><li><span class=\"font-semibold\">Direct Navigation:</span> Type a cell reference in the Name Box (top-left corner) and press Enter to jump to that cell</li><li><span class=\"font-semibold\">Mouse Selection:</span> Click any cell to select it, or click and drag to select multiple cells</li><li><span class=\"font-semibold\">Shift + Click:</span> Click a starting cell, hold Shift, then click an end cell to select all cells between them</li></ul><h3 class=\"text-xl font-semibold mb-3\">Working with Cell Ranges</h3><p class=\"mb-4\">A <span class=\"term\" id=\"range\">range</span> refers to a group of selected cells. When writing a range, use a colon (:) between two cell references to include all cells between them. For example, A1:B1 includes cells A1 and B1, while A1:A5 includes cells A1 through A5.</p><p class=\"mb-4\">You can select a range by holding down SHIFT while you click, or by typing in the range with a colon like so:</p><div class=\"imgur-video-container\"><video autoplay loop muted playsinline><source src=\"https://i.imgur.com/v6MgElJ.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div>",
+            "quiz": [
+                {
+                    "question": "What is the reference for a cell in column C, row 5?",
+                    "options": ["5C", "C5", "Row5Col3", "3,5"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Basic Math Operations",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Performing Basic Math in Excel</h2><p class=\"mb-4\">Excel supports all basic math operations using these symbols:</p><ul class=\"list-disc list-inside mb-4\"><li>Addition: <span class=\"font-mono\">+</span></li><li>Subtraction: <span class=\"font-mono\">-</span></li><li>Multiplication: <span class=\"font-mono\">*</span></li><li>Division: <span class=\"font-mono\">/</span></li></ul><p class=\"mb-4\">To perform a calculation:</p><ol class=\"list-decimal list-inside mb-4\"><li>Click the cell where you want the result</li><li>Type = (equals sign) to start the formula</li><li>Click the first cell you want to use</li><li>Type the math operator (+, -, *, /)</li><li>Click the second cell</li><li>Press Enter</li></ol><p class=\"mb-4\">For example, to add cells A1 and B1, you would type: <span class=\"font-mono\">=A1+B1</span></p><p class=\"mb-4\">You can also hold down CTRL and click to select the exact cell if you don't want to type the cells in.</span></p><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><div class=\"imgur-video-container\"><video autoplay loop muted playsinline><source src=\"https://i.imgur.com/qtEhOPe.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div>",
+            "quiz": [
+                {
+                    "question": "Which symbol is used for multiplication in Excel?",
+                    "options": ["x", "*", "×", "•"],
+                    "correctAnswer": 1
+                }
+            ]
+        }
+    ]
+}
