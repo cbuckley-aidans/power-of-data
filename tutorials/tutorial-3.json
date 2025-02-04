@@ -1,0 +1,50 @@
+{
+    "id": 3,
+    "title": "Excel Data Cleaning Basics",
+    "steps": [
+        {
+            "title": "Filtering Data",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Using Filters in Excel</h2><p class=\"mb-4\">Filters help you temporarily hide data that doesn't meet your criteria. Let's learn how to use them effectively.</p><div class=\"excel-formula mb-4\"><p class=\"mb-2\">Key Filter Operations:</p><ul class=\"list-disc pl-6\"><li>Click column header → Data tab → Filter button (funnel icon)</li><li>Use checkboxes to select/deselect values</li><li>Clear filters to show all data again</li></ul></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/S9PFWf2.png\" alt=\"Excel filter example\" /></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/Ew8DkLe.png\" alt=\"Excel filter example\" /></div><p class=\"mb-4\">Remember: Filtered-out rows aren't deleted - they're just hidden. You can always <span class=\"term\" id=\"filter\">clear the filter</span> to see all data again.</p>",
+            "quiz": [
+                {
+                    "question": "What happens to rows that don't meet your filter criteria?",
+                    "options": ["They are permanently deleted", "They are hidden but still exist", "They are moved to another sheet", "They are highlighted in red"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Removing Unnecessary Columns",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Streamlining Your Dataset</h2><p class=\"mb-4\">Not all columns are necessary for analysis. Learning to remove irrelevant data helps keep your workbook focused and manageable.</p><div class=\"excel-formula mb-4\"><p class=\"mb-2\">To delete columns:</p><ol class=\"list-decimal pl-6\"><li>Right-click column letter</li><li>Select \"Delete\"</li><li>Repeat for additional columns</li></ol></div><p class=\"mb-4\"><strong>Important:</strong> Before deleting columns, consider if you might need that data later. You can't undo column deletion after saving.</p><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/C5DwLqP.png\" alt=\"Deleting columns in Excel\" /></div>",
+            "quiz": [
+                {
+                    "question": "What is the best way to delete multiple columns that aren't next to each other?",
+                    "options": ["Delete them one at a time", "Use Find and Replace", "Hold Ctrl while selecting columns, then delete", "Copy the data you want to keep to a new sheet"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Cleaning Error Fields",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Finding and Fixing Data Errors</h2><p class=\"mb-4\">Clean data is crucial for accurate analysis. Let's learn how to identify and fix common data issues.</p><div class=\"excel-formula mb-4\"><p class=\"mb-2\">Steps to clean data:</p><ol class=\"list-decimal pl-6\"><li>Use CTRL + A to select all the cells in your spreadsheet.</li><li>Use <span class=\"term\" id=\"gotospecial\">Go To Special</span> to find blank cells</li><li>Use Find & Replace for text like \"N/A\"</li><li>Sort data to spot obvious errors</li></ol></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/UKX4cMi.png\" alt=\"Excel filter example\" /></div>",
+            "quiz": [
+                {
+                    "question": "Which Excel feature helps you quickly find all empty cells in your dataset?",
+                    "options": ["Find & Replace", "Go To Special", "Sort & Filter", "Conditional Formatting"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Sorting Data",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Organizing Data with Sort</h2><p class=\"mb-4\">Sorting helps identify anomalies and organize data logically.</p><div class=\"excel-formula mb-4\"><p class=\"mb-2\">To sort data:</p><ol class=\"list-decimal pl-6\"><li>Select all data (<span class=\"font-mono\">Ctrl + A</span>)</li><li>Data tab → Sort</li><li>Choose column and sort order</li><li>Check \"My data has headers\" if applicable</li></ol></div><p class=\"mb-4\">Pro Tip: Sort on multiple columns by adding levels in the Sort dialog box.</p><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/sortExample.png\" alt=\"Excel sort dialog\" /></div>",
+            "quiz": [
+                {
+                    "question": "Before sorting data, what's an important first step?",
+                    "options": ["Save your file", "Select all related data", "Create a backup", "Clear all filters"],
+                    "correctAnswer": 1
+                }
+            ]
+        }
+    ]
+}
