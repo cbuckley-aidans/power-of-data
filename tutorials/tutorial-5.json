@@ -1,0 +1,70 @@
+{
+    "title": "Excel Functions and Charts: Party Planning",
+    "steps": [
+        {
+            "title": "Introduction to Basic Excel Functions",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Essential Excel Functions</h2><p class=\"mb-4\">Let's explore some fundamental Excel functions using our party planning spreadsheet. These functions will help us analyze our party budget and guest list efficiently.</p><div class=\"bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Understanding Functions</h3><p class=\"mb-4\">Excel functions always start with an equals sign (=) followed by the function name and parentheses containing our data range. For example: <span class=\"font-mono\">=SUM(A1:A10)</span></p><ul class=\"list-disc list-inside mb-4\"><li class=\"mb-2\"><span class=\"term\" id=\"sum\">SUM</span>: Adds up numbers in a range</li><li class=\"mb-2\"><span class=\"term\" id=\"counta\">COUNTA</span>: Counts cells that aren't empty</li><li class=\"mb-2\"><span class=\"term\" id=\"max\">MAX</span>: Finds the highest number</li><li class=\"mb-2\"><span class=\"term\" id=\"min\">MIN</span>: Finds the lowest number</li></ul></div>",
+            "quiz": [
+                {
+                    "question": "Which function would you use to find the total cost of all party items?",
+                    "options": ["=COUNT()", "=SUM()", "=TOTAL()", "=ADD()"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Using SUM and COUNTA",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Calculating Totals and Counts</h2><p class=\"mb-4\">Open the party planning spreadsheet. We'll practice using SUM to calculate total costs and COUNTA to track our guest list.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise: Budget Calculations</h3><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Find the total budget using SUM</li><li class=\"mb-2\">Count confirmed guests using COUNTA</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><p class=\"excel-formula\">=SUM(B2:B10)</p><p class=\"excel-formula\">=COUNTA(D2:D20)</p></div></div></div>",
+            "quiz": [
+                {
+                    "question": "What's the difference between COUNT and COUNTA?",
+                    "options": [
+                        "They are the same",
+                        "COUNT only counts numbers, COUNTA counts non-empty cells",
+                        "COUNT counts everything, COUNTA only counts text",
+                        "They count in opposite directions"
+                    ],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Finding Extremes with MAX and MIN",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Identifying Maximum and Minimum Values</h2><p class=\"mb-4\">MAX and MIN functions help us quickly find our highest and lowest costs, useful for budget planning.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise: Cost Analysis</h3><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Use MAX to find the most expensive item</li><li class=\"mb-2\">Use MIN to find the least expensive item</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><p class=\"excel-formula\">=MAX(B2:B10)</p><p class=\"excel-formula\">=MIN(B2:B10)</p></div></div></div>",
+            "quiz": [
+                {
+                    "question": "If you wanted to find the most expensive item in column B, which function would you use?",
+                    "options": ["=SUM(B:B)", "=COUNTA(B:B)", "=MAX(B:B)", "=LARGEST(B:B)"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Introduction to Excel Charts",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Creating Visual Data Representations</h2><p class=\"mb-4\">Charts help visualize our data effectively. Let's learn how to choose and create the right chart type.</p><div class=\"bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Common Chart Types:</h3><ul class=\"list-disc list-inside mb-4\"><li class=\"mb-2\"><span class=\"term\" id=\"pie\">Pie Chart</span>: Best for showing parts of a whole (e.g., budget distribution)</li><li class=\"mb-2\"><span class=\"term\" id=\"bar\">Bar Chart</span>: Great for comparing quantities (e.g., item costs)</li><li class=\"mb-2\"><span class=\"term\" id=\"line\">Line Chart</span>: Perfect for showing trends over time</li></ul></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise: Create a Budget Distribution Chart</h3><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Select your budget data range</li><li class=\"mb-2\">Click Insert > Charts</li><li class=\"mb-2\">Choose a Pie Chart to show budget distribution</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "Which chart type is best for comparing costs of different party items?",
+                    "options": ["Pie Chart", "Bar Chart", "Line Chart", "Scatter Plot"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Customizing Charts",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Making Charts More Effective</h2><p class=\"mb-4\">Learn how to enhance your charts with titles, legends, and proper formatting.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise: Chart Customization</h3><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Add a meaningful chart title</li><li class=\"mb-2\">Format the legend for better readability</li><li class=\"mb-2\">Add data labels to show specific values</li><li class=\"mb-2\">Change colors for better contrast</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg\"><span class=\"text-blue-400 font-semibold\">View Tips</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><ul class=\"list-disc list-inside\"><li>Right-click the chart to access formatting options</li><li>Use contrasting colors for better visibility</li><li>Keep titles concise but descriptive</li></ul></div></div></div>",
+            "quiz": [
+                {
+                    "question": "What's the best practice for chart titles?",
+                    "options": [
+                        "Leave them blank",
+                        "Make them as long as possible",
+                        "Keep them concise but descriptive",
+                        "Use random words"
+                    ],
+                    "correctAnswer": 2
+                }
+            ]
+        }
+    ]
+}
