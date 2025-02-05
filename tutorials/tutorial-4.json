@@ -1,0 +1,49 @@
+{
+    "title": "Data Cleaning Practice: Movie Dataset",
+    "steps": [
+        {
+            "title": "Filter Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice: Filtering Movie Data</h2><p class=\"mb-4\">Let's practice using filters with our movie dataset.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 1: Basic Filtering</h3><p class=\"mb-2\">Follow these steps:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Open the movie_sample_dataset.csv file in Excel</li><li class=\"mb-2\">Apply a filter to the 'imdb_score' column</li><li class=\"mb-2\">Use the number filter to show only movies with an IMDB score greater than 8.0</li><li class=\"mb-2\">Count the number of movies that have a score greater than 8.0.</li><li class=\"mb-2\">Write down the answer in a new spreadsheet.</li></ol><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><img src=\"https://i.imgur.com/tGUjewj.png\" alt=\"Filter solution showing high-rated movies\" /><img src=\"https://i.imgur.com/cpmWo13.png\" alt=\"Filter solution showing high-rated movies\" /></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 2: Multiple Filters</h3><p class=\"mb-2\">Now try:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Keep the IMDB score filter active</li><li class=\"mb-2\">Add a filter to the 'budget' column</li><li class=\"mb-2\">Filter for movies with a budget less than $50,000,000</li><li class=\"mb-2\">Copy and paste a list of these movies into the other spreadsheet.</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "How can you apply multiple filters at once in Excel?",
+                    "options": ["You can't - you must choose one filter only", "Apply filters to different columns one after another", "Use the Advanced Filter feature", "Create a new sheet for each filter"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Column Management Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice: Managing Dataset Columns</h2><p class=\"mb-4\">STOP: Do you need to clear any filters from the previous activity?</p><p class=\"mb-4\">Let's practice organizing our movie dataset columns.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 1: Column Cleanup</h3><p class=\"mb-2\">For this analysis, we'll focus on key metrics:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Create a copy of your dataset first</li><li class=\"mb-2\">Identify columns not needed for financial analysis (like movie_facebook_likes)</li><li class=\"mb-2\">Delete these non-essential columns</li><li class=\"mb-2\">Keep only: movie_title, director_name, gross, budget, imdb_score</li></ol></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 2: ROI Calculation</h3><p class=\"mb-2\">With your cleaned dataset:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Insert a new column called 'ROI' after the budget column</li><li class=\"mb-2\">Calculate Return on Investment using: (gross - budget) / budget</li><li class=\"mb-2\">EXTENSION ACTIVITY: Format this column as percentage. (HINT: Right click a column and look for something that says 'Format'...)</li></ol><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><img src=\"https://i.imgur.com/X7Wzbvm.png\" alt=\"Filter solution showing high-rated movies\" /></div></div></div></div>",
+            "quiz": [
+                {
+                    "question": "What's the best practice before deleting columns in a dataset?",
+                    "options": ["Just delete them - you can always undo", "Create a backup of your dataset", "Print the dataset first", "Ask a colleague for permission"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Find & Replace Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice: Data Cleanup</h2><p class=\"mb-4\">Let's clean up inconsistencies in our movie data.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 1: Language Standardization</h3><p class=\"mb-2\">Clean up the 'language' column:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Use Find & Replace (Ctrl + H)</li><li class=\"mb-2\">Replace 'English' with 'ENG'</li><li class=\"mb-2\">Replace 'French' with 'FRA'</li><li class=\"mb-2\">Replace 'German' with 'GER'</li></ol></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 2: Missing Data</h3><p class=\"mb-2\">Handle missing values:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Use Go To Special to find blank cells</li><li class=\"mb-2\">Replace empty budget values with 'No Data'</li><li class=\"mb-2\">Count how many movies are missing budget information</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "When standardizing text data, what's the advantage of using Find & Replace over manual corrections?",
+                    "options": ["It's more fun", "It ensures consistency across all entries", "It makes the file bigger", "It changes the font automatically"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Sorting Practice",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Practice: Movie Data Analysis</h2><p class=\"mb-4\">Let's use sorting to analyze our movie dataset.</p><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 1: Multi-Level Sort</h3><p class=\"mb-2\">Identify top-performing directors:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Select all data</li><li class=\"mb-2\">Sort by director_name (A to Z)</li><li class=\"mb-2\">Add a second level: sort by imdb_score (Largest to Smallest)</li><li class=\"mb-2\">Add a third level: sort by gross (Largest to Smallest)</li></ol></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Exercise 2: Financial Analysis</h3><p class=\"mb-2\">Analyze movie performance:</p><ol class=\"list-decimal list-inside mb-4\"><li class=\"mb-2\">Sort by gross (Largest to Smallest)</li><li class=\"mb-2\">Note the top 5 highest-grossing movies</li><li class=\"mb-2\">Now sort by budget (Smallest to Largest)</li><li class=\"mb-2\">Identify movies that had low budgets but high gross earnings</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "When performing a multi-level sort, what happens to rows where the first sort column has identical values?",
+                    "options": ["They remain in their original order", "They are sorted randomly", "They are sorted according to the next level criteria", "They are moved to the bottom"],
+                    "correctAnswer": 2
+                }
+            ]
+        }
+    ]
+}
