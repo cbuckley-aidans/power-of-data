@@ -521,3 +521,48 @@ body:not(.glossary-open) .sticky-progress {
     z-index: 30;
     transition: width 0.3s ease-in-out;
 }
+
+.modal-input {
+    background-color: #374151;
+    border: 1px solid #4B5563;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+.modal-input:focus {
+    outline: none;
+    border-color: #60A5FA;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+}
+
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2D3748;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    z-index: 60;
+    max-width: 90%;
+    width: 24rem;
+}
+
+.alert-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 55;
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    z-index: 70;
+    pointer-events: none;
+}

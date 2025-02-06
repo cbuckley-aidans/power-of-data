@@ -211,14 +211,25 @@ if (step.simulation) {
 function createQuizElement(quiz, stepIndex) {
     const quizElement = document.createElement('div');
     quizElement.className = 'quiz-container';
+    
+    // Get attempted quizzes from localStorage
+    const attemptedQuizzes = JSON.parse(localStorage.getItem('attemptedQuizzes') || '{}');
+    const tutorialId = new URLSearchParams(window.location.search).get('id');
+    const quizKey = `${tutorialId}-${stepIndex}`;
+    const isAttempted = attemptedQuizzes[quizKey];
+    const hasEarnedBuckle = hasBuckleBeenEarned(stepIndex);
+
     quizElement.innerHTML = `
         <div class="quiz-question">${quiz.question}</div>
-        <div class="quiz-options">
+        <div class="quiz-options ${isAttempted && !hasEarnedBuckle ? 'pointer-events-none opacity-50' : ''}">
             ${quiz.options.map((option, index) => `
                 <div class="quiz-option" data-index="${index}">${option}</div>
             `).join('')}
         </div>
-        <div class="quiz-feedback"></div>
+        <div class="quiz-feedback">
+            ${isAttempted && !hasEarnedBuckle ? 'You\'ve already attempted this question.' : ''}
+            ${hasEarnedBuckle ? 'Correct! You\'ve already earned a Buckle for this quiz.' : ''}
+        </div>
     `;
 
     const options = quizElement.querySelectorAll('.quiz-option');
@@ -226,9 +237,22 @@ function createQuizElement(quiz, stepIndex) {
 
     options.forEach(option => {
         option.addEventListener('click', () => {
+            const tutorialId = new URLSearchParams(window.location.search).get('id');
+            const quizKey = `${tutorialId}-${stepIndex}`;
+            const attemptedQuizzes = JSON.parse(localStorage.getItem('attemptedQuizzes') || '{}');
+            
+            if (attemptedQuizzes[quizKey] && !hasBuckleBeenEarned(stepIndex)) {
+                feedback.textContent = 'You\'ve already attempted this question.';
+                return;
+            }
+
             const selectedIndex = parseInt(option.dataset.index);
             options.forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
             option.classList.add('selected');
+
+            // Mark quiz as attempted
+            attemptedQuizzes[quizKey] = true;
+            localStorage.setItem('attemptedQuizzes', JSON.stringify(attemptedQuizzes));
 
             if (selectedIndex === quiz.correctAnswer) {
                 option.classList.add('correct');
@@ -241,12 +265,74 @@ function createQuizElement(quiz, stepIndex) {
             } else {
                 option.classList.add('incorrect');
                 options[quiz.correctAnswer].classList.add('correct');
-                feedback.textContent = 'Incorrect. Try again!';
+                feedback.textContent = 'Incorrect. This question cannot be reattempted.';
             }
         });
     });
 
     return quizElement;
+}
+
+// Add these new functions for the Buckles redemption modal
+function createRedeemModal() {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+        <div class="bg-gray-800 p-6 rounded-lg shadow-xl w-96">
+            <h3 class="text-xl font-bold mb-4 text-white">Redeem Buckles?</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300">Enter teacher code:</label>
+                    <input type="password" id="teacher-code" class="modal-input" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300">Number of Buckles to redeem:</label>
+                    <input type="number" id="buckles-amount" class="modal-input" min="1" />
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors" onclick="closeRedeemModal()">Cancel</button>
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors" onclick="redeemBuckles()">Redeem</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function closeRedeemModal() {
+    const modal = document.querySelector('.fixed.inset-0');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function redeemBuckles() {
+    const teacherCode = document.getElementById('teacher-code').value;
+    const amount = parseInt(document.getElementById('buckles-amount').value);
+    const currentBuckles = parseInt(localStorage.getItem('totalBuckles') || '0');
+
+    if (teacherCode !== 'Kaching2025') {
+        showCustomAlert('Incorrect teacher code', 'error');
+        return;
+    }
+
+    if (isNaN(amount) || amount < 1) {
+        showCustomAlert('Please enter a valid number of Buckles', 'error');
+        return;
+    }
+
+    if (amount > currentBuckles) {
+        showCustomAlert('Not enough Buckles available', 'error');
+        return;
+    }
+
+    const newTotal = currentBuckles - amount;
+    localStorage.setItem('totalBuckles', newTotal);
+    document.getElementById('buckles-count').textContent = newTotal;
+    
+    closeRedeemModal();
+    createConfetti();
+    showCustomAlert(`Successfully redeemed ${amount} Buckles!`, 'success');
 }
 
 function updateProgressBar() {
@@ -452,6 +538,7 @@ function hasBuckleBeenEarned(stepIndex) {
            bucklesData[tutorialId][stepIndex] === true;
 }
 
+// Update the initialization function
 function initBuckles() {
     const totalBuckles = localStorage.getItem('totalBuckles') || '0';
     document.getElementById('buckles-count').textContent = totalBuckles;
@@ -473,6 +560,55 @@ function initBuckles() {
     document.getElementById('buckles-container').addEventListener('click', spinBucklesIcon);
 }
 
+function showCustomAlert(message, type = 'info') {
+    const overlay = document.createElement('div');
+    overlay.className = 'alert-overlay';
+    
+    const alert = document.createElement('div');
+    alert.className = 'custom-alert';
+    alert.innerHTML = `
+        <div class="text-white mb-4">${message}</div>
+        <div class="flex justify-end">
+            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">OK</button>
+        </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    document.body.appendChild(alert);
+    
+    const closeAlert = () => {
+        overlay.remove();
+        alert.remove();
+    };
+    
+    alert.querySelector('button').addEventListener('click', closeAlert);
+    overlay.addEventListener('click', closeAlert);
+}
+
+function createConfetti() {
+    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+    const confettiCount = 100;
+    
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = -10 + 'px';
+        document.body.appendChild(confetti);
+        
+        gsap.to(confetti, {
+            y: window.innerHeight + 20,
+            x: `+=${(Math.random() - 0.5) * 600}`,
+            rotation: Math.random() * 720 - 360,
+            duration: Math.random() * 2 + 1,
+            ease: 'power1.out',
+            onComplete: () => confetti.remove()
+        });
+    }
+}
+
+// Update the Buckles icon click handler
 function spinBucklesIcon() {
     const coin = document.getElementById('coin-svg');
     gsap.to(coin, {
@@ -480,6 +616,7 @@ function spinBucklesIcon() {
         duration: 0.5,
         ease: "power1.inOut"
     });
+    createRedeemModal();
 }
 
 function drawCoinSVG() {
@@ -783,7 +920,10 @@ window.glossaryTerms = glossaryTerms;
     }
   });
 
+  
+
 // Export functions that need to be globally accessible
 window.updateProgressBar = updateProgressBar;
 window.getTooltipContent = getTooltipContent;
-// Add any other functions that need to be globally accessible
+window.closeRedeemModal = closeRedeemModal;
+window.redeemBuckles = redeemBuckles;
