@@ -1,52 +1,47 @@
 {
-    "title": "Excel Functions and Charts: Party Planning",
+    "title": "Excel Functions and Charts",
     "steps": [
         {
-            "title": "Basic Excel Functions",
-            "content": "<h2 class=\"text-2xl font-bold mb-4\">Essential Excel Functions</h2><p class=\"mb-4 font-bold\">Create a new sheet named 'Functions Practice':</p><img src=\"https://i.imgur.com/cpWB3TB.png\" alt=\"Screenshot of how to add a new spreadsheet sheet\" class=\"mt-4\" /><div class=\"bg-gray-800 p-4 rounded-lg mb-6 mt-4\"><h3 class=\"text-xl font-semibold mb-3\">Understanding Functions</h3><p class=\"mb-4\">Excel functions start with an equals sign (=) followed by the function name and data range.</p><ul class=\"list-disc list-inside mb-4\"><li class=\"mb-2\"><span class=\"term\" id=\"sum\">SUM</span>: Adds up numbers in a range</li><li class=\"mb-2\"><span class=\"term\" id=\"counta\">COUNTA</span>: Counts cells that aren't empty</li><li class=\"mb-2\"><span class=\"term\" id=\"max\">MAX</span>: Finds the highest number</li><li class=\"mb-2\"><span class=\"term\" id=\"min\">MIN</span>: Finds the lowest number</li></ul></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Activity 1: Total Recipe Cost</h3><p class=\"mb-2\">Using the Party shopping list sheet, calculate the total cost of all items needed for the party. Copy your formula and result to your 'Functions Practice' sheet.</p><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><img src=\"https://i.imgur.com/D9VLCVu.png\" alt=\"SUM function example\" class=\"mb-4\" /><p class=\"excel-formula\">=SUM(F2:F6)</p></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Activity 2: Recipe Analysis</h3><p class=\"mb-2\">Using Recipe ingredients, calculate the total quantities needed for each recipe (Choc-chip muffins, Blueberry muffins, Cupcakes). Copy your formulas and results to your 'Functions Practice' sheet.</p></div>",
+            "title": "Understanding Excel Functions",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Excel Functions: The Basics</h2><p class=\"mb-4\">A <span class=\"term\" id=\"function\">function</span> in Excel is a predefined formula that performs calculations using specific values in a particular order. Think of functions as shortcuts for complex calculations.</p><p class=\"mb-4\">Every Excel function follows this basic structure:</p><div class=\"excel-formula mb-4\">=FUNCTIONNAME(arguments)</div><p class=\"mb-4\">Where:</p><ul class=\"list-disc list-inside mb-4 space-y-2\"><li>The equals sign (=) tells Excel this is a formula</li><li>FUNCTIONNAME is the action you want to perform</li><li>Arguments are the values you want to calculate</li></ul><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/uDTvmll.png\" alt=\"Excel function example\" /></div><h3 class=\"text-xl font-semibold mb-3 mt-6\">Common Functions</h3><ul class=\"list-disc list-inside mb-4 space-y-2\"><li><span class=\"font-semibold\">SUM:</span> Adds all numbers in a range</li><li><span class=\"font-semibold\">COUNTA:</span> Counts how many non-empty cells are in a range</li><li><span class=\"font-semibold\">MAX:</span> Returns the largest value in a range</li><li><span class=\"font-semibold\">MIN:</span> Returns the smallest value in a range</li></ul>",
             "quiz": [
                 {
-                    "question": "Using the Party shopping list sheet, how would you calculate the total cost of all items?",
-                    "options": ["=COUNT(F:F)", "=SUM(F2:F6)", "=TOTAL(F:F)", "=ADD(F2:F6)"],
-                    "correctAnswer": 1
-                }
-            ]
-        },
-        {
-            "title": "Using COUNTA for Ingredients",
-            "content": "<h2 class=\"text-2xl font-bold mb-4\">Tracking Ingredients</h2><p class=\"mb-4 font-bold\">Create a new sheet named 'Ingredient Count':</p><img src=\"https://i.imgur.com/cpWB3TB.png\" alt=\"Screenshot of how to add a new spreadsheet sheet\" class=\"mt-4\" /><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Activity 1: Count Ingredients</h3><p class=\"mb-2\">Using Inside one cake, count how many unique ingredients we need. Copy your formula and result to your 'Ingredient Count' sheet.</p><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><img src=\"https://i.imgur.com/QcmHGY2.png\" alt=\"COUNTA function example\" class=\"mb-4\" /><p class=\"excel-formula\">=COUNTA(A2:A68)-7</p><p class=\"mb-4\">We minus 7 because we don't want to include the actual recipe names among the ingredients.</p></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Activity 2: Measurement Types</h3><p class=\"mb-2\">Count how many different measurement types (Measured in column) are used. Copy your formula and result to your 'Ingredient Count' sheet.</p></div>",
-            "quiz": [
-                {
-                    "question": "To count the number of ingredients for Blueberry Muffins in Inside one cake, which formula would you use?",
-                    "options": [
-                        "=SUM(A13:A19)",
-                        "=COUNTA(A13:A19)",
-                        "=COUNT(A13:A19)",
-                        "=TOTAL(A13:A19)"
-                    ],
-                    "correctAnswer": 1
-                }
-            ]
-        },
-        {
-            "title": "Using MAX and MIN Functions",
-            "content": "<h2 class=\"text-2xl font-bold mb-4\">Finding Cost Ranges</h2><p class=\"mb-4 font-bold\">Create a new sheet named 'Cost Analysis':</p><img src=\"https://i.imgur.com/cpWB3TB.png\" alt=\"Screenshot of how to add a new spreadsheet sheet\" class=\"mt-4\" /><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6 mt-4\"><h3 class=\"text-xl font-semibold mb-3\">Activity 1: Item Cost Range</h3><p class=\"mb-2\">Using the Party shopping list sheet, find the most and least expensive items (Price for one pack column). Copy your formulas and results to your 'Cost Analysis' sheet.</p><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><img src=\"https://i.imgur.com/ohjagJ6.png\" alt=\"MAX and MIN function example\" class=\"mb-4\" /><img src=\"https://i.imgur.com/O0dYY2y.png\" alt=\"MAX and MIN function example\" class=\"mb-4\" /><p class=\"excel-formula\">=MAX(C2:C6)</p><p class=\"excel-formula\">=MIN(C2:C6)</p></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Activity 2: Servings Analysis</h3><p class=\"mb-2\">Find the highest and lowest number of servings per pack. Copy your formulas and results to your 'Cost Analysis' sheet.</p></div>",
-            "quiz": [
-                {
-                    "question": "Which function would you use to find the most expensive item in the Price for one pack column?",
-                    "options": ["=SUM(C:C)", "=COUNTA(C:C)", "=MAX(C2:C956)", "=LARGEST(C:C)"],
+                    "question": "What symbol must you start with when writing a function in Excel?",
+                    "options": ["@", "#", "=", "$"],
                     "correctAnswer": 2
                 }
             ]
         },
         {
-            "title": "Creating Visual Reports",
-            "content": "<h2 class=\"text-2xl font-bold mb-4\">Visualizing Recipe Data</h2><p class=\"mb-4 font-bold\">Create a new sheet named 'Charts Practice':</p><img src=\"https://i.imgur.com/cpWB3TB.png\" alt=\"Screenshot of how to add a new spreadsheet sheet\" class=\"mt-4\" /><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Activity 1: Recipe Ingredients Chart</h3><p class=\"mb-2\">Using Recipe ingredients, create a bar chart comparing the number of ingredients needed for each recipe. Copy your chart to your 'Charts Practice' sheet.</p><div class=\"mt-4\"><button class=\"in-tutorial-toggle w-full flex items-center justify-between p-2 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors duration-200\"><span class=\"text-blue-400 font-semibold\">View Solution</span><svg class=\"toggle-arrow w-5 h-5 transform transition-transform duration-200\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\" /></svg></button><div class=\"in-tutorial-toggle-content bg-gray-800 rounded-lg mt-2 p-4\"><ol class=\"list-decimal list-inside\"><li>We will do this together in class.</li></ol></div></div></div><div class=\"exercise-container bg-gray-800 p-4 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Activity 2: Cost Distribution</h3><p class=\"mb-2\">Using the Party shopping list sheet, create a pie chart showing the cost distribution of different items. Copy your chart to your 'Charts Practice' sheet.</p></div><div class=\"bg-blue-100 p-4 rounded-lg mt-8\"><h3 class=\"text-xl font-semibold mb-2 text-black\">Submit Your Work</h3><p class=\"text-black\">Once you've completed all exercises, your Excel file should contain these sheets:</p><ul class=\"list-disc list-inside text-black\"><li>Functions Practice</li><li>Ingredient Count</li><li>Cost Analysis</li><li>Charts Practice</li></ul><p class=\"text-black mt-4\">Save your file and submit it to the Party Planning link under Course Outline.</p></div>",
+            "title": "Using SUM and COUNTA",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Adding Numbers and Counting Cells</h2><p class=\"mb-4\">The <span class=\"term\" id=\"sum\">SUM function</span> adds up numbers in a range of cells. It's one of Excel's most commonly used functions.</p><div class=\"excel-formula mb-4\">Example: =SUM(A1:A10) adds all numbers from cell A1 to A10</div><p class=\"mb-4\">The <span class=\"term\" id=\"counta\">COUNTA function</span> counts cells that aren't empty, including cells with numbers, text, or errors.</p><div class=\"excel-formula mb-4\">Example: =COUNTA(B1:B20) counts non-empty cells from B1 to B20</div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/7jzZANy.png\" alt=\"SUM and COUNTA examples\" /></div><h3 class=\"text-xl font-semibold mb-3\">Key Differences</h3><ul class=\"list-disc list-inside mb-4\"><li>SUM only works with numbers</li><li>COUNTA works with any non-empty cell</li><li>SUM ignores text and blank cells</li><li>COUNTA includes cells with errors or text</li></ul>",
             "quiz": [
                 {
-                    "question": "Which chart type would be best for comparing ingredient quantities across recipes?",
-                    "options": ["Pie Chart", "Bar Chart", "Line Chart", "Scatter Plot"],
+                    "question": "Which function would you use to count how many cells contain any type of data?",
+                    "options": ["SUM", "COUNTA", "TOTAL", "COUNT"],
                     "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Working with MAX and MIN",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Finding Highest and Lowest Values</h2><p class=\"mb-4\">The <span class=\"term\" id=\"max\">MAX function</span> finds the largest number in a range of cells, while the <span class=\"term\" id=\"min\">MIN function</span> finds the smallest.</p><div class=\"excel-formula mb-4\">Examples:<br>=MAX(C1:C10) finds the highest number from C1 to C10<br>=MIN(C1:C10) finds the lowest number from C1 to C10</div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/GAszf5q.png\" alt=\"MAX and MIN examples\" /></div><h3 class=\"text-xl font-semibold mb-3 mt-6\">Important Notes</h3><ul class=\"list-disc list-inside mb-4 space-y-2\"><li>Both functions ignore empty cells</li><li>Text values are also ignored</li><li>Zero is treated as a valid number</li><li>You can compare multiple ranges using commas</li></ul>",
+            "quiz": [
+                {
+                    "question": "If you wanted to find the highest value in both columns A and B, which formula would you use?",
+                    "options": ["=MAX(A:A,B:B)", "=MAX(A+B)", "=MAXIMUM(A,B)", "=HIGHEST(A:B)"],
+                    "correctAnswer": 0
+                }
+            ]
+        },
+        {
+            "title": "Creating Charts",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Visualizing Data with Charts</h2><p class=\"mb-4\">Charts help visualize data patterns and relationships. Excel offers several chart types:</p><ul class=\"list-disc list-inside mb-4 space-y-2\"><li><span class=\"font-semibold\">Bar Charts:</span> Compare values across categories</li><li><span class=\"font-semibold\">Pie Charts:</span> Show parts of a whole</li><li><span class=\"font-semibold\">Line Charts:</span> Display trends over time</li><li><span class=\"font-semibold\">Column Charts:</span> Similar to bar charts but vertical</li></ul><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/WNT3aHU.png\" alt=\"Excel chart types\" /></div><h3 class=\"text-xl font-semibold mb-3\">Chart Elements</h3><p class=\"mb-4\">Every chart includes these key components:</p><ul class=\"list-disc list-inside mb-4 space-y-2\"><li>Title: Describes the chart</li><li>Legend: Explains what each color means</li><li>Axes: Show scales for measurements</li><li>Data Series: The actual plotted values</li></ul><h3 class=\"text-xl font-semibold mb-3\">Creating Your First Chart</h3><div class=\"excel-formula mb-4\"><p class=\"mb-2\">Follow these steps:</p><ol class=\"list-decimal pl-6\"><li>Select your data range including headers</li><li>Go to the Insert tab on the ribbon</li><li>In the Charts group, click the desired chart type</li><li>Choose a specific chart style from the gallery</li></ol><p class=\"mb-2 mt-4\">To customize your chart:</p><ol class=\"list-decimal pl-6\"><li>Click the chart to select it</li><li>Use the Chart Design and Format tabs that appear</li><li>Click the + button next to the chart to add/remove elements</li><li>Right-click elements to access more formatting options</li></ol></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/pdVw8qX.png\" alt=\"Chart creation process\" /></div>",
+            "quiz": [
+                {
+                    "question": "Which chart type is best for showing how different parts make up a total?",
+                    "options": ["Bar Chart", "Line Chart", "Pie Chart", "Scatter Plot"],
+                    "correctAnswer": 2
                 }
             ]
         }
