@@ -745,6 +745,13 @@ function getTooltipContent(termId) {
         'function': 'Special shortcuts in Excel that do math for you. For example, SUM adds up numbers, and AVERAGE finds the middle value.',
         'filter': 'A tool that temporarily hides rows that don\'t match your criteria. Filtered data isn\'t deleted, just hidden from view.',
     'gotospecial': 'An Excel feature that helps you quickly find cells with specific characteristics like blanks, formulas, or errors.',
+    'sum': 'The SUM function adds up numbers in a selected range of cells. Example: =SUM(A1:A10)',
+    'counta': 'The COUNTA function counts cells that contain any value, including text and numbers',
+    'max': 'The MAX function finds the highest number in a selected range',
+    'min': 'The MIN function finds the lowest number in a selected range',
+    'pie': 'A circular chart divided into segments, perfect for showing how different parts make up a whole',
+    'bar': 'A chart using rectangular bars to compare quantities across different categories',
+    'line': 'A chart showing data points connected by lines, ideal for displaying trends over time'
     };
     return tooltipContent[termId] || 'No tooltip content available';
 }
@@ -834,7 +841,15 @@ const glossaryTerms = {
     'function': 'Special commands in Excel that do math for you. They start with an equals sign and the function name, like =SUM() or =AVERAGE().',
     'sum': 'A function that adds up numbers. Example: =SUM(A1:A10) adds all numbers from A1 to A10.',
     'average': 'A function that finds the middle value (mean) of a group of numbers. Example: =AVERAGE(A1:A10).',
-    'count': 'A function that counts how many numbers are in a group of cells. Example: =COUNT(A1:A10).'
+    'count': 'A function that counts how many numbers are in a group of cells. Example: =COUNT(A1:A10).',
+    'sum': 'Adds up numbers in a range of cells. Format: =SUM(range). Example: =SUM(A1:A10) adds all numbers from A1 to A10.',
+    'counta': 'Counts cells that aren\'t empty in a range. Format: =COUNTA(range). Counts both numbers and text.',
+    'max': 'Finds the highest value in a range. Format: =MAX(range). Example: =MAX(A1:A10) finds the largest number.',
+    'min': 'Finds the lowest value in a range. Format: =MIN(range). Example: =MIN(A1:A10) finds the smallest number.',
+    'pie_chart': 'A circular chart divided into segments showing how different parts contribute to a whole. Best for percentages and proportions.',
+    'bar_chart': 'A chart using horizontal or vertical bars to compare values across categories. Good for comparing quantities.',
+    'line_chart': 'A chart connecting data points with lines to show trends over time or sequences of values.',
+    'chart_elements': 'Parts of a chart including title, legend, axis labels, and data labels that help explain the data.'
 };
 
 // Make sure this is added to the window object so it can be accessed globally
