@@ -1,0 +1,50 @@
+{
+    "id": 7,
+    "title": "Advanced Functions and Formatting",
+    "steps": [
+        {
+            "title": "AVERAGE Function",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Using AVERAGE in Excel</h2><p class=\"mb-4 font-bold\">We'll use the Sports Day Fundraiser dataset to learn about calculating averages.</p><p class=\"mb-4\">The <span class=\"term\" id=\"average\">AVERAGE function</span> calculates the arithmetic mean of a range of numbers.</p><div class=\"excel-formula mb-4\"><p class=\"mb-2\">Formula Breakdown:</p><pre class=\"bg-gray-800 p-4 rounded-lg text-blue-300 mb-4\">=AVERAGE(H2:H21)   // Calculate average donation\n\nWhere:\nH2:H21 = Range of cells containing donation amounts\n</pre></div><div class=\"bg-gray-800 p-6 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Step-by-Step Guide:</h3><ol class=\"list-decimal pl-6 space-y-2\"><li>Select your target cell</li><li>Type =AVERAGE(</li><li>Select the 'Optional raffle donation' column range H2:H21</li><li>Close the parenthesis )</li><li>Press Enter</li></ol></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/b1Wf6i7.png\" alt=\"AVERAGE function example\" /></div>",
+            "quiz": [
+                {
+                    "question": "If you have donation amounts of $5, $10, $0, $15, and $20, what will =AVERAGE(H2:H6) return?",
+                    "options": ["$5", "$10", "$15", "$20"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "COUNTIF Function",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Counting with Conditions</h2><p class=\"mb-4\">The <span class=\"term\" id=\"countif\">COUNTIF function</span> helps analyze how many entries match specific criteria.</p><div class=\"excel-formula mb-4\"><p class=\"mb-2\">Formula Breakdowns:</p><pre class=\"bg-gray-800 p-4 rounded-lg text-blue-300 mb-4\">=COUNTIF(E2:E21, \"L\")    // Count Large T-shirts\nWhere:\nE2:E21 = Range of T-shirt sizes\n\"L\" = Exact match for \"L\" (Large)\n\n=COUNTIF(G2:G21, \">4\")   // Count large group bookings\nWhere:\nG2:G21 = Range of booking numbers\n\">4\" = Condition for values greater than 4\n\n=COUNTIF(I2:I21, \"Yes\")  // Count newsletter subscribers\nWhere:\nI2:I21 = Newsletter preference column\n\"Yes\" = Exact match for \"Yes\"</pre></div><div class=\"bg-gray-800 p-6 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Common Criteria Operators:</h3><ul class=\"grid grid-cols-2 gap-4\"><li class=\"p-2 bg-gray-700 rounded\"><code>>100</code> Greater than</li><li class=\"p-2 bg-gray-700 rounded\"><code><50</code> Less than</li><li class=\"p-2 bg-gray-700 rounded\"><code>>=20</code> Greater or equal</li><li class=\"p-2 bg-gray-700 rounded\"><code>=\"Text\"</code> Exact match</li><li class=\"p-2 bg-gray-700 rounded\"><code>*text*</code> Contains text</li><li class=\"p-2 bg-gray-700 rounded\"><code><>\"No\"</code> Not equal to</li></ul></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/g7joyTz.png\" alt=\"COUNTIF function example\" /></div>",
+            "quiz": [
+                {
+                    "question": "To count how many people donated more than $20, which formula would you use?",
+                    "options": ["=COUNTIF(H2:H21, \"20\")", "=COUNTIF(H2:H21, \">20\")", "=COUNTIF(H2:H21, \">=20\")", "=COUNTIF(H2:H21, \"<20\")"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "IF Function",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Making Decisions with IF</h2><p class=\"mb-4\">The <span class=\"term\" id=\"if\">IF function</span> performs logical tests and returns different values based on whether the test is TRUE or FALSE.</p><div class=\"excel-formula mb-4\"><p class=\"mb-2\">Formula Breakdowns:</p><pre class=\"bg-gray-800 p-4 rounded-lg text-blue-300 mb-4\">=IF(G2>3, \"Large Group\", \"Small Group\")\nWhere:\nG2>3 = Logical test (is number of seats > 3?)\n\"Large Group\" = Value if TRUE\n\"Small Group\" = Value if FALSE\n\n=IF(H2>15, \"High Donor\", \"Regular Donor\")\nWhere:\nH2>15 = Logical test (is donation > $15?)\n\"High Donor\" = Value if TRUE\n\"Regular Donor\" = Value if FALSE</pre></div><div class=\"bg-gray-800 p-6 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Practical Applications:</h3><div class=\"grid grid-cols-2 gap-4\"><div class=\"p-4 bg-gray-700 rounded\"><h4 class=\"font-semibold mb-2\">Booking Categories</h4><p>Classify group sizes automatically</p></div><div class=\"p-4 bg-gray-700 rounded\"><h4 class=\"font-semibold mb-2\">Donation Levels</h4><p>Segment donors for recognition</p></div></div></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/in7i2TW.png\" alt=\"IF function example\" /></div>",
+            "quiz": [
+                {
+                    "question": "What will =IF(H2>10, \"Thank You\", \"Welcome\") return for a $15 donation?",
+                    "options": ["15", "Thank You", "Welcome", "TRUE"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Conditional Formatting",
+            "content": "<h2 class=\"text-2xl font-bold mb-4\">Visualizing Fundraiser Data</h2><div class=\"bg-gray-800 p-6 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Step-by-Step Guide:</h3><ol class=\"list-decimal pl-6 space-y-3\"><li>Select your data range (e.g., H2:H21 for donations)</li><li>Go to the Home tab in the Excel ribbon</li><li>Click the Conditional Formatting button</li><li><img src=\"https://i.imgur.com/SzIz8s1.png\" alt=\"Conditional Formatting Button\" class=\"block my-2 h-72\" /></li><li>Choose your rule type:<ul class=\"list-disc pl-6 mt-2\"><li>Highlight Cells Rules → Greater Than → Enter $20 for high donations</li><li>Color Scales → Red-Yellow-Green for booking distributions</li><li>Data Bars → Gradient Fill for visual donation comparisons</li></ul></li><li>Customize your format styles in the dialog box</li></ol></div><div class=\"bg-gray-800 p-6 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Recommended Rules for Our Dataset:</h3><div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\"><div class=\"p-4 bg-gray-700 rounded\"><h4 class=\"font-semibold mb-2\">Donations</h4><ul class=\"list-disc pl-4\"><li>Green for >$20</li><li>Yellow for $10-$20</li><li>Red for <$10</li></ul></div><div class=\"p-4 bg-gray-700 rounded\"><h4 class=\"font-semibold mb-2\">Group Sizes</h4><ul class=\"list-disc pl-4\"><li>Data bars for visual comparison</li><li>Icon sets for capacity warnings</li></ul></div></div></div>",
+            "quiz": [
+                {
+                    "question": "Which formatting would best show the distribution of seat bookings from smallest to largest?",
+                    "options": ["Icon Sets", "Highlight Rules", "Color Scales", "Data Bars"],
+                    "correctAnswer": 2
+                }
+            ]
+        }
+    ]
+}

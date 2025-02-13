@@ -751,7 +751,10 @@ function getTooltipContent(termId) {
     'min': 'The MIN function finds the lowest number in a selected range',
     'pie': 'A circular chart divided into segments, perfect for showing how different parts make up a whole',
     'bar': 'A chart using rectangular bars to compare quantities across different categories',
-    'line': 'A chart showing data points connected by lines, ideal for displaying trends over time'
+    'line': 'A chart showing data points connected by lines, ideal for displaying trends over time',
+    'average': 'A function that calculates the arithmetic mean of numbers. Example: =AVERAGE(A1:A10) finds the average of cells A1 through A10.',
+    'countif': 'A function that counts cells meeting a specific condition. Example: =COUNTIF(A1:A10, ">100") counts how many cells contain values greater than 100.',
+    'if': 'A function that performs a logical test and returns one value if TRUE, another if FALSE. Example: =IF(A1>10, "High", "Low").'
     };
     return tooltipContent[termId] || 'No tooltip content available';
 }
@@ -849,7 +852,14 @@ const glossaryTerms = {
     'pie_chart': 'A circular chart divided into segments showing how different parts contribute to a whole. Best for percentages and proportions.',
     'bar_chart': 'A chart using horizontal or vertical bars to compare values across categories. Good for comparing quantities.',
     'line_chart': 'A chart connecting data points with lines to show trends over time or sequences of values.',
-    'chart_elements': 'Parts of a chart including title, legend, axis labels, and data labels that help explain the data.'
+    'chart_elements': 'Parts of a chart including title, legend, axis labels, and data labels that help explain the data.',
+    'average': 'The AVERAGE function calculates the mean average of a set of numbers. It adds all values and divides by how many there are. Skips empty cells and text. Example: =AVERAGE(A1:A10)',
+    
+    'countif': 'The COUNTIF function counts cells in a range that meet a specific condition. Can count numbers, text, or dates using comparison operators (>, <, =, etc). Example: =COUNTIF(A1:A10, ">100") or =COUNTIF(B1:B10, "Pass")',
+    
+    'if': 'The IF function lets Excel make decisions based on conditions. It has three parts: the test condition, what to return if true, and what to return if false. Example: =IF(A1>100, "Over Budget", "Within Budget")',
+    
+    'conditional_formatting': 'A visual styling tool that changes how cells look based on their values or formulas. Can use color scales, data bars, icon sets, and custom rules to highlight important data automatically.'
 };
 
 // Make sure this is added to the window object so it can be accessed globally
