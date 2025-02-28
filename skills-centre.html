@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Skills Centre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <link rel="stylesheet" href="./CSS/styles.css">
+    <style>
+        .skill-card {
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #1a202c;
+            border-radius: 0.5rem;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+            object-fit: contain;
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+        
+        .example-code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #2d3748;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border-left: 3px solid #4299e1;
+            overflow-x: auto;
+        }
+        
+        .skill-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, height 0.3s ease;
+        }
+        
+        .skill-content.active {
+            max-height: 2000px;
+            overflow: visible;
+        }
+        
+        .toggle-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .rotate-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .search-highlight {
+            background-color: rgba(66, 153, 225, 0.2);
+            border-radius: 0.25rem;
+        }
+
+        .category-pill {
+            transition: all 0.3s ease;
+        }
+        
+        .category-pill:hover, .category-pill.active {
+            background-color: #4299e1;
+            color: white;
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: #4a5568;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            max-width: 200px;
+            z-index: 50;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .has-tooltip:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .simulation-container {
+            background-color: #2d3748;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .excel-grid {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+        }
+        
+        .excel-grid th, .excel-grid td {
+            border: 1px solid #4a5568;
+            padding: 6px;
+            text-align: center;
+        }
+        
+        .excel-grid th {
+            background-color: #2c5282;
+            color: white;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .excel-grid th:hover {
+            background-color: #2b6cb0;
+        }
+        
+        .excel-grid tr:nth-child(even) {
+            background-color: #2d3748;
+        }
+        
+        .excel-grid tr:nth-child(odd) {
+            background-color: #1a202c;
+        }
+        
+        .excel-button {
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 2px;
+            transition: all 0.2s;
+        }
+        
+        .excel-button:hover {
+            background-color: #3182ce;
+        }
+        
+        .excel-input {
+            background-color: #4a5568;
+            border: 1px solid #2d3748;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            width: 80px;
+        }
+        
+        .excel-tabs {
+            display: flex;
+            background-color: #1a202c;
+            border-bottom: 1px solid #4a5568;
+            padding: 4px 0 0 4px;
+        }
+        
+        .excel-tab {
+            padding: 6px 12px;
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 2px;
+            cursor: pointer;
+            position: relative;
+            bottom: -1px;
+        }
+        
+        .excel-tab.active {
+            background-color: #3182ce;
+            color: white;
+        }
+        
+        .excel-sheet {
+            padding: 10px;
+            border: 1px solid #4a5568;
+            border-top: none;
+        }
+        
+        .filtered-row {
+            animation: highlightRow 1s ease-in-out;
+        }
+        
+        @keyframes highlightRow {
+            0% { background-color: #3182ce; }
+            100% { background-color: inherit; }
+        }
+        
+        .chart-container {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding-top: 20px;
+        }
+        
+        .chart-bar {
+            background-color: #3182ce;
+            width: 30px;
+            transition: height 0.5s ease;
+            position: relative;
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .chart-bar:before {
+            content: attr(data-value);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="p-8 bg-gray-900 text-white min-h-screen">
+    <a href="index.html" class="back-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg flex items-center mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        Back to Tutorials
+    </a>
+
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold mb-4 text-center text-blue-300">Excel Skills Centre</h1>
+        <p class="text-xl text-center text-gray-400 mb-8">Quick reference guide for essential Excel skills</p>
+
+        <div class="search-filter-container flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div class="relative w-full md:w-1/2">
+                <input type="text" id="skill-search" placeholder="Search skills..." class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            
+            <div class="category-filters flex flex-wrap gap-2 justify-center">
+                <button class="category-pill px-3 py-1 rounded-full bg-gray-700 text-sm font-medium hover:bg-blue-500 hover:text-white transition-colors active" data-category="all">All</button>
+                <button class="category-pill px-3 py-1 rounded-full bg-gray-700 text-sm font-medium hover:bg-blue-500 hover:text-white transition-colors" data-category="data-cleaning">Data Cleaning</button>
+                <button class="category-pill px-3 py-1 rounded-full bg-gray-700 text-sm font-medium hover:bg-blue-500 hover:text-white transition-colors" data-category="functions">Functions</button>
+                <button class="category-pill px-3 py-1 rounded-full bg-gray-700 text-sm font-medium hover:bg-blue-500 hover:text-white transition-colors" data-category="formatting">Formatting</button>
+                <button class="category-pill px-3 py-1 rounded-full bg-gray-700 text-sm font-medium hover:bg-blue-500 hover:text-white transition-colors" data-category="visualization">Visualization</button>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-6" id="skills-container">
+            <!-- Filtering -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="data-cleaning">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-blue-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">Filtering</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Temporarily hide data that doesn't meet your criteria, making it easier to focus on specific information without deleting anything.</p>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Quick Steps:</h4>
+                    <ol class="list-decimal list-inside mb-4 ml-2">
+                        <li>Select the column or data range</li>
+                        <li>Go to the Data tab in the ribbon</li>
+                        <li>Click the Filter button (funnel icon)</li>
+                        <li>Use dropdown arrows to select values to display</li>
+                    </ol>
+                    
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/jUvNS8e.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Analyzing specific subsets of data</li>
+                            <li>Finding data that meets certain criteria</li>
+                            <li>Focusing on relevant information</li>
+                            <li>Removing outliers temporarily</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>Use multiple filters across different columns to narrow your data even further. Click the "Clear" button in the Data tab to remove all filters at once.</p>
+                    </div>
+                    
+                    <div class="simulation-container" id="filter-simulation">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-semibold text-blue-300">Try it yourself:</h4>
+                            <div class="flex">
+                                <button class="excel-button filter-button" data-category="all">Show All</button>
+                                <button class="excel-button filter-button" data-category="Electronics">Electronics</button>
+                                <button class="excel-button filter-button" data-category="Furniture">Furniture</button>
+                                <button class="excel-button filter-button" data-value="high">Sales > 800</button>
+                            </div>
+                        </div>
+                        <table class="excel-grid">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Sales</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-category="Electronics" data-sales="950">
+                                    <td>Laptop</td>
+                                    <td>Electronics</td>
+                                    <td>950</td>
+                                </tr>
+                                <tr data-category="Furniture" data-sales="450">
+                                    <td>Desk Chair</td>
+                                    <td>Furniture</td>
+                                    <td>450</td>
+                                </tr>
+                                <tr data-category="Electronics" data-sales="1200">
+                                    <td>Smartphone</td>
+                                    <td>Electronics</td>
+                                    <td>1200</td>
+                                </tr>
+                                <tr data-category="Furniture" data-sales="850">
+                                    <td>Bookshelf</td>
+                                    <td>Furniture</td>
+                                    <td>850</td>
+                                </tr>
+                                <tr data-category="Electronics" data-sales="650">
+                                    <td>Headphones</td>
+                                    <td>Electronics</td>
+                                    <td>650</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sorting -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="data-cleaning">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-purple-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">Sorting</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Arrange data in a specific order (alphabetical, numerical, chronological) to organize and analyze patterns more easily.</p>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Quick Steps:</h4>
+                    <ol class="list-decimal list-inside mb-4 ml-2">
+                        <li>Select the data range including headers</li>
+                        <li>Go to the Data tab</li>
+                        <li>Click Sort button</li>
+                        <li>Choose column and sort order</li>
+                        <li>Add levels for multi-column sorting</li>
+                    </ol>
+                    
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/zqJ7ZaD.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Finding highest/lowest values quickly</li>
+                            <li>Grouping related data together</li>
+                            <li>Creating alphabetical lists</li>
+                            <li>Preparing data for reports</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>Always select all related data before sorting to keep rows together (CTRL + A selects everything for you). For quick sorts, select a single cell in the column and use the A-Z/Z-A buttons in the Data tab.</p>
+                    </div>
+                    
+                    <div class="simulation-container" id="sort-simulation">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-semibold text-blue-300">Click any column header to sort:</h4>
+                        </div>
+                        <table class="excel-grid sort-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="string">Employee <span class="sort-indicator"></span></th>
+                                    <th data-sort="string">Department <span class="sort-indicator"></span></th>
+                                    <th data-sort="number">Performance <span class="sort-indicator"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sarah Johnson</td>
+                                    <td>Marketing</td>
+                                    <td>87</td>
+                                </tr>
+                                <tr>
+                                    <td>David Kim</td>
+                                    <td>Finance</td>
+                                    <td>92</td>
+                                </tr>
+                                <tr>
+                                    <td>Alex Rivera</td>
+                                    <td>IT</td>
+                                    <td>78</td>
+                                </tr>
+                                <tr>
+                                    <td>Emma Chen</td>
+                                    <td>HR</td>
+                                    <td>95</td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Wong</td>
+                                    <td>Sales</td>
+                                    <td>82</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deleting Columns -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="data-cleaning">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-red-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">Deleting Columns</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Remove unnecessary columns to streamline your data and focus only on relevant information for your analysis.</p>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Quick Steps:</h4>
+                    <ol class="list-decimal list-inside mb-4 ml-2">
+                        <li>Select column(s) by clicking the column letter(s)</li>
+                        <li>Right-click and select "Delete"</li>
+                        <li>Or use Home tab > Delete > Delete Sheet Columns</li>
+                    </ol>
+                    
+                    
+                    
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/py8ypKT.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="example-code mb-4">
+                        <p>To delete multiple non-adjacent columns:</p>
+                        <p>→ Hold Ctrl and click columns by their top letter (A, C, E, etc)</p>
+                        <p>→ Right-click > Delete</p>
+                    </div>
+
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Removing irrelevant data</li>
+                            <li>Cleaning up imported datasets</li>
+                            <li>Preparing data for specific analysis</li>
+                            <li>Creating streamlined reports</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>Always make a backup of your workbook before deleting columns. Consider hiding columns (right-click > Hide) instead of deleting if you might need the data later.</p>
+                    </div>
+                    
+                    <div class="simulation-container" id="delete-column-simulation">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-semibold text-blue-300">Click the X button to delete a column:</h4>
+                            <button class="excel-button" id="reset-columns">Reset Columns</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="excel-grid delete-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Product <br>
+                                            <button class="excel-button delete-col-btn" data-col="0">X</button>
+                                        </th>
+                                        <th>
+                                            Category <br>
+                                            <button class="excel-button delete-col-btn" data-col="1">X</button>
+                                        </th>
+                                        <th>
+                                            SKU <br>
+                                            <button class="excel-button delete-col-btn" data-col="2">X</button>
+                                        </th>
+                                        <th>
+                                            Quantity <br>
+                                            <button class="excel-button delete-col-btn" data-col="3">X</button>
+                                        </th>
+                                        <th>
+                                            Price <br>
+                                            <button class="excel-button delete-col-btn" data-col="4">X</button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Laptop</td>
+                                        <td>Electronics</td>
+                                        <td>EL-001</td>
+                                        <td>24</td>
+                                        <td>1200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Desk Chair</td>
+                                        <td>Furniture</td>
+                                        <td>FU-052</td>
+                                        <td>15</td>
+                                        <td>179</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Headphones</td>
+                                        <td>Electronics</td>
+                                        <td>EL-124</td>
+                                        <td>50</td>
+                                        <td>89</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Creating New Excel Sheets -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="formatting">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-green-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">Creating & Renaming Sheets</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Organize different datasets or analysis in separate sheets within the same workbook for better organization and clarity.</p>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Quick Steps:</h4>
+                    <ol class="list-decimal list-inside mb-4 ml-2">
+                        <li>Click "+" tab at bottom of sheet tabs</li>
+                        <li>To rename: Double-click tab OR right-click > Rename</li>
+                        <li>Type new name and press Enter</li>
+                    </ol>
+                    
+                    
+                    
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/r6P0aS8.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    
+
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Creating backup sheets for your assessment</li>
+                            <li>Separating different data categories</li>
+                            <li>Creating summary vs. detail views</li>
+                            <li>Organizing data by time periods</li>
+                            <li>Building dashboards with source data hidden</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>Right-click a sheet tab for more options like color-coding tabs, moving/copying sheets, or grouping sheets to edit multiple sheets at once. Use meaningful sheet names that clearly describe the content.</p>
+                    </div>
+                    
+                    <div class="simulation-container" id="sheets-simulation">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-semibold text-blue-300">Try managing sheets:</h4>
+                            <button class="excel-button" id="add-sheet-btn">+ Add Sheet</button>
+                        </div>
+                        <div class="excel-tabs" id="excel-tabs">
+                            <div class="excel-tab active" data-sheet="Sheet1">Sheet1</div>
+                            <div class="excel-tab" data-sheet="Sheet2">Sheet2</div>
+                            <div class="excel-tab" data-sheet="Sheet3">Sheet3</div>
+                        </div>
+                        <div class="excel-sheet" id="sheet-content">
+                            <div class="sheet-actions flex mb-3">
+                                <button class="excel-button mr-2 rename-sheet-btn">Rename</button>
+                                <button class="excel-button delete-sheet-btn">Delete</button>
+                            </div>
+                            <p>This is <span class="current-sheet-name">Sheet1</span>. You can add, rename, or delete sheets.</p>
+                            <p class="text-sm mt-3 text-gray-400">Sheet names help organize your data (e.g., "Q1 Sales", "Customer Data", "Chart Data").</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MIN/MAX Functions -->
+<div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="functions">
+    <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+        <div class="flex items-center">
+            <div class="skill-icon bg-blue-600 rounded-lg p-2 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold ml-3">MINIMUM / MAXIMUM Function</h3>
+        </div>
+        <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </div>
+    <div class="skill-content bg-gray-700 p-4">
+        <p class="mb-3">Find the smallest (MIN) or largest (MAX) value in a range of cells to quickly identify extreme values in your data set.</p>
+        
+        <h4 class="font-semibold text-blue-300 mb-2">Function Syntax:</h4>
+        <div class="example-code mb-4">
+            <p>=MIN(number1, [number2], ...)</p>
+            <p>=MAX(number1, [number2], ...)</p>
+            <p>OR</p>
+            <p>=MIN(range)</p>
+            <p>=MAX(range)</p>
+        </div>
+        
+        <h4 class="font-semibold text-blue-300 mb-2">Examples:</h4>
+        <div class="example-code mb-4">
+            <p>=MIN(B2:B15)</p>
+            <p>// Returns the smallest value in cells B2 through B15</p>
+            <br>
+            <p>=MAX(C5:F5)</p>
+            <p>// Returns the largest value in row 5 from columns C to F</p>
+            <br>
+        </div>
+        
+        <div class="video-demo mb-4">
+            <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+            <div class="video-container">
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/8CQDoHa.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <div class="bg-gray-800 p-3 rounded-lg mb-4">
+            <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+            <ul class="list-disc list-inside ml-2">
+                <li>Finding highest or lowest values in data sets</li>
+                <li>Identifying outliers or exceptional performances</li>
+                <li>Setting threshold values for conditional formatting</li>
+                <li>Creating dynamic reports that highlight extremes</li>
+                <li>Setting boundaries for valid data entry</li>
+            </ul>
+        </div>
+        
+        <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+            <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+            <p>Combine MIN/MAX with other functions for powerful analysis. For example, =MAX(IF(Region="North",Sales,0)) finds the maximum sales value only in the North region. Also consider LARGE() and SMALL() functions when you need the nth highest/lowest value.</p>
+        </div>
+        
+        <div class="simulation-container" id="minmax-simulation">
+            <h4 class="font-semibold text-blue-300 mb-2">Try the MIN/MAX functions:</h4>
+            <div class="flex flex-col">
+                <div class="mb-3">
+                    <p class="mb-2">Product sales data ($):</p>
+                    <div class="flex flex-wrap gap-2 mb-3" id="minmax-inputs">
+                        <input type="number" class="excel-input minmax-input" value="1250">
+                        <input type="number" class="excel-input minmax-input" value="980">
+                        <input type="number" class="excel-input minmax-input" value="1450">
+                        <input type="number" class="excel-input minmax-input" value="850">
+                        <input type="number" class="excel-input minmax-input" value="1680">
+                    </div>
+                    <button class="excel-button" id="add-value">+ Add Value</button>
+                </div>
+                <div class="bg-gray-900 p-3 rounded">
+                    <div class="flex items-center mb-2">
+                        <span class="mr-2">MIN Formula:</span>
+                        <div class="font-mono text-blue-300">=MIN(A1:A<span id="minmax-cell-count">5</span>)</div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-2">MIN Result:</span>
+                        <div class="font-mono text-green-400" id="min-result">850</div>
+                    </div>
+                    <div class="flex items-center mt-3 mb-2">
+                        <span class="mr-2">MAX Formula:</span>
+                        <div class="font-mono text-blue-300">=MAX(A1:A<span id="minmax-cell-count2">5</span>)</div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-2">MAX Result:</span>
+                        <div class="font-mono text-red-400" id="max-result">1680</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Conditional Formatting -->
+<div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="formatting">
+    <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+        <div class="flex items-center">
+            <div class="skill-icon bg-green-600 rounded-lg p-2 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold ml-3">Conditional Formatting</h3>
+        </div>
+        <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </div>
+    <div class="skill-content bg-gray-700 p-4">
+        <p class="mb-3">Automatically change cell appearance based on values or conditions, making it easier to visualize trends, patterns, and exceptions in your data.</p>
+        
+        <h4 class="font-semibold text-blue-300 mb-2">Quick Steps:</h4>
+        <ol class="list-decimal list-inside mb-4 ml-2">
+            <li>Select the cells to format</li>
+            <li>Go to Home tab > Conditional Formatting</li>
+            <li>Choose a rule type (Highlight Cells Rules, Top/Bottom Rules, Data Bars, Color Scales, Icon Sets)</li>
+            <li>Set your condition criteria and formatting</li>
+            <li>Click OK to apply</li>
+        </ol>
+        
+        <div class="video-demo mb-4">
+            <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+            <div class="video-container">
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/iPu3xqm.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <div class="example-code mb-4">
+            <p>Common rule types:</p>
+            <p>→ Highlight Cells Rules: Format cells greater than, less than, between, etc.</p>
+            <p>→ Top/Bottom Rules: Format top/bottom 10 items or top/bottom 10%</p>
+            <p>→ Data Bars: Add colored bars to visualize relative values</p>
+            <p>→ Color Scales: Apply color gradients from min to max values</p>
+            <p>→ Icon Sets: Add visual indicators (arrows, traffic lights, etc.)</p>
+        </div>
+        
+        <div class="bg-gray-800 p-3 rounded-lg mb-4">
+            <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+            <ul class="list-disc list-inside ml-2">
+                <li>Highlighting values above/below thresholds</li>
+                <li>Visualizing performance against targets</li>
+                <li>Creating dashboards with visual indicators</li>
+                <li>Identifying trends in large data sets</li>
+                <li>Drawing attention to exceptional values</li>
+            </ul>
+        </div>
+        
+        <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+            <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+            <p>You can create custom rules with formulas for more complex conditions. Use the "Use a formula to determine which cells to format" option and enter a formula that returns TRUE/FALSE. This allows for powerful multi-condition formatting based on values in other cells.</p>
+        </div>
+        
+        <div class="simulation-container" id="cond-format-simulation">
+            <div class="flex justify-between items-center mb-2">
+                <h4 class="font-semibold text-blue-300">Try conditional formatting:</h4>
+                <div class="flex">
+                    <button class="excel-button format-btn" data-format="highlight">Highlight > 90</button>
+                    <button class="excel-button format-btn" data-format="databar">Data Bars</button>
+                    <button class="excel-button format-btn" data-format="colorscale">Color Scale</button>
+                    <button class="excel-button format-btn" data-format="reset">Reset</button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-2">Team performance scores:</p>
+                <table class="excel-grid">
+                    <thead>
+                        <tr>
+                            <th>Team Member</th>
+                            <th>Q1 Score</th>
+                            <th>Q2 Score</th>
+                            <th>Q3 Score</th>
+                            <th>Q4 Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alex</td>
+                            <td class="format-cell">75</td>
+                            <td class="format-cell">82</td>
+                            <td class="format-cell">91</td>
+                            <td class="format-cell">88</td>
+                        </tr>
+                        <tr>
+                            <td>Jamie</td>
+                            <td class="format-cell">62</td>
+                            <td class="format-cell">70</td>
+                            <td class="format-cell">85</td>
+                            <td class="format-cell">93</td>
+                        </tr>
+                        <tr>
+                            <td>Taylor</td>
+                            <td class="format-cell">88</td>
+                            <td class="format-cell">91</td>
+                            <td class="format-cell">93</td>
+                            <td class="format-cell">95</td>
+                        </tr>
+                        <tr>
+                            <td>Jordan</td>
+                            <td class="format-cell">79</td>
+                            <td class="format-cell">83</td>
+                            <td class="format-cell">80</td>
+                            <td class="format-cell">86</td>
+                        </tr>
+                        <tr>
+                            <td>Morgan</td>
+                            <td class="format-cell">85</td>
+                            <td class="format-cell">79</td>
+                            <td class="format-cell">87</td>
+                            <td class="format-cell">90</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-gray-900 p-3 rounded mb-4">
+                <p class="text-sm">Click the buttons above to apply different conditional formatting styles to the scores.</p>
+                <ul class="text-sm text-gray-400 mt-2">
+                    <li><span class="text-green-400">Highlight > 90:</span> Highlights scores above 90 in green</li>
+                    <li><span class="text-blue-400">Data Bars:</span> Adds blue bars to visualize relative values</li>
+                    <li><span class="text-purple-400">Color Scale:</span> Applies a gradient from red (low) to green (high)</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            
+            <!-- Average Function -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="functions">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-yellow-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">AVERAGE Function</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Calculate the arithmetic mean (average) of a set of values to find the central tendency of your data.</p>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Function Syntax:</h4>
+                    <div class="example-code mb-4">
+                        <p>=AVERAGE(number1, [number2], ...)</p>
+                        <p>OR</p>
+                        <p>=AVERAGE(range)</p>
+                    </div>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Examples:</h4>
+                    <div class="example-code mb-4">
+                        <p>=AVERAGE(A1:A10)</p>
+                        <p>// Averages all values in cells A1 through A10</p>
+                        <br>
+                        <p>=AVERAGE(B5,C5,D5)</p>
+                        <p>// Averages the values in those three specific cells</p>
+                    </div>
+                    
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/MArVhEc.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Finding typical values in your data</li>
+                            <li>Calculating student grade averages</li>
+                            <li>Determining average sales, costs, or time</li>
+                            <li>Creating baseline metrics for comparison</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>AVERAGE ignores text and empty cells but counts zeros. For more specialized averages, look at MEDIAN (middle value) or MODE (most common value) functions.</p>
+                    </div>
+                    
+                    <div class="simulation-container" id="average-simulation">
+                        <h4 class="font-semibold text-blue-300 mb-2">Try the AVERAGE function:</h4>
+                        <div class="flex flex-col">
+                            <div class="mb-3">
+                                <p class="mb-2">Student test scores:</p>
+                                <div class="flex flex-wrap gap-2 mb-3" id="score-inputs">
+                                    <input type="number" class="excel-input score-input" value="85">
+                                    <input type="number" class="excel-input score-input" value="92">
+                                    <input type="number" class="excel-input score-input" value="78">
+                                    <input type="number" class="excel-input score-input" value="90">
+                                    <input type="number" class="excel-input score-input" value="88">
+                                </div>
+                                <button class="excel-button" id="add-score">+ Add Score</button>
+                            </div>
+                            <div class="bg-gray-900 p-3 rounded">
+                                <div class="flex items-center">
+                                    <span class="mr-2">Formula:</span>
+                                    <div class="font-mono text-blue-300">=AVERAGE(A1:A<span id="cell-count">5</span>)</div>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <span class="mr-2">Result:</span>
+                                    <div class="font-mono text-green-400" id="average-result">86.6</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sum Function -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="functions">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-indigo-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">SUM Function</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Add up a range of numbers quickly to calculate totals in your data.</p>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Function Syntax:</h4>
+                    <div class="example-code mb-4">
+                        <p>=SUM(number1, [number2], ...)</p>
+                        <p>OR</p>
+                        <p>=SUM(range1, [range2], ...)</p>
+                    </div>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Examples:</h4>
+                    <div class="example-code mb-4">
+                        <p>=SUM(B2:B10)</p>
+                        <p>// Adds all values in cells B2 through B10</p>
+                        <br>
+                        <p>=SUM(A1:A5,C1:C5)</p>
+                        <p>// Adds values from two separate ranges</p>
+                    </div>
+                    
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/DsB84do.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Calculating column or row totals</li>
+                            <li>Summing sales, expenses, or quantities</li>
+                            <li>Building financial models</li>
+                            <li>Creating running totals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>Use the AutoSum button (Σ) in the Home tab for quick sums. For complex conditions, try SUMIF or SUMIFS functions to sum only values that meet specific criteria.</p>
+                    </div>
+                    
+                    <div class="simulation-container" id="sum-simulation">
+                        <h4 class="font-semibold text-blue-300 mb-2">Try the SUM function:</h4>
+                        <div class="flex flex-col">
+                            <div class="mb-3">
+                                <p class="mb-2">Monthly expenses ($):</p>
+                                <table class="excel-grid mb-3">
+                                    <tr>
+                                        <th>Rent</th>
+                                        <th>Utilities</th>
+                                        <th>Groceries</th>
+                                        <th>Transport</th>
+                                        <th>Entertainment</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="number" class="excel-input sum-input" value="1200" data-cell="B1">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="excel-input sum-input" value="150" data-cell="B2">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="excel-input sum-input" value="350" data-cell="B3">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="excel-input sum-input" value="120" data-cell="B4">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="excel-input sum-input" value="200" data-cell="B5">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="bg-gray-900 p-3 rounded">
+                                <div class="flex items-center">
+                                    <span class="mr-2">Formula:</span>
+                                    <div class="font-mono text-blue-300">=SUM(B1:B5)</div>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <span class="mr-2">Result:</span>
+                                    <div class="font-mono text-green-400" id="sum-result">2020</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COUNTIF Function -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="functions">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-pink-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">COUNTIF Function</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Count cells that meet specific criteria, allowing you to summarize how many items match certain conditions.</p>
+                    
+                    
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Function Syntax:</h4>
+                    <div class="example-code mb-4">
+                        <p>=COUNTIF(range, criteria)</p>
+                    </div>
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Examples:</h4>
+                    <div class="example-code mb-4">
+                        <p>=COUNTIF(A1:A20, "Completed")</p>
+                        <p>// Counts how many cells contain "Completed"</p>
+                        <br>
+                        <p>=COUNTIF(B5:B100, ">50")</p>
+                        <p>// Counts how many values are greater than 50</p>
+                    </div>
+
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/sEkHDTo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Counting occurrences of specific values</li>
+                            <li>Tracking frequency of statuses or categories</li>
+                            <li>Analyzing data distribution</li>
+                            <li>Counting items above/below thresholds</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>For multiple criteria, use COUNTIFS function. Wildcard characters (* and ?) work with text criteria. For example, =COUNTIF(A1:A10, "S*") counts cells starting with "S".</p>
+                    </div>
+
+                    <div class="simulation-container" id="countif-simulation">
+                        <h4 class="font-semibold text-blue-300 mb-2">Try the COUNTIF function:</h4>
+                        <div class="flex flex-col">
+                            <div class="mb-3">
+                                <p class="mb-2">Project statuses:</p>
+                                <table class="excel-grid mb-3">
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Website Redesign</td>
+                                        <td>
+                                            <select class="excel-input countif-input">
+                                                <option>In Progress</option>
+                                                <option>Completed</option>
+                                                <option>On Hold</option>
+                                                <option>Not Started</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database Migration</td>
+                                        <td>
+                                            <select class="excel-input countif-input">
+                                                <option>Completed</option>
+                                                <option>In Progress</option>
+                                                <option>On Hold</option>
+                                                <option>Not Started</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mobile App</td>
+                                        <td>
+                                            <select class="excel-input countif-input">
+                                                <option>In Progress</option>
+                                                <option>Completed</option>
+                                                <option>On Hold</option>
+                                                <option>Not Started</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email Campaign</td>
+                                        <td>
+                                            <select class="excel-input countif-input">
+                                                <option>On Hold</option>
+                                                <option>Completed</option>
+                                                <option>In Progress</option>
+                                                <option>Not Started</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Training Module</td>
+                                        <td>
+                                            <select class="excel-input countif-input">
+                                                <option>Not Started</option>
+                                                <option>Completed</option>
+                                                <option>In Progress</option>
+                                                <option>On Hold</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="bg-gray-900 p-3 rounded">
+                                <div class="flex items-center mb-2">
+                                    <span class="mr-2">Count by status:</span>
+                                    <select class="excel-input" id="countif-criteria">
+                                        <option>In Progress</option>
+                                        <option>Completed</option>
+                                        <option>On Hold</option>
+                                        <option>Not Started</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="mr-2">Formula:</span>
+                                    <div class="font-mono text-blue-300">=COUNTIF(B1:B5,"<span id="countif-criteria-display">In Progress</span>")</div>
+                                </div>
+                                <div class="flex items-center mt-2">
+                                    <span class="mr-2">Result:</span>
+                                    <div class="font-mono text-green-400" id="countif-result">2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Creating Charts -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="visualization">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-teal-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">Creating Charts</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Transform numerical data into visual representations to identify trends, patterns, and relationships more easily.</p>
+                    
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Quick Steps:</h4>
+                    <ol class="list-decimal list-inside mb-4 ml-2">
+                        <li>Select the data range including headers</li>
+                        <li>Go to the Insert tab</li>
+                        <li>Click the chart type you want (column, line, pie, etc.)</li>
+                        <li>Use Chart Design and Format tabs to customize</li>
+                        <li>Right-click chart title to edit text</li>
+                    </ol>
+
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/Zc2kFvS.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="example-code mb-4">
+                        <p>To create a quarterly sales chart:</p>
+                        <p>→ Select data with quarters and sales figures</p>
+                        <p>→ Insert tab > Column Chart</p>
+                        <p>→ Right-click title > Edit Text > Type "Quarterly Sales"</p>
+                        <p>→ Chart Design tab > Add Chart Element > Axis Titles</p>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use different chart types:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li><span class="font-semibold text-blue-300">Column/Bar:</span> Compare values across categories</li>
+                            <li><span class="font-semibold text-blue-300">Line:</span> Show trends over time</li>
+                            <li><span class="font-semibold text-blue-300">Pie:</span> Show parts of a whole (percentages)</li>
+                            <li><span class="font-semibold text-blue-300">Scatter:</span> Show relationships between variables</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>Use chart filters (funnel icon) to show only specific data points. Create a dashboard by copying charts to a separate sheet for an overview. Avoid 3D charts as they can distort data perception.</p>
+                    </div>
+
+                    <div class="simulation-container" id="charts-simulation">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-semibold text-blue-300">Edit data to see the chart update:</h4>
+                            <div class="flex">
+                                <button class="excel-button chart-type-btn active" data-type="column">Column</button>
+                                <button class="excel-button chart-type-btn" data-type="bar">Bar</button>
+                                <button class="excel-button chart-type-btn" data-type="line">Line</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/3 mb-4 md:mb-0 md:pr-4">
+                                <table class="excel-grid">
+                                    <tr>
+                                        <th>Quarter</th>
+                                        <th>Sales ($)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Q1</td>
+                                        <td>
+                                            <input type="number" class="excel-input chart-data-input" data-quarter="Q1" value="15000">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Q2</td>
+                                        <td>
+                                            <input type="number" class="excel-input chart-data-input" data-quarter="Q2" value="21000">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Q3</td>
+                                        <td>
+                                            <input type="number" class="excel-input chart-data-input" data-quarter="Q3" value="18500">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Q4</td>
+                                        <td>
+                                            <input type="number" class="excel-input chart-data-input" data-quarter="Q4" value="25000">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="mt-3">
+                                    <input type="text" class="excel-input w-full" value="Quarterly Sales" id="chart-title">
+                                    <p class="text-sm text-gray-400 mt-1">Chart title (edit me)</p>
+                                </div>
+                            </div>
+                            <div class="md:w-2/3 relative">
+                                <p class="text-center font-bold mb-2" id="chart-title-display">Quarterly Sales</p>
+                                <div class="chart-container" id="chart-container">
+                                    <!-- Chart bars will be generated here -->
+                                </div>
+                                <div class="text-center mt-8">
+                                    <span class="text-sm text-gray-400">Quarter</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Find and Replace -->
+            <div class="skill-card bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-category="data-cleaning">
+                <div class="skill-header p-4 cursor-pointer flex justify-between items-center bg-gray-800 hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <div class="skill-icon bg-orange-500 rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-3">Find and Replace</h3>
+                    </div>
+                    <svg class="w-6 h-6 toggle-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="skill-content bg-gray-700 p-4">
+                    <p class="mb-3">Search for specific data and replace it with new values, making it easy to correct or standardize information across your spreadsheet.</p>
+                    
+                    
+                    
+                    <h4 class="font-semibold text-blue-300 mb-2">Quick Steps:</h4>
+                    <ol class="list-decimal list-inside mb-4 ml-2">
+                        <li>Press Ctrl+H to open Find & Replace</li>
+                        <li>Enter the text to find</li>
+                        <li>Enter the replacement text</li>
+                        <li>Click "Replace All" or "Replace" (to confirm each change)</li>
+                    </ol>
+
+                    <div class="video-demo mb-4">
+                        <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
+                        <div class="video-container">
+                            <video width="100%" controls autoplay loop muted playsinline>
+                                <source src="https://i.imgur.com/wpwVcLJ.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="example-code mb-4">
+                        <p>To standardize formatting of state abbreviations:</p>
+                        <p>→ Press Ctrl+H</p>
+                        <p>→ Find what: "California"</p>
+                        <p>→ Replace with: "CA"</p>
+                        <p>→ Click "Replace All"</p>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+                        <h4 class="font-semibold text-green-400 mb-1">When to use:</h4>
+                        <ul class="list-disc list-inside ml-2">
+                            <li>Standardizing inconsistent terminology</li>
+                            <li>Correcting common typos or errors</li>
+                            <li>Updating product codes or IDs</li>
+                            <li>Removing unwanted characters</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg">
+                        <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
+                        <p>Use the "Match case" option for case-sensitive replacements. For more advanced pattern matching, try using wildcard characters (* and ?) in your search. Always save a backup before making large-scale replacements.</p>
+                    </div>
+
+                    <div class="simulation-container" id="find-replace-simulation">
+                        <h4 class="font-semibold text-blue-300 mb-2">Try Find and Replace:</h4>
+                        <div class="mb-3">
+                            <table class="excel-grid mb-4">
+                                <tr>
+                                    <th>Customer Location</th>
+                                </tr>
+                                <tr><td>California</td></tr>
+                                <tr><td>New York</td></tr>
+                                <tr><td>California</td></tr>
+                                <tr><td>Texas</td></tr>
+                                <tr><td>Florida</td></tr>
+                                <tr><td>New York</td></tr>
+                                <tr><td>California</td></tr>
+                            </table>
+                            
+                            <div class="bg-gray-800 p-3 rounded-lg mb-3">
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex items-center">
+                                        <label class="w-28">Find what:</label>
+                                        <input type="text" class="excel-input w-full" id="find-text" value="California">
+                                    </div>
+                                    <div class="flex items-center">
+                                        <label class="w-28">Replace with:</label>
+                                        <input type="text" class="excel-input w-full" id="replace-text" value="CA">
+                                    </div>
+                                    <div class="flex justify-end gap-2">
+                                        <button class="excel-button" id="replace-btn">Replace</button>
+                                        <button class="excel-button" id="replace-all-btn">Replace All</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all simulations
+            initFilterSimulation();
+            initSortSimulation();
+            initDeleteColumnSimulation();
+            initSheetsSimulation();
+            initAverageSimulation();
+            initSumSimulation();
+            initCountIfSimulation();
+            initChartSimulation();
+            initFindReplaceSimulation();
+            
+            // Show/hide skill content
+            const skillHeaders = document.querySelectorAll('.skill-header');
+            
+            skillHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const arrow = this.querySelector('.toggle-arrow');
+                    
+                    if (content.classList.contains('active')) {
+                        // Closing the content
+                        content.classList.remove('active');
+                        arrow.classList.remove('rotate-arrow');
+                        
+                        // Store the current height
+                        const height = content.offsetHeight;
+                        content.style.height = height + 'px';
+                        
+                        // Force a reflow
+                        content.offsetHeight;
+                        
+                        // Transition to height 0
+                        content.style.height = '0px';
+                        content.style.overflow = 'hidden';
+                        
+                        // Reset after animation
+                        setTimeout(() => {
+                            content.style.maxHeight = '0';
+                        }, 300);
+                    } else {
+                        // Opening the content
+                        content.classList.add('active');
+                        arrow.classList.add('rotate-arrow');
+                        
+                        // Set max-height to a large value
+                        content.style.maxHeight = '2000px';
+                        content.style.height = 'auto';
+                        content.style.overflow = 'visible';
+                    }
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('skill-search');
+            const skillCards = document.querySelectorAll('.skill-card');
+            
+            function highlightText(element, searchText) {
+                if (!searchText.trim()) {
+                    // If search is empty, restore original text
+                    element.innerHTML = element.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/g, '$1');
+                    return;
+                }
+                
+                const regex = new RegExp(searchText, 'gi');
+                element.innerHTML = element.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/g, '$1'); // Remove existing highlights
+                element.innerHTML = element.innerHTML.replace(regex, match => `<mark class="search-highlight">${match}</mark>`);
+            }
+            
+            searchInput.addEventListener('input', function() {
+                const searchText = this.value.toLowerCase();
+                
+                skillCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const content = card.querySelector('.skill-content').textContent.toLowerCase();
+                    
+                    if (title.includes(searchText) || content.includes(searchText)) {
+                        card.style.display = 'block';
+                        
+                        // Highlight matches in title
+                        if (searchText) {
+                            highlightText(card.querySelector('h3'), searchText);
+                            
+                            // Open the card if it contains the search text
+                            const content = card.querySelector('.skill-content');
+                            const arrow = card.querySelector('.toggle-arrow');
+                            
+                            if (!content.classList.contains('active')) {
+                                content.classList.add('active');
+                                arrow.classList.add('rotate-arrow');
+                                
+                                // Set directly to auto height
+                                content.style.maxHeight = '2000px';
+                                content.style.height = 'auto';
+                                content.style.overflow = 'visible';
+                            }
+                        }
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Category filter functionality
+            const categoryButtons = document.querySelectorAll('.category-pill');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    
+                    // Show/hide cards without animation
+                    skillCards.forEach(card => {
+                        if (category === 'all' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Animate all cards at once on page load
+            gsap.from('.skill-card', {
+                y: 15,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0,
+                ease: 'power2.out'
+            });
+            
+            // Filter Simulation
+            function initFilterSimulation() {
+                const filterButtons = document.querySelectorAll('.filter-button');
+                const tableRows = document.querySelectorAll('#filter-simulation tbody tr');
+                
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const category = this.dataset.category;
+                        const value = this.dataset.value;
+                        
+                        tableRows.forEach(row => {
+                            row.style.display = 'table-row';
+                            row.classList.remove('filtered-row');
+                            
+                            if (category === 'all') {
+                                // Show all rows
+                                setTimeout(() => {
+                                    row.classList.add('filtered-row');
+                                }, 10);
+                            } 
+                            else if (category && row.dataset.category !== category) {
+                                // Hide rows that don't match the category
+                                row.style.display = 'none';
+                            }
+                            else if (value === 'high' && parseInt(row.dataset.sales) <= 800) {
+                                // Hide rows with sales <= 800
+                                row.style.display = 'none';
+                            }
+                            else {
+                                // Highlight matching rows
+                                setTimeout(() => {
+                                    row.classList.add('filtered-row');
+                                }, 10);
+                            }
+                        });
+                    });
+                });
+            }
+            
+            // Sort Simulation
+            function initSortSimulation() {
+                const table = document.querySelector('.sort-table');
+                const headers = table.querySelectorAll('th');
+                
+                headers.forEach(header => {
+                    header.addEventListener('click', function() {
+                        const sortType = this.dataset.sort;
+                        const columnIndex = Array.from(this.parentNode.children).indexOf(this);
+                        
+                        // Remove sort indicators from all headers
+                        headers.forEach(h => {
+                            h.querySelector('.sort-indicator').textContent = '';
+                        });
+                        
+                        // Set sort indicator on clicked header
+                        const indicator = this.querySelector('.sort-indicator');
+                        const isAscending = indicator.textContent === '▲' ? false : true;
+                        indicator.textContent = isAscending ? '▲' : '▼';
+                        
+                        // Sort table rows
+                        const rows = Array.from(table.querySelectorAll('tbody tr'));
+                        rows.sort((a, b) => {
+                            let aValue = a.children[columnIndex].textContent.trim();
+                            let bValue = b.children[columnIndex].textContent.trim();
+                            
+                            if (sortType === 'number') {
+                                aValue = parseFloat(aValue);
+                                bValue = parseFloat(bValue);
+                                return isAscending ? aValue - bValue : bValue - aValue;
+                            } else {
+                                return isAscending 
+                                    ? aValue.localeCompare(bValue) 
+                                    : bValue.localeCompare(aValue);
+                            }
+                        });
+                        
+                        // Apply sorting with animation
+                        const tbody = table.querySelector('tbody');
+                        rows.forEach(row => {
+                            tbody.appendChild(row);
+                            gsap.from(row, {
+                                backgroundColor: 'rgba(49, 130, 206, 0.3)',
+                                duration: 0.5
+                            });
+                        });
+                    });
+                });
+            }
+            
+            // Delete Column Simulation
+            function initDeleteColumnSimulation() {
+                const deleteButtons = document.querySelectorAll('.delete-col-btn');
+                const resetButton = document.getElementById('reset-columns');
+                const table = document.querySelector('.delete-table');
+                
+                // Store original table HTML for reset
+                const originalTableHTML = table.innerHTML;
+                
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const columnIndex = parseInt(this.dataset.col);
+                        
+                        // Hide the column with animation
+                        const cells = table.querySelectorAll(`tr > *:nth-child(${columnIndex + 1})`);
+                        
+                        gsap.to(cells, {
+                            opacity: 0,
+                            width: 0,
+                            padding: 0,
+                            duration: 0.3,
+                            onComplete: () => {
+                                cells.forEach(cell => {
+                                    cell.style.display = 'none';
+                                });
+                            }
+                        });
+                    });
+                });
+                
+                // Reset button functionality
+                resetButton.addEventListener('click', function() {
+                    table.innerHTML = originalTableHTML;
+                    
+                    // Reinitialize event listeners on new buttons
+                    initDeleteColumnSimulation();
+                });
+            }
+            
+            // Sheets Simulation
+            function initSheetsSimulation() {
+                const tabs = document.querySelectorAll('.excel-tab');
+                const addSheetBtn = document.getElementById('add-sheet-btn');
+                const sheetNameDisplay = document.querySelector('.current-sheet-name');
+                const renameButton = document.querySelector('.rename-sheet-btn');
+                const deleteButton = document.querySelector('.delete-sheet-btn');
+                
+                let sheetCount = tabs.length;
+                
+                // Set active tab function
+                function setActiveTab(tab) {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    sheetNameDisplay.textContent = tab.textContent;
+                }
+                
+                // Tab click event
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        setActiveTab(this);
+                    });
+                });
+                
+                // Add new sheet button
+                addSheetBtn.addEventListener('click', function() {
+                    sheetCount++;
+                    const newSheetName = `Sheet${sheetCount}`;
+                    
+                    const newTab = document.createElement('div');
+                    newTab.className = 'excel-tab';
+                    newTab.textContent = newSheetName;
+                    newTab.dataset.sheet = newSheetName;
+                    
+                    document.getElementById('excel-tabs').appendChild(newTab);
+                    
+                    // Add click event to new tab
+                    newTab.addEventListener('click', function() {
+                        setActiveTab(this);
+                    });
+                    
+                    // Activate the new tab
+                    setActiveTab(newTab);
+                    
+                    // Animate new tab
+                    gsap.from(newTab, {
+                        x: -20,
+                        opacity: 0,
+                        duration: 0.3
+                    });
+                });
+                
+                // Rename sheet button
+                renameButton.addEventListener('click', function() {
+                    const activeTab = document.querySelector('.excel-tab.active');
+                    const currentName = activeTab.textContent;
+                    const newName = prompt('Enter new sheet name:', currentName);
+                    
+                    if (newName && newName.trim() !== '') {
+                        activeTab.textContent = newName;
+                        activeTab.dataset.sheet = newName;
+                        sheetNameDisplay.textContent = newName;
+                        
+                        // Highlight the renamed tab
+                        gsap.fromTo(activeTab, 
+                            {backgroundColor: '#4299e1'}, 
+                            {backgroundColor: '#3182ce', duration: 0.5}
+                        );
+                    }
+                });
+                
+                // Delete sheet button
+                deleteButton.addEventListener('click', function() {
+                    const activeTab = document.querySelector('.excel-tab.active');
+                    const tabsContainer = document.getElementById('excel-tabs');
+                    
+                    // Don't allow deleting the last tab
+                    if (tabsContainer.children.length <= 1) {
+                        alert('Cannot delete the last sheet.');
+                        return;
+                    }
+                    
+                    // Find the next tab to make active
+                    const nextTab = activeTab.nextElementSibling || activeTab.previousElementSibling;
+                    
+                    // Animate and remove the tab
+                    gsap.to(activeTab, {
+                        x: -20,
+                        opacity: 0,
+                        duration: 0.3,
+                        onComplete: () => {
+                            activeTab.remove();
+                            setActiveTab(nextTab);
+                        }
+                    });
+                });
+            }
+            
+            // Average Function Simulation
+            function initAverageSimulation() {
+                const scoreInputs = document.querySelectorAll('.score-input');
+                const addScoreBtn = document.getElementById('add-score');
+                const averageResult = document.getElementById('average-result');
+                const cellCount = document.getElementById('cell-count');
+                
+                // Calculate average function
+                function calculateAverage() {
+                    const inputs = document.querySelectorAll('.score-input');
+                    let sum = 0;
+                    let count = 0;
+                    
+                    inputs.forEach(input => {
+                        const value = parseFloat(input.value);
+                        if (!isNaN(value)) {
+                            sum += value;
+                            count++;
+                        }
+                    });
+                    
+                    const average = count > 0 ? (sum / count).toFixed(1) : 0;
+                    averageResult.textContent = average;
+                    cellCount.textContent = count;
+                }
+                
+                // Update average when inputs change
+                document.getElementById('score-inputs').addEventListener('input', function(e) {
+                    if (e.target.classList.contains('score-input')) {
+                        calculateAverage();
+                    }
+                });
+                
+                // Add new score input
+                addScoreBtn.addEventListener('click', function() {
+                    const newInput = document.createElement('input');
+                    newInput.type = 'number';
+                    newInput.className = 'excel-input score-input';
+                    newInput.value = Math.floor(Math.random() * 30) + 70; // Random score between 70-99
+                    
+                    document.getElementById('score-inputs').appendChild(newInput);
+                    
+                    // Animate new input
+                    gsap.from(newInput, {
+                        scale: 0.8,
+                        opacity: 0,
+                        duration: 0.3
+                    });
+                    
+                    calculateAverage();
+                });
+                
+                // Initialize average calculation
+                calculateAverage();
+            }
+            
+            // Sum Function Simulation
+            function initSumSimulation() {
+                const sumInputs = document.querySelectorAll('.sum-input');
+                const sumResult = document.getElementById('sum-result');
+                
+                // Calculate sum function
+                function calculateSum() {
+                    const inputs = document.querySelectorAll('.sum-input');
+                    let sum = 0;
+                    
+                    inputs.forEach(input => {
+                        const value = parseFloat(input.value);
+                        if (!isNaN(value)) {
+                            sum += value;
+                        }
+                    });
+                    
+                    sumResult.textContent = sum;
+                }
+                
+                // Update sum when inputs change
+                sumInputs.forEach(input => {
+                    input.addEventListener('input', calculateSum);
+                });
+                
+                // Initialize sum calculation
+                calculateSum();
+            }
+            
+            // COUNTIF Function Simulation
+            function initCountIfSimulation() {
+                const countifInputs = document.querySelectorAll('.countif-input');
+                const countifCriteria = document.getElementById('countif-criteria');
+                const countifResult = document.getElementById('countif-result');
+                const countifCriteriaDisplay = document.getElementById('countif-criteria-display');
+                
+                // Calculate COUNTIF function
+                function calculateCountIf() {
+                    const inputs = document.querySelectorAll('.countif-input');
+                    const criteria = countifCriteria.value;
+                    let count = 0;
+                    
+                    countifCriteriaDisplay.textContent = criteria;
+                    
+                    inputs.forEach(input => {
+                        if (input.value === criteria) {
+                            count++;
+                        }
+                    });
+                    
+                    countifResult.textContent = count;
+                }
+                
+                // Update count when inputs change
+                countifInputs.forEach(input => {
+                    input.addEventListener('change', calculateCountIf);
+                });
+                
+                // Update count when criteria changes
+                countifCriteria.addEventListener('change', calculateCountIf);
+                
+                // Initialize countif calculation
+                calculateCountIf();
+            }
+            
+            // Chart Simulation
+            function initChartSimulation() {
+                const chartInputs = document.querySelectorAll('.chart-data-input');
+                const chartTitle = document.getElementById('chart-title');
+                const chartTitleDisplay = document.getElementById('chart-title-display');
+                const chartTypeButtons = document.querySelectorAll('.chart-type-btn');
+                const chartContainer = document.getElementById('chart-container');
+                
+                let currentChartType = 'column';
+                
+                // Update chart function
+                function updateChart() {
+                    // Clear previous chart
+                    chartContainer.innerHTML = '';
+                    
+                    // Get data from inputs
+                    const data = [];
+                    chartInputs.forEach(input => {
+                        data.push({
+                            quarter: input.dataset.quarter,
+                            value: parseFloat(input.value) || 0
+                        });
+                    });
+                    
+                    // Find max value for scaling
+                    const maxValue = Math.max(...data.map(item => item.value));
+                    
+                    // Create chart elements based on chart type
+                    data.forEach(item => {
+                        const percentage = (item.value / maxValue) * 100;
+                        const height = Math.max(percentage, 5); // Minimum height for visibility
+                        
+                        const bar = document.createElement('div');
+                        
+                        if (currentChartType === 'column') {
+                            bar.className = 'chart-bar';
+                            bar.style.height = `${height}%`;
+                        }
+                        else if (currentChartType === 'bar') {
+                            bar.className = 'chart-bar';
+                            bar.style.height = '24px';
+                            bar.style.width = `${height}%`;
+                        }
+                        else if (currentChartType === 'line') {
+                            // For line chart, create dots connected by lines
+                            // (simplified version for demo)
+                            bar.className = 'chart-bar';
+                            bar.style.height = '12px';
+                            bar.style.width = '12px';
+                            bar.style.borderRadius = '50%';
+                            bar.style.marginTop = `${100 - height}%`;
+                        }
+                        
+                        bar.setAttribute('data-value', item.value);
+                        
+                        const label = document.createElement('div');
+                        label.className = 'chart-label';
+                        label.textContent = item.quarter;
+                        
+                        bar.appendChild(label);
+                        chartContainer.appendChild(bar);
+                    });
+                }
+                
+                // Update chart when inputs change
+                chartInputs.forEach(input => {
+                    input.addEventListener('input', updateChart);
+                });
+                
+                // Update chart title
+                chartTitle.addEventListener('input', function() {
+                    chartTitleDisplay.textContent = this.value;
+                });
+                
+                // Switch chart types
+                chartTypeButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        chartTypeButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        currentChartType = this.dataset.type;
+                        updateChart();
+                    });
+                });
+                
+                // Initialize chart
+                updateChart();
+            }
+            
+            // Find and Replace Simulation
+            function initFindReplaceSimulation() {
+                const findText = document.getElementById('find-text');
+                const replaceText = document.getElementById('replace-text');
+                const replaceBtn = document.getElementById('replace-btn');
+                const replaceAllBtn = document.getElementById('replace-all-btn');
+                const tableCells = document.querySelectorAll('#find-replace-simulation tbody td');
+                
+                let currentFindIndex = 0;
+                
+                function highlightNext() {
+                    // Remove previous highlights
+                    tableCells.forEach(cell => {
+                        cell.style.backgroundColor = '';
+                    });
+                    
+                    // Find cells that match the search text
+                    const matchingCells = Array.from(tableCells).filter(cell => 
+                        cell.textContent === findText.value
+                    );
+                    
+                    if (matchingCells.length > 0) {
+                        if (currentFindIndex >= matchingCells.length) {
+                            currentFindIndex = 0;
+                        }
+                        
+                        // Highlight the current cell
+                        matchingCells[currentFindIndex].style.backgroundColor = '#3182ce';
+                        
+                        currentFindIndex++;
+                    }
+                }
+                
+                function replaceOne() {
+                    // Find cells that match the search text
+                    const matchingCells = Array.from(tableCells).filter(cell => 
+                        cell.textContent === findText.value
+                    );
+                    
+                    if (matchingCells.length > 0) {
+                        if (currentFindIndex > 0) {
+                            currentFindIndex--;
+                        }
+                        
+                        if (currentFindIndex >= matchingCells.length) {
+                            currentFindIndex = 0;
+                        }
+                        
+                        // Replace the text in the current cell
+                        const cell = matchingCells[currentFindIndex];
+                        cell.textContent = replaceText.value;
+                        
+                        // Highlight the cell that was replaced
+                        gsap.fromTo(cell, 
+                            {backgroundColor: '#48bb78'}, 
+                            {backgroundColor: '', duration: 1}
+                        );
+                        
+                        // Find the next match
+                        highlightNext();
+                    }
+                }
+                
+                function replaceAll() {
+                    // Find all cells that match the search text
+                    let replacedCells = [];
+                    
+                    tableCells.forEach(cell => {
+                        if (cell.textContent === findText.value) {
+                            cell.textContent = replaceText.value;
+                            replacedCells.push(cell);
+                        }
+                    });
+                    
+                    // Highlight all replaced cells
+                    if (replacedCells.length > 0) {
+                        replacedCells.forEach(cell => {
+                            gsap.fromTo(cell, 
+                                {backgroundColor: '#48bb78'}, 
+                                {backgroundColor: '', duration: 1, delay: 0.2}
+                            );
+                        });
+                    }
+                    
+                    currentFindIndex = 0;
+                }
+                
+                // Find button click event
+                findText.addEventListener('input', function() {
+                    currentFindIndex = 0;
+                    highlightNext();
+                });
+                
+                // Replace button click event
+                replaceBtn.addEventListener('click', replaceOne);
+                
+                // Replace All button click event
+                replaceAllBtn.addEventListener('click', replaceAll);
+                
+                // Initialize first highlight
+                highlightNext();
+            }
+        });
+
+        function initMinMaxSimulation() {
+        const minmaxInputs = document.querySelectorAll('.minmax-input');
+        const addValueBtn = document.getElementById('add-value');
+        const minResult = document.getElementById('min-result');
+        const maxResult = document.getElementById('max-result');
+        const cellCount = document.getElementById('minmax-cell-count');
+        const cellCount2 = document.getElementById('minmax-cell-count2');
+        
+        // Calculate MIN and MAX function
+        function calculateMinMax() {
+            const inputs = document.querySelectorAll('.minmax-input');
+            let values = [];
+            
+            inputs.forEach(input => {
+                const value = parseFloat(input.value);
+                if (!isNaN(value)) {
+                    values.push(value);
+                }
+            });
+            
+            const min = values.length > 0 ? Math.min(...values) : 0;
+            const max = values.length > 0 ? Math.max(...values) : 0;
+            
+            minResult.textContent = min;
+            maxResult.textContent = max;
+            cellCount.textContent = inputs.length;
+            cellCount2.textContent = inputs.length;
+        }
+        
+        // Update calculations when inputs change
+        document.getElementById('minmax-inputs').addEventListener('input', function(e) {
+            if (e.target.classList.contains('minmax-input')) {
+                calculateMinMax();
+            }
+        });
+        
+        // Add new value input
+        addValueBtn.addEventListener('click', function() {
+            const newInput = document.createElement('input');
+            newInput.type = 'number';
+            newInput.className = 'excel-input minmax-input';
+            
+            // Generate random value between 800 and 1800
+            const randomValue = Math.floor(Math.random() * 1000) + 800;
+            newInput.value = randomValue;
+            
+            document.getElementById('minmax-inputs').appendChild(newInput);
+            
+            // Animate new input
+            gsap.from(newInput, {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.3
+            });
+            
+            calculateMinMax();
+        });
+        
+        // Initialize calculation
+        calculateMinMax();
+    }
+    
+    // Script for Conditional Formatting simulation
+    function initCondFormatSimulation() {
+        const formatButtons = document.querySelectorAll('.format-btn');
+        const formatCells = document.querySelectorAll('.format-cell');
+        const customCondition = document.getElementById('custom-condition');
+        const customValue1 = document.getElementById('custom-value1');
+        const customValue2 = document.getElementById('custom-value2');
+        const customFormat = document.getElementById('custom-format');
+        const applyCustomBtn = document.getElementById('apply-custom');
+        
+        // Original cell styles
+        const originalStyles = {};
+        formatCells.forEach((cell, index) => {
+            originalStyles[index] = {
+                backgroundColor: '',
+                color: '',
+                fontWeight: '',
+                backgroundImage: '',
+                position: '',
+                padding: ''
+            };
+        });
+        
+        // Reset all formatting
+        function resetFormatting() {
+            formatCells.forEach((cell, index) => {
+                cell.style.backgroundColor = originalStyles[index].backgroundColor;
+                cell.style.color = originalStyles[index].color;
+                cell.style.fontWeight = originalStyles[index].fontWeight;
+                cell.style.backgroundImage = originalStyles[index].backgroundImage;
+                cell.style.position = originalStyles[index].position;
+                cell.style.padding = originalStyles[index].padding;
+                
+                // Remove any additional elements
+                const bars = cell.querySelectorAll('.data-bar');
+                bars.forEach(bar => bar.remove());
+            });
+        }
+        
+        // Apply highlight formatting
+        function applyHighlight() {
+            resetFormatting();
+            formatCells.forEach(cell => {
+                const value = parseInt(cell.textContent);
+                if (value > 90) {
+                    cell.style.backgroundColor = 'rgba(72, 187, 120, 0.3)';
+                    cell.style.color = 'rgb(72, 187, 120)';
+                    cell.style.fontWeight = 'bold';
+                    
+                    // Animation
+                    gsap.from(cell, {
+                        backgroundColor: 'transparent',
+                        color: 'white',
+                        duration: 0.5
+                    });
+                }
+            });
+        }
+        
+        // Apply data bars
+        function applyDataBars() {
+            resetFormatting();
+            
+            // Find min and max values
+            let values = [];
+            formatCells.forEach(cell => {
+                values.push(parseInt(cell.textContent));
+            });
+            
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const range = max - min;
+            
+            formatCells.forEach(cell => {
+                const value = parseInt(cell.textContent);
+                const percentage = range > 0 ? ((value - min) / range) * 100 : 0;
+                
+                cell.style.position = 'relative';
+                cell.style.padding = '6px';
+                
+                const bar = document.createElement('div');
+                bar.className = 'data-bar';
+                bar.style.position = 'absolute';
+                bar.style.left = '0';
+                bar.style.top = '0';
+                bar.style.bottom = '0';
+                bar.style.width = `${percentage}%`;
+                bar.style.backgroundColor = 'rgba(66, 153, 225, 0.3)';
+                bar.style.zIndex = '1';
+                
+                cell.appendChild(bar);
+                
+                // Make sure text is on top of the bar
+                const text = cell.textContent;
+                const span = document.createElement('span');
+                span.style.position = 'relative';
+                span.style.zIndex = '2';
+                span.textContent = text;
+                
+                cell.textContent = '';
+                cell.appendChild(bar);
+                cell.appendChild(span);
+                
+                // Animation
+                gsap.from(bar, {
+                    width: 0,
+                    duration: 0.5
+                });
+            });
+        }
+        
+        // Apply color scale
+        function applyColorScale() {
+            resetFormatting();
+            
+            // Find min and max values
+            let values = [];
+            formatCells.forEach(cell => {
+                values.push(parseInt(cell.textContent));
+            });
+            
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const range = max - min;
+            
+            formatCells.forEach(cell => {
+                const value = parseInt(cell.textContent);
+                const percentage = range > 0 ? ((value - min) / range) : 0;
+                
+                // Color interpolation - red to yellow to green
+                let r, g, b;
+                
+                if (percentage < 0.5) {
+                    // Red to yellow
+                    r = 255;
+                    g = Math.round(255 * (percentage * 2));
+                    b = 0;
+                } else {
+                    // Yellow to green
+                    r = Math.round(255 * (1 - (percentage - 0.5) * 2));
+                    g = 255;
+                    b = 0;
+                }
+                
+                cell.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.3)`;
+                cell.style.color = percentage > 0.7 ? '#22543d' : percentage < 0.3 ? '#9b2c2c' : '#744210';
+                
+                // Animation
+                gsap.from(cell, {
+                    backgroundColor: 'transparent',
+                    duration: 0.5
+                });
+            });
+        }
+        
+        // Apply custom formatting
+        function applyCustomFormat() {
+            resetFormatting();
+            
+            const condition = customCondition.value;
+            const value1 = parseFloat(customValue1.value);
+            const value2 = parseFloat(customValue2.value);
+            const format = customFormat.value;
+            
+            formatCells.forEach(cell => {
+                const cellValue = parseFloat(cell.textContent);
+                let applyFormat = false;
+                
+                switch (condition) {
+                    case 'greater':
+                        applyFormat = cellValue > value1;
+                        break;
+                    case 'less':
+                        applyFormat = cellValue < value1;
+                        break;
+                    case 'equal':
+                        applyFormat = cellValue === value1;
+                        break;
+                    case 'between':
+                        applyFormat = cellValue >= value1 && cellValue <= value2;
+                        break;
+                }
+                
+                if (applyFormat) {
+                    switch (format) {
+                        case 'green':
+                            cell.style.backgroundColor = 'rgba(72, 187, 120, 0.3)';
+                            break;
+                        case 'red':
+                            cell.style.backgroundColor = 'rgba(245, 101, 101, 0.3)';
+                            break;
+                        case 'yellow':
+                            cell.style.backgroundColor = 'rgba(236, 201, 75, 0.3)';
+                            break;
+                        case 'bold':
+                            cell.style.fontWeight = 'bold';
+                            cell.style.color = '#fff';
+                            break;
+                    }
+                    
+                    // Animation
+                    gsap.from(cell, {
+                        backgroundColor: 'transparent',
+                        fontWeight: 'normal',
+                        color: 'white',
+                        duration: 0.5
+                    });
+                }
+            });
+        }
+        
+        // Button click events
+        formatButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const format = this.dataset.format;
+                
+                switch (format) {
+                    case 'highlight':
+                        applyHighlight();
+                        break;
+                    case 'databar':
+                        applyDataBars();
+                        break;
+                    case 'colorscale':
+                        applyColorScale();
+                        break;
+                    case 'reset':
+                        resetFormatting();
+                        break;
+                }
+            });
+        });
+        
+        // Custom condition change event
+        customCondition.addEventListener('change', function() {
+            if (this.value === 'between') {
+                customValue2.classList.remove('hidden');
+            } else {
+                customValue2.classList.add('hidden');
+            }
+        });
+        
+        // Apply custom format button
+        applyCustomBtn.addEventListener('click', applyCustomFormat);
+    }
+    
+    // Initialize simulations when document is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        if (document.getElementById('minmax-simulation')) {
+            initMinMaxSimulation();
+        }
+        
+        if (document.getElementById('cond-format-simulation')) {
+            initCondFormatSimulation();
+        }
+    });
+    </script>
+</body>
+</html>
