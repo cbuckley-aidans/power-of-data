@@ -811,9 +811,10 @@
         <div class="video-demo mb-4">
             <h4 class="font-semibold text-blue-300 mb-2">Watch how it works:</h4>
             <div class="video-container">
-                <div class="flex items-center justify-center h-full bg-gray-800 text-center p-4">
-                    <p class="text-xl text-gray-400">Video Coming Soon</p>
-                </div>
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/lspHyES.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
         
@@ -828,10 +829,7 @@
             </ul>
         </div>
         
-        <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg mb-4">
-            <h4 class="font-semibold text-blue-300 mb-1">Pro Tip:</h4>
-            <p>You can nest IF functions inside each other (e.g., =IF(A1>90,"A",IF(A1>80,"B",IF(A1>70,"C","F")))) to create multiple condition checks, but consider using IFS function for better readability when dealing with many conditions.</p>
-        </div>
+        
         
         <div class="simulation-container" id="if-simulation">
             <h4 class="font-semibold text-blue-300 mb-2">Try the IF function:</h4>
