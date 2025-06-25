@@ -1269,6 +1269,48 @@
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
+/* Video frame styles for tutorial.html */
+.excel-formula video,
+.content video {
+    display: block;
+    margin: 1rem auto;
+    max-width: 100%;
+    width: 800px;
+    height: auto;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background: #f9fafb;
+    padding: 4px;
+}
+
+/* Responsive video sizing */
+@media (max-width: 768px) {
+    .excel-formula video,
+    .content video {
+        width: 100%;
+        max-width: 95vw;
+    }
+}
+
+/* Video container for better centering */
+.video-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.video-container video {
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background: #f9fafb;
+    padding: 4px;
+    max-width: 100%;
+    width: 800px;
+    height: auto;
+}
+
 
 
 
