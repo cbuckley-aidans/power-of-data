@@ -12,15 +12,8 @@ window.initTutorial = async function(tutorialId) {
         initTooltips();
         initInTutorialToggles();
         
-        const savedProgress = parseInt(localStorage.getItem(`tutorialProgress${tutorialId}`) || '0');
-        const lastOpenedStep = parseInt(localStorage.getItem(`lastOpenedStep${tutorialId}`) || '0');
-        const stepsToOpen = Math.max(Math.floor((savedProgress / 100) * tutorialData.steps.length), lastOpenedStep + 1);
-        
-        document.querySelectorAll('.step-toggle').forEach((toggle, index) => {
-            if (index < stepsToOpen) {
-                toggle.click();
-            }
-        });
+        // Keep all steps closed by default - user must click to expand
+        // Progress tracking will still work when user manually opens steps
         
         // Set up next tutorial button
         const nextTutorialBtn = document.getElementById('next-tutorial-btn');
@@ -945,7 +938,163 @@ window.glossaryTerms = glossaryTerms;
     }
   });
 
-  
+  // Add these functions to your tutorial-loader.js file
+
+// Function to clean HTML and prevent parsing issues
+function cleanHTMLContent(htmlString) {
+    // Remove malformed space-y classes that are showing as text
+    let cleaned = htmlString.replace(/space-y-\d+[^"]*">/g, '');
+    
+    // Fix any unclosed quotes in class attributes
+    cleaned = cleaned.replace(/class="([^"]*)"([^>]*>)/g, 'class="$1"$2');
+    
+    // Ensure proper spacing in space-y classes
+    cleaned = cleaned.replace(/space-y-(\d+)"/g, 'space-y-$1"');
+    
+    return cleaned;
+}
+
+// Function to safely render content with proper keyboard key styling
+function renderContentWithKeyboardStyling(content) {
+    // Clean the HTML first
+    let cleanContent = cleanHTMLContent(content);
+    
+    // Apply keyboard key styling only where explicitly marked
+    // This prevents automatic conversion of words like "enter" or "C"
+    cleanContent = cleanContent.replace(/<span class="kbd-key">([^<]+)<\/span>/g, (match, keyName) => {
+        return createKeyboardKey(keyName);
+    });
+    
+    return cleanContent;
+}
+
+// Function to create properly styled keyboard keys
+function createKeyboardKey(keyName, type = 'normal') {
+    const keyTypes = {
+        'normal': 'kbd-key',
+        'function': 'kbd-key function',
+        'arrow': 'kbd-key arrow'
+    };
+    
+    // Determine key type based on content
+    let keyType = 'normal';
+    if (keyName.match(/^F\d+$/)) {
+        keyType = 'function';
+    } else if (['↑', '↓', '←', '→', 'Up', 'Down', 'Left', 'Right'].includes(keyName)) {
+        keyType = 'arrow';
+    }
+    
+    return `<span class="${keyTypes[keyType]}">${keyName}</span>`;
+}
+
+// Update the renderTutorialContent function to use the new cleaning function
+async function renderTutorialContent(tutorialData) {
+    document.getElementById('tutorial-title').textContent = tutorialData.title;
+    const tutorialContainer = document.getElementById('tutorial-steps');
+    tutorialContainer.innerHTML = '';
+
+    createTutorialCarousel();
+
+    for (let index = 0; index < tutorialData.steps.length; index++) {
+        const step = tutorialData.steps[index];
+        // Clean the content before creating the step
+        const cleanedStep = {
+            ...step,
+            content: renderContentWithKeyboardStyling(step.content)
+        };
+        const stepElement = await createTutorialStep(cleanedStep, index);
+        tutorialContainer.appendChild(stepElement);
+    }
+
+    // Handle carousels
+    document.querySelectorAll('[id^="filter-carousel"]').forEach(carousel => {
+        if (carousel.hasAttribute('data-images')) {
+            const images = JSON.parse(carousel.getAttribute('data-images'));
+            ReactDOM.render(
+                React.createElement(window.TutorialCarousel, { images: images }),
+                carousel
+            );
+        }
+    });
+}
+
+// CSS styles to add to your main CSS file or within the HTML
+const keyboardStyles = `
+.kbd-key {
+    display: inline-block;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    border: 2px solid #c0c0c0;
+    border-radius: 6px;
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 4px 8px;
+    margin: 0 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    top: -1px;
+}
+
+.kbd-key:hover {
+    background: linear-gradient(135deg, #e8e8e8 0%, #d8d8d8 100%);
+    transform: translateY(1px);
+    box-shadow: 
+        0 1px 2px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.kbd-key.function {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    border-color: #2968a3;
+}
+
+.kbd-key.arrow {
+    font-family: monospace;
+    font-size: 0.9em;
+    width: 24px;
+    text-align: center;
+    padding: 4px 2px;
+}
+
+/* Fix for space-y utility classes */
+.space-y-2 > * + * {
+    margin-top: 0.5rem;
+}
+
+.space-y-4 > * + * {
+    margin-top: 1rem;
+}
+`;
+
+// Function to inject the CSS
+function injectKeyboardStyles() {
+    if (!document.getElementById('keyboard-styles')) {
+        const style = document.createElement('style');
+        style.id = 'keyboard-styles';
+        style.textContent = keyboardStyles;
+        document.head.appendChild(style);
+    }
+}
+
+// Update your initialization to include the styles
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tutorialId = urlParams.get('id');
+    if (tutorialId) {
+        injectKeyboardStyles(); // Add this line
+        initTutorial(tutorialId);
+        preloadAudio();
+        initGlossary();
+    } else {
+        console.error('No tutorial ID provided');
+    }
+});
 
 // Export functions that need to be globally accessible
 window.updateProgressBar = updateProgressBar;

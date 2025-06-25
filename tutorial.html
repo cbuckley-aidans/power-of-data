@@ -1,87 +1,2154 @@
 <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>The Power of Data</title>
-       <script src="https://cdn.tailwindcss.com"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-       <script src="https://unpkg.com/@popperjs/core@2"></script>
-       <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-       <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-       <link rel="stylesheet" href="./CSS/styles.css">
-   </head>
-   <body class="min-h-screen p-8">
-    <div id="glossary-button" class="fixed top-4 right-28 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg cursor-pointer z-40 flex items-center space-x-2 transition-colors duration-300 hover:bg-blue-700">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-        </svg>
-        <span>Glossary</span>
-      </div>
-      
-      <div id="glossary-panel" class="fixed top-0 right-0 w-80 h-full bg-gray-800 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50">
-        <div class="p-4">
-          <button id="glossary-close" class="absolute top-2 right-2 text-white hover:text-gray-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <h2 class="text-2xl font-bold text-white mb-4">Glossary</h2>
-          <input type="text" id="glossary-search" placeholder="Search terms..." class="w-full p-2 mb-4 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <div id="glossary-content"></div>
-        </div>
-      </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Tutorial</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Required Libraries for Tutorial Functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Enhanced Tutorial Styling -->
+    <style>
+        .tutorial-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+        
+        .tutorial-step {
+            background: white;
+            border: 2px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+        }
+        
+        .tutorial-step:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .step-header {
+            background: linear-gradient(135deg, var(--chunk-color), #2563eb);
+            color: white;
+            padding: 20px 25px;
+            border-radius: calc(var(--border-radius) - 2px) calc(var(--border-radius) - 2px) 0 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-content {
+            padding: 25px;
+            display: none !important;
+            overflow: hidden;
+        }
+        
+        .step-content.open {
+            display: block !important;
+        }
+        
+        .step-body {
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .step-body h2, .step-body h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .step-body h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .step-body p {
+            line-height: 1.7;
+            margin-bottom: 18px;
+            font-size: 1.05em;
+            max-width: none;
+        }
+        
+        .step-body p strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        /* Numbered/bulleted lists with enhanced styling */
+        .step-body ul, .step-body ol {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        .step-body ol {
+            counter-reset: step-counter;
+        }
+        
+        .step-body ol li {
+            counter-increment: step-counter;
+            background: rgba(59, 130, 246, 0.05);
+            margin-bottom: 12px;
+            padding: 15px 20px 15px 60px;
+            border-left: 4px solid var(--chunk-color);
+            border-radius: var(--border-radius);
+            position: relative;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        
+        .step-body ol li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--chunk-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .step-body ul li {
+            background: rgba(16, 185, 129, 0.05);
+            margin-bottom: 10px;
+            padding: 12px 20px 12px 50px;
+            border-left: 4px solid var(--chew-color);
+            border-radius: var(--border-radius);
+            position: relative;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        
+        .step-body ul li::before {
+            content: '\2022';
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            color: var(--chew-color);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        /* Fix nested list alignment with fa-icons */
+        .step-body ul ul {
+            margin: 15px 0 0 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        .step-body ul ul li {
+            background: rgba(16, 185, 129, 0.03);
+            margin-bottom: 8px;
+            padding: 10px 15px 10px 45px;
+            border-left: 3px solid rgba(16, 185, 129, 0.4);
+            margin-left: 20px;
+            border-radius: var(--border-radius);
+            position: relative;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        
+        .step-body ul ul li::before {
+            content: '\f105'; /* fa-chevron-right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--chew-color);
+            font-size: 0.8em;
+        }
+        
+        .image-frame {
+            background: #6b7280;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .image-frame img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+        
+        .imgur-video-container {
+            background: #f1f3f4;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .imgur-video-container video {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Enhanced content containers */
+        .exercise-container {
+            background: #f8f9fa;
+            border: 2px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 25px 0;
+            color: inherit;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .exercise-container h3 {
+            color: var(--accent-color) !important;
+            border-bottom: 2px solid var(--accent-color) !important;
+            font-size: 1.3em !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .exercise-container p {
+            font-size: 1.05em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-container ol li {
+            background: rgba(59, 130, 246, 0.05) !important;
+            border-left: 4px solid var(--chunk-color) !important;
+            color: inherit;
+        }
+        
+        .exercise-container ol li::before {
+            background: var(--chunk-color) !important;
+            color: white !important;
+        }
+        
+        /* Excel hint styling */
+        .excel-hint {
+            background: rgba(34, 197, 94, 0.2);
+            border: 2px solid #22c55e;
+            border-radius: var(--border-radius);
+            padding: 12px 15px;
+            margin: 15px 0;
+            font-weight: 600;
+            color: #22c55e;
+            text-align: center;
+        }
+        
+        /* Break up large text blocks */
+        .text-highlight {
+            background: linear-gradient(120deg, rgba(255, 235, 59, 0.3) 0%, rgba(255, 235, 59, 0.1) 100%);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .key-point {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 5px solid var(--chunk-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-weight: 500;
+        }
+        
+        .key-point::before {
+            content: '💡 ';
+            font-size: 1.2em;
+        }
+        
+        /* Special instruction frames */
+        .exercise-frame {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border: 2px solid var(--chunk-color);
+            border-left: 6px solid var(--chunk-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .exercise-frame .frame-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--chunk-color);
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-frame .frame-header i {
+            font-size: 1.3em;
+        }
+        
+        .new-sheet-frame {
+            background: linear-gradient(135deg, #fff3e0, #e8f5e8);
+            border: 2px solid var(--chew-color);
+            border-left: 6px solid var(--chew-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .new-sheet-frame .frame-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--chew-color);
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .new-sheet-frame .frame-header i {
+            font-size: 1.3em;
+        }
+        
+        .submit-frame {
+            background: linear-gradient(135deg, #faf5ff, #f0f9ff);
+            border: 2px solid #8b5cf6;
+            border-left: 6px solid #8b5cf6;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .submit-frame .frame-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: #8b5cf6;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .submit-frame .frame-header i {
+            font-size: 1.3em;
+        }
+        
+        /* View solution styling - properly working */
+        .view-solution {
+            background: #f8f9fa;
+            border: 2px solid #6c757d;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .solution-toggle {
+            background: #6c757d;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            transition: background-color var(--transition-time);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .solution-toggle:hover {
+            background: #5a6268;
+        }
+        
+        .solution-toggle i {
+            transition: transform var(--transition-time);
+        }
+        
+        .solution-toggle.open i {
+            transform: rotate(180deg);
+        }
+        
+        .solution-content {
+            display: none;
+            padding: 25px;
+            background: white;
+            border-top: 1px solid #6c757d;
+        }
+        
+        .solution-content.open {
+            display: block;
+        }
+        
+        /* FIXED KEYBOARD KEY STYLING - No more conflicts */
+        .key {
+            display: inline-block;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-shadow: 
+                0 1px 3px rgba(0,0,0,0.12),
+                0 1px 2px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            color: #495057;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 3px 6px;
+            margin: 0 1px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            position: relative;
+            min-width: 20px;
+            text-align: center;
+            vertical-align: baseline;
+            white-space: nowrap;
+        }
 
-       <div id="buckles-container" class="fixed top-4 right-4 flex items-center bg-yellow-600 rounded-full px-3 py-1 shadow-lg cursor-pointer">
-           <svg id="coin-svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"></svg>
-           <span id="buckles-count" class="text-white font-bold">0</span>
-       </div>
+        .key:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            transform: translateY(0.5px);
+            box-shadow: 
+                0 1px 2px rgba(0,0,0,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
 
-       <a href="index.html" class="back-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg flex items-center">
-           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-               <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-           </svg>
-           Back to Tutorial List
-       </a>
-       <div class="max-w-4xl mx-auto">
-           <h1 id="tutorial-title" class="text-4xl font-bold mb-8 text-center text-blue-300"></h1>
-           
-           <div class="sticky-progress">
-               <div class="progress-bar-container mb-8 px-32">
-                   <p id="progress-text" class="text-sm text-gray-400 mb-2">You are 0% done.</p>
-                   <div class="bg-gray-800 rounded-lg overflow-hidden">
-                       <div id="progress-bar" class="progress-bar bg-blue-500 h-2" style="width: 0%;"></div>
-                   </div>
-               </div>
-           </div>
+        /* Mathematical operator keys */
+        .key.operator {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border-color: #ffc107;
+            color: #856404;
+            font-weight: 700;
+            text-transform: none;
+        }
 
-           <div id="tutorial-steps">
-               <!-- Tutorial steps will be dynamically inserted here -->
-           </div>
-       </div>
+        .key.operator:hover {
+            background: linear-gradient(135deg, #ffeeba 0%, #ffdf7e 100%);
+        }
 
-       
+        /* Special function keys */
+        .key.function {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
 
-       <a href="#" class="next-tutorial-btn" id="next-tutorial-btn" style="pointer-events: none; opacity: 0.5;">
-           Next Tutorial
-       </a>
+        .key.function:hover {
+            background: linear-gradient(135deg, #bee5eb 0%, #9fdbef 100%);
+        }
 
-       <div id="tooltip" class="tooltip" role="tooltip">
-           <div id="arrow" data-popper-arrow></div>
-       </div>
+        /* Arrow keys */
+        .key.arrow {
+            font-family: monospace;
+            font-size: 0.9em;
+            width: 24px;
+            padding: 3px 2px;
+            text-transform: none;
+        }
 
-       <script src="./js/tutorial-loader.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tutorialId = urlParams.get('id');
-            if (typeof initTutorial === 'function') {
-                initTutorial(tutorialId);
-            } else {
-                console.error('initTutorial function is not defined. Check if tutorial-loader.js is loaded correctly.');
+        /* Keyboard combination styling */
+        .key-combo {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin: 0 2px;
+        }
+
+        .key-plus {
+            font-weight: bold;
+            color: #6c757d;
+            font-size: 0.8em;
+            margin: 0 2px;
+        }
+        
+        .excel-demo {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .demo-header {
+            background: #e9ecef;
+            padding: 10px 15px;
+            font-weight: 600;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .demo-content {
+            padding: 20px;
+            background: white;
+        }
+        
+        .formula-box {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            font-family: 'Consolas', 'Monaco', monospace;
+            border-left: 4px solid var(--accent-color);
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--chew-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tip-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: var(--chew-color);
+            font-weight: 600;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid #ffc107;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #b8860b;
+            font-weight: 600;
+        }
+        
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            gap: 20px;
+        }
+        
+        .nav-button {
+            background: var(--accent-color);
+            color: white;
+            border: 2px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            padding: 12px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav-button:disabled,
+        .nav-button.disabled,
+        .nav-button.completed {
+            background: #28a745;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            color: white;
+        }
+        
+        .nav-button.completed:hover {
+            background: #28a745;
+            transform: none;
+        }
+        
+        .sidebar-button {
+            width: 130px;
+            border: 2px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            padding: 15px 0;
+            background-color: var(--accent-bg);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9em;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            text-decoration: none;
+            text-align: center;
+            margin-bottom: 15px;
+            border: none;
+        }
+        
+        .sidebar-button:hover {
+            transform: translateY(-0.25em);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .sidebar-button i {
+            font-size: 1.4em;
+        }
+        
+        .buckles-button {
+            background: white;
+            color: #b8860b;
+            border: 3px solid #ffd700 !important;
+        }
+        
+        .buckles-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .glossary-button {
+            background: var(--chew-color);
+            color: white;
+        }
+        
+        .skills-button {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
+            padding-bottom: 25px;
+        }
+        
+        .glossary-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            border-left: 2px solid var(--outline-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+            display: none;
+        }
+        
+        .glossary-panel.active {
+            right: 0;
+            display: block;
+        }
+        
+        .glossary-header {
+            background: var(--chew-color);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .term-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .term-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        
+        /* Quiz Styling */
+        .quiz-container {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid var(--chunk-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .quiz-question {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: var(--chunk-color);
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .quiz-option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all var(--transition-time);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--chew-color);
+            color: var(--chew-color);
+        }
+        
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+        
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+        }
+        
+        .quiz-feedback.correct {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--chew-color);
+            border: 2px solid var(--chew-color);
+        }
+        
+        .quiz-feedback.incorrect {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 2px solid #ef4444;
+        }
+        
+        /* Step Toggle Functionality */
+        .step-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .step-toggle i {
+            transition: transform var(--transition-time);
+        }
+        
+        .step-toggle.collapsed i {
+            transform: rotate(-90deg);
+        }
+        
+        .step-content.collapsed {
+            display: none;
+        }
+        
+        /* Sparkle Animation */
+        .sparkle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 2s ease-out forwards;
+            z-index: 1500;
+        }
+        
+        @keyframes sparkle {
+            0% {
+                opacity: 1;
+                transform: scale(0) translateY(0) rotate(0deg);
             }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) translateY(-30px) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-60px) rotate(360deg);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+        
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            pointer-events: none;
+            z-index: 1500;
+            animation: confetti 3s ease-out forwards;
+        }
+        
+        @keyframes confetti {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(200px) rotate(720deg);
+            }
+        }
+        
+        /* Enhanced Buckles Display */
+        .buckles-coin {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 3px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            padding: 30px 40px;
+            box-shadow: var(--shadow-lg);
+            z-index: 2000;
+            text-align: center;
+            min-width: 300px;
+        }
+        
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-content {
+                padding: 0 20px;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+            }
+            
+            .glossary-panel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .quiz-options {
+                gap: 8px;
+            }
+            
+            .quiz-option {
+                padding: 12px 15px;
+            }
+        }
+
+        /* Replace all .key CSS with this clean version */
+
+.key {
+    display: inline-block;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    color: #495057;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 5px;
+    margin: 0 1px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 18px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.key.operator {
+    background: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+    text-transform: none;
+    font-weight: 700;
+}
+
+.key:hover {
+    background: #e9ecef;
+    transform: translateY(0.5px);
+}
+
+.key.operator:hover {
+    background: #ffeeba;
+}
+
+.cell-ref {
+    background: linear-gradient(120deg, rgba(255, 235, 59, 0.3) 0%, rgba(255, 235, 59, 0.1) 100%);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 500;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.95em;
+}
+
+/* Improved Formula styling */
+.formula {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border: 2px solid #475569;
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-shadow: 
+        0 4px 8px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    letter-spacing: 1px;
+    position: relative;
+    min-height: 24px;
+}
+
+.formula::before {
+    position: absolute;
+    left: -28px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #3b82f6;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.formula .key.operator {
+    background: #ef4444;
+    border: 1px solid #dc2626;
+    color: white;
+    margin: 0 3px;
+    padding: 4px 8px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.formula .cell-ref {
+    background: rgba(34, 197, 94, 0.8);
+    color: #ffffff;
+    border: 1px solid #22c55e;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Inline formula for smaller contexts */
+.formula-inline {
+    background: #1e293b;
+    border: 1px solid #475569;
+    border-radius: 4px;
+    color: #e2e8f0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    padding: 4px 8px;
+    margin: 0 3px;
+    display: inline;
+}
+
+.formula-inline .key.operator {
+    background: #ef4444;
+    color: white;
+    padding: 2px 4px;
+    margin: 0 2px;
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.formula-inline .cell-ref {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+/* Replace the existing list CSS with this improved version */
+
+/* Reset all list styling first */
+.step-body ul, .step-body ol {
+    margin: 20px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.step-body ol {
+    counter-reset: step-counter;
+}
+
+/* Main numbered list items */
+.step-body ol > li {
+    counter-increment: step-counter;
+    background: rgba(59, 130, 246, 0.05);
+    margin-bottom: 12px;
+    padding: 15px 20px 15px 60px;
+    border-left: 4px solid var(--chunk-color);
+    border-radius: var(--border-radius);
+    position: relative;
+    line-height: 1.6;
+    font-size: 1.05em;
+}
+
+.step-body ol > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--chunk-color);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Main bullet list items */
+.step-body ul > li {
+    background: rgba(16, 185, 129, 0.05);
+    margin-bottom: 10px;
+    padding: 12px 20px 12px 50px;
+    border-left: 4px solid var(--chew-color);
+    border-radius: var(--border-radius);
+    position: relative;
+    line-height: 1.6;
+    font-size: 1.05em;
+}
+
+.step-body ul > li::before {
+    content: '\2022';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--chew-color);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Nested bullet lists - FIXED */
+.step-body ul ul {
+    margin: 12px 0 8px 0;
+    padding-left: 0;
+    list-style: none;
+    background: transparent;
+}
+
+.step-body ul li ul li {
+    background: rgba(16, 185, 129, 0.03) !important;
+    margin-bottom: 6px !important;
+    padding: 8px 15px 8px 35px !important;
+    border-left: 2px solid rgba(16, 185, 129, 0.3) !important;
+    margin-left: 0 !important;
+    border-radius: 4px !important;
+    position: relative !important;
+    font-size: 0.95em !important;
+    line-height: 1.4 !important;
+}
+
+.step-body ul li ul li::before {
+    content: '\f0da' !important; /* fa-caret-right */
+    font-family: 'Font Awesome 6 Free' !important;
+    font-weight: 900 !important;
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: rgba(16, 185, 129, 0.7) !important;
+    font-size: 0.8em !important;
+}
+
+/* Nested numbered lists in bullet lists */
+.step-body ul li ol {
+    margin: 12px 0 8px 0;
+    padding-left: 0;
+    list-style: none;
+    counter-reset: nested-counter;
+}
+
+.step-body ul li ol li {
+    counter-increment: nested-counter;
+    background: rgba(59, 130, 246, 0.03) !important;
+    margin-bottom: 6px !important;
+    padding: 8px 15px 8px 35px !important;
+    border-left: 2px solid rgba(59, 130, 246, 0.3) !important;
+    margin-left: 0 !important;
+    border-radius: 4px !important;
+    position: relative !important;
+    font-size: 0.95em !important;
+    line-height: 1.4 !important;
+}
+
+.step-body ul li ol li::before {
+    content: counter(nested-counter, lower-alpha) !important;
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(59, 130, 246, 0.8) !important;
+    color: white !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: bold !important;
+    font-size: 0.7em !important;
+}
+
+/* Add this CSS to the <style> section in tutorial.html */
+
+.download-notice {
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid var(--chunk-color);
+    border-left: 6px solid var(--chunk-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 25px 0;
+    color: var(--chunk-color);
+    font-weight: 600;
+    font-size: 1.05em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.download-notice::before {
+    content: '📁';
+    font-size: 1.3em;
+    flex-shrink: 0;
+}
+
+
+/* Add this CSS to tutorial.html styles section */
+
+.stop-warning {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    border: 2px solid #b91c1c;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    padding: 12px 20px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+    animation: pulse-warning 2s infinite;
+}
+
+.stop-warning::before {
+    content: "⛔";
+    font-size: 1.5em;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    
+    
+    <!-- Glossary Panel -->
+    <div class="glossary-panel" id="glossary-panel">
+        <div class="glossary-header">
+            <h3>Excel Glossary</h3>
+            <button class="close-button" onclick="toggleGlossary()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <input type="text" class="search-input" id="glossary-search" placeholder="Search terms...">
+        
+        <div id="glossary-content">
+            <!-- Glossary terms will be dynamically loaded here -->
+        </div>
+    </div>
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">EXCEL TUTORIAL</div>
+        <a href="index.html" class="home-button">
+            <i class="fas fa-home"></i>
+            HOME
+        </a>
+        <div class="sidebar-nav">
+            <a href="skills-centre.html" class="sidebar-button skills-button">
+                <i class="fas fa-star"></i>
+                <span>SKILLS CENTRE</span>
+            </a>
+            <button class="sidebar-button glossary-button" onclick="toggleGlossary()">
+                <i class="fas fa-book"></i>
+                <span>GLOSSARY</span>
+            </button>
+            <div class="sidebar-button buckles-button" id="buckles-container">
+                <svg id="coin-svg" style="width: 20px; height: 20px; margin-bottom: 5px;" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="11" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+                    <text x="12" y="16" font-size="14" text-anchor="middle" fill="#DAA520" font-weight="bold">B</text>
+                </svg>
+                <span id="buckles-count">0</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="light-section">
+            <div class="tutorial-content">
+                <h1 id="tutorial-title">EXCEL TUTORIAL <i class="fas fa-table" style="margin-left: 15px;"></i></h1>
+                
+                <!-- Tutorial steps will be dynamically loaded here -->
+                <div id="tutorial-steps">
+                    <!-- Example step structure -->
+                    <div class="tutorial-step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h3 style="margin: 0;">Getting Started with Excel</h3>
+                                <p style="margin: 5px 0 0 0; opacity: 0.9;">Learn the basics of Excel interface</p>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <p>Welcome to Excel! Let's start by understanding the basic interface and how to navigate around a spreadsheet.</p>
+                            
+                            <div class="tip-box">
+                                <div class="tip-header">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Tip</span>
+                                </div>
+                                <p>Each cell in Excel has a unique address made up of its column letter and row number, like A1 or B5.</p>
+                            </div>
+                            
+                            <div class="excel-demo">
+                                <div class="demo-header">
+                                    <i class="fas fa-table"></i>
+                                    <span>Excel Example</span>
+                                </div>
+                                <div class="demo-content">
+                                    <p><strong>Cell A1:</strong> The top-left cell in your spreadsheet</p>
+                                    <p><strong>Cell C5:</strong> Column C, Row 5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h3 style="margin: 0;">Entering Data</h3>
+                                <p style="margin: 5px 0 0 0; opacity: 0.9;">How to put information into cells</p>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <p>To enter data into a cell, simply click on it and start typing. Press Enter to confirm your entry.</p>
+                            
+                            <div class="excel-demo">
+                                <div class="demo-header">
+                                    <i class="fas fa-keyboard"></i>
+                                    <span>Try This</span>
+                                </div>
+                                <div class="demo-content">
+                                    <ol>
+                                        <li>Click on cell A1</li>
+                                        <li>Type "Hello World"</li>
+                                        <li>Press Enter</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <div class="warning-header">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>Remember</span>
+                                </div>
+                                <p>Always press Enter or Tab to confirm your data entry, otherwise it won't be saved!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h3 style="margin: 0;">Basic Formulas</h3>
+                                <p style="margin: 5px 0 0 0; opacity: 0.9;">Making Excel do calculations for you</p>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <p>Formulas are what make Excel powerful. They always start with an equals sign (=) and can perform calculations using cell references.</p>
+                            
+                            <div class="formula-box">
+                                =A1+B1
+                            </div>
+                            <p><em>This formula adds the values in cells A1 and B1</em></p>
+                            
+                            <div class="excel-demo">
+                                <div class="demo-header">
+                                    <i class="fas fa-calculator"></i>
+                                    <span>Practice Exercise</span>
+                                </div>
+                                <div class="demo-content">
+                                    <ol>
+                                        <li>Put the number 5 in cell A1</li>
+                                        <li>Put the number 3 in cell B1</li>
+                                        <li>In cell C1, type: =A1+B1</li>
+                                        <li>Press Enter and see the result!</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="navigation-buttons">
+                    <a href="index.html" class="nav-button">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Tutorials
+                    </a>
+                    <button class="nav-button" onclick="completeAllSteps()">
+                        <span>Complete Tutorial</span>
+                        <i class="fas fa-trophy"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentTutorial = null;
+        let tutorialId = 1;
+        let currentStep = 0;
+        let totalSteps = 0;
+        let completedSteps = new Set();
+        let quizAttempts = {};
+        
+        // Get tutorial ID from URL parameters
+        function getTutorialId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return parseInt(urlParams.get('id')) || 1;
+        }
+        
+        // Load tutorial content from JSON
+        async function loadTutorialContent(tutorialId) {
+            try {
+                const response = await fetch(`tutorials/tutorial-${tutorialId}.json`);
+                if (!response.ok) {
+                    throw new Error('Tutorial not found');
+                }
+                const tutorialData = await response.json();
+                return tutorialData;
+            } catch (error) {
+                console.error('Error loading tutorial:', error);
+                // Fallback to default tutorial structure
+                return {
+                    title: 'Excel Tutorial',
+                    steps: [
+                        {
+                            title: 'Getting Started with Excel',
+                            content: '<p>Welcome to Excel! This tutorial will help you learn the basics.</p>',
+                            quiz: []
+                        }
+                    ]
+                };
+            }
+        }
+        
+        // Render tutorial content
+        function renderTutorialContent(tutorialData) {
+            currentTutorial = tutorialData;
+            totalSteps = tutorialData.steps.length;
+            
+            // Update title
+            document.getElementById('tutorial-title').innerHTML = `${tutorialData.title} <i class="fas fa-table" style="margin-left: 15px;"></i>`;
+            
+            // Render steps
+            const stepsContainer = document.getElementById('tutorial-steps');
+            stepsContainer.innerHTML = '';
+            
+            tutorialData.steps.forEach((step, index) => {
+                const stepElement = createTutorialStep(step, index);
+                stepsContainer.appendChild(stepElement);
+            });
+            
+            updateProgress();
+        }
+        
+
+        
+        function createTutorialStep(step, index) {
+    const stepElement = document.createElement('div');
+    stepElement.className = 'tutorial-step';
+    stepElement.id = `step-${index}`;
+    
+    const isCompleted = completedSteps.has(index);
+    const hasQuiz = step.quiz && step.quiz.length > 0;
+    
+    const isActivityTutorial = step.content.toLowerCase().includes('please complete') || 
+                             step.content.toLowerCase().includes('exercise') ||
+                             step.content.toLowerCase().includes('practice');
+    
+    const buttonText = isCompleted ? 'Understood' : 
+                     isActivityTutorial ? 'I understand this step and have completed all tasks in my spreadsheet' : 
+                     'I understand this step';
+    
+    let processedContent = step.content;
+    processedContent = processSpecialFrames(processedContent, step.title, index);
+    
+    const quizHTML = hasQuiz ? createQuizElement(step.quiz, index) : '';
+    
+    stepElement.innerHTML = `
+        <div class="step-header step-toggle collapsed" onclick="toggleStepContent(${index})">
+            <div class="step-number">${index + 1}</div>
+            <div style="flex: 1;">
+                <h3 style="margin: 0;">${step.title}</h3>
+                <p style="margin: 5px 0 0 0; opacity: 0.9;">Click to expand content</p>
+            </div>
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="step-content collapsed" id="content-${index}">
+            <div class="step-body">
+                ${processedContent}
+            </div>
+            ${quizHTML}
+            <div class="step-actions" style="margin-top: 20px; text-align: center; display: none;">
+                <button class="nav-button" onclick="completeStep(${index})" ${isCompleted ? 'disabled' : ''}>
+                    <span style="${buttonText.length > 50 ? 'font-size: 0.9em;' : ''}">${buttonText}</span>
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+    `;
+    
+    return stepElement;
+}
+function processSpecialFrames(content, stepTitle, stepIndex) {
+    let processedContent = content;
+    
+    // Clean malformed HTML only
+    processedContent = processedContent.replace(/space-y-\d+[^"]*">/g, match => {
+        const spaceYClass = match.match(/space-y-\d+/);
+        return spaceYClass ? spaceYClass[0] + '">' : '">';
+    });
+    
+    
+    
+    // Frame exercise instructions
+    processedContent = processedContent.replace(
+        /<p[^>]*><strong>(Please complete the following exercises?[^<]*)<\/strong><\/p>/gi,
+        '<div class="exercise-frame"><div class="frame-header"><i class="fas fa-tasks"></i><span>Exercise Instructions</span></div><p class="text-base leading-relaxed"><strong>$1</strong></p></div>'
+    );
+    
+    // Frame submit instructions
+    processedContent = processedContent.replace(
+        /<p[^>]*><strong>(Submit your work[^<]*)<\/strong><\/p>/gi,
+        '<div class="submit-frame"><div class="frame-header"><i class="fas fa-upload"></i><span>Submit Your Work</span></div><p class="text-base leading-relaxed"><strong>$1</strong></p></div>'
+    );
+    
+    // Make important reminders stand out
+    processedContent = processedContent.replace(
+        /<p[^>]*>(Remember[^<]*)<\/p>/gi,
+        '<div class="key-point">$1</div>'
+    );
+    
+    // View solution buttons
+    processedContent = processedContent.replace(
+        /<button[^>]*class="[^"]*in-tutorial-toggle[^"]*"[^>]*>\s*<span[^>]*>([^<]*)<\/span>[\s\S]*?<\/button>/gi,
+        '<div class="view-solution"><button class="solution-toggle" onclick="toggleSolution(this)">$1 <i class="fas fa-chevron-down"></i></button>'
+    );
+    
+    processedContent = processedContent.replace(
+        /<button[^>]*class="[^"]*in-tutorial-toggle[^"]*"[^>]*>([^<]*)<\/button>/gi,
+        '<div class="view-solution"><button class="solution-toggle" onclick="toggleSolution(this)">$1 <i class="fas fa-chevron-down"></i></button>'
+    );
+    
+    processedContent = processedContent.replace(
+        /<div[^>]*class="[^"]*in-tutorial-toggle-content[^"]*"[^>]*>/gi,
+        '<div class="solution-content">'
+    );
+    
+    // Final cleanup
+    processedContent = processedContent.replace(/\s+class="([^"]*)"([^>]*"[^>]*>)/g, ' class="$1"$2');
+    processedContent = processedContent.replace(/\s+mb-\d+"\s*>/gi, '">');
+    
+    // Ensure solution divs are properly closed
+    const solutionToggles = (processedContent.match(/solution-toggle/g) || []).length;
+    for (let i = 0; i < solutionToggles; i++) {
+        processedContent += '</div>';
+    }
+    
+    return processedContent;
+}
+
+
+        function generateSheetName(stepTitle, stepIndex) {
+            const title = stepTitle.toLowerCase();
+            
+            // Extract meaningful names from headers
+            if (title.includes('addition')) return 'Addition';
+            if (title.includes('subtraction')) return 'Subtraction';
+            if (title.includes('multiplication')) return 'Multiplication';
+            if (title.includes('division')) return 'Division';
+            if (title.includes('mixed operations') || title.includes('challenge')) return 'Mixed Operations';
+            if (title.includes('function')) return 'Functions';
+            if (title.includes('chart')) return 'Charts';
+            if (title.includes('data')) return 'Data Cleaning';
+            if (title.includes('filter')) return 'Filtering';
+            if (title.includes('format')) return 'Formatting';
+            if (title.includes('pivot')) return 'Pivot Tables';
+            if (title.includes('vlookup')) return 'VLOOKUP';
+            if (title.includes('conditional')) return 'Conditional';
+            
+            // Fallback to a cleaned version of the title
+            const cleaned = stepTitle.replace(/practice|problems|tutorial|step/gi, '').trim();
+            return cleaned || 'Exercise ' + (stepIndex + 1);
+        }
+        
+        // Toggle solution visibility
+        function toggleSolution(button) {
+            const solutionContent = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (solutionContent.classList.contains('open')) {
+                solutionContent.classList.remove('open');
+                button.classList.remove('open');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                solutionContent.classList.add('open');
+                button.classList.add('open');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+        
+        // Create quiz element
+        function createQuizElement(quizData, stepIndex) {
+            if (!quizData || quizData.length === 0) return '';
+            
+            const quizId = `quiz-${stepIndex}`;
+            const hasAttempted = quizAttempts[quizId];
+            
+            let quizHTML = '<div class="quiz-container">';
+            
+            quizData.forEach((quiz, quizIndex) => {
+                const questionId = `${quizId}-${quizIndex}`;
+                
+                quizHTML += `
+                    <div class="quiz-question">${quiz.question}</div>
+                    <div class="quiz-options" id="options-${questionId}">
+                `;
+                
+                quiz.options.forEach((option, optionIndex) => {
+                    const isCorrect = optionIndex === quiz.correctAnswer;
+                    const optionClass = hasAttempted ? (isCorrect ? 'correct' : 'incorrect') : '';
+                    const disabled = hasAttempted ? 'style="pointer-events: none;"' : '';
+                    
+                    quizHTML += `
+                        <div class="quiz-option ${optionClass}" ${disabled} onclick="selectQuizOption('${questionId}', ${optionIndex}, ${quiz.correctAnswer}, ${stepIndex})">
+                            <span>${String.fromCharCode(65 + optionIndex)}.</span>
+                            <span>${option}</span>
+                        </div>
+                    `;
+                });
+                
+                quizHTML += '</div>';
+                
+                if (hasAttempted) {
+                    const isCorrectAnswer = hasAttempted.selectedAnswer === quiz.correctAnswer;
+                    quizHTML += `
+                        <div class="quiz-feedback ${isCorrectAnswer ? 'correct' : 'incorrect'}">
+                            ${isCorrectAnswer ? '✓ Correct! Well done!' : '✗ Incorrect. The correct answer is highlighted above.'}
+                        </div>
+                    `;
+                }
+            });
+            
+            quizHTML += '</div>';
+            return quizHTML;
+        }
+        
+        // Handle quiz option selection
+        function selectQuizOption(questionId, selectedIndex, correctIndex, stepIndex) {
+            const quizId = `quiz-${stepIndex}`;
+            
+            // Prevent multiple attempts
+            if (quizAttempts[quizId]) return;
+            
+            // Store attempt
+            quizAttempts[quizId] = {
+                selectedAnswer: selectedIndex,
+                correctAnswer: correctIndex,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Update UI
+            const optionsContainer = document.getElementById(`options-${questionId}`);
+            const options = optionsContainer.querySelectorAll('.quiz-option');
+            
+            options.forEach((option, index) => {
+                option.style.pointerEvents = 'none'; // Disable further clicks
+                
+                if (index === correctIndex) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Add feedback
+            const isCorrect = selectedIndex === correctIndex;
+            const feedbackHTML = `
+                <div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                    ${isCorrect ? '✓ Correct! Well done!' : '✗ Incorrect. The correct answer is highlighted above.'}
+                </div>
+            `;
+            
+            optionsContainer.insertAdjacentHTML('afterend', feedbackHTML);
+            
+            // Award buckles for correct answers
+            if (isCorrect) {
+                updateBuckles(1);
+                showBucklesAlert(1);
+                createSparklesAt(optionsContainer);
+            }
+            
+            // Save progress
+            saveProgress();
+        }
+        
+        function toggleStepContent(stepIndex) {
+    const content = document.getElementById(`content-${stepIndex}`);
+    const toggle = document.querySelector(`#step-${stepIndex} .step-toggle`);
+    const icon = toggle.querySelector('i');
+    const stepActions = content.querySelector('.step-actions');
+    
+    if (content.classList.contains('open')) {
+        content.classList.remove('open');
+        content.classList.add('collapsed');
+        content.style.display = 'none';
+        toggle.classList.add('collapsed');
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-right');
+        if (stepActions) stepActions.style.display = 'none';
+    } else {
+        content.classList.add('open');
+        content.classList.remove('collapsed');
+        content.style.display = 'block';
+        toggle.classList.remove('collapsed');
+        icon.classList.remove('fa-chevron-right');
+        icon.classList.add('fa-chevron-down');
+        if (stepActions) stepActions.style.display = 'block';
+    }
+}
+
+        // Complete step
+        function completeStep(stepIndex) {
+            if (completedSteps.has(stepIndex)) {
+                // Already completed, just show a message
+                showBucklesAlert(0, 'Step already completed!');
+                return;
+            }
+            
+            completedSteps.add(stepIndex);
+            updateProgress();
+            updateBuckles(1); // Only 1 buckle per step
+            
+            // Update button
+            const button = document.querySelector(`#step-${stepIndex} .nav-button`);
+            button.disabled = true;
+            button.classList.add('completed');
+            button.innerHTML = '<span>Understood</span><i class="fas fa-check"></i>';
+            
+            showBucklesAlert(1);
+            createConfetti();
+            saveProgress();
+        }
+        
+        // Complete all steps
+        function completeAllSteps() {
+            const tutorialCompletedKey = `tutorial-${tutorialId}-fully-completed`;
+            const alreadyCompleted = localStorage.getItem(tutorialCompletedKey) === 'true';
+            
+            if (alreadyCompleted) {
+                showBucklesAlert(0, 'Tutorial already completed! No additional buckles awarded.');
+                return;
+            }
+            
+            if (completedSteps.size === totalSteps) {
+                // All steps already completed individually, just mark tutorial as completed
+                localStorage.setItem(tutorialCompletedKey, 'true');
+                showBucklesAlert(2, 'Tutorial completion bonus!');
+                updateBuckles(2);
+                createConfetti();
+                return;
+            }
+            
+            const remainingSteps = totalSteps - completedSteps.size;
+            
+            for (let i = 0; i < totalSteps; i++) {
+                if (!completedSteps.has(i)) {
+                    completedSteps.add(i);
+                    const button = document.querySelector(`#step-${i} .nav-button`);
+                    if (button) {
+                        button.disabled = true;
+                        button.classList.add('completed');
+                        button.innerHTML = '<span>Understood</span><i class="fas fa-check"></i>';
+                    }
+                }
+            }
+            
+            updateProgress();
+            const bonusBuckles = remainingSteps + 2; // 1 per remaining step + 2 bonus
+            updateBuckles(bonusBuckles);
+            showBucklesAlert(bonusBuckles);
+            createConfetti();
+            
+            // Mark tutorial as fully completed
+            localStorage.setItem(tutorialCompletedKey, 'true');
+            saveProgress();
+        }
+        
+        // Update buckles with animation
+        function updateBuckles(amount) {
+            const bucklesCount = document.getElementById('buckles-count');
+            const current = parseInt(bucklesCount.textContent);
+            const newAmount = current + amount;
+            
+            // Animate the number change
+            const startValue = current;
+            const endValue = newAmount;
+            const duration = 500;
+            const startTime = performance.now();
+            
+            function animate(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const value = Math.floor(startValue + (endValue - startValue) * progress);
+                
+                bucklesCount.textContent = value;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    // Update global storage when animation completes
+                    localStorage.setItem('totalBuckles', newAmount.toString());
+                }
+            }
+            
+            requestAnimationFrame(animate);
+            
+            // Animate the buckles container
+            const container = document.getElementById('buckles-container');
+            container.style.animation = 'bounce 0.6s ease';
+            setTimeout(() => {
+                container.style.animation = '';
+            }, 600);
+        }
+        
+        // Enhanced buckles alert with coin animation
+        function showBucklesAlert(amount, customMessage = null) {
+            const overlay = document.createElement('div');
+            overlay.className = 'alert-overlay';
+            
+            const alert = document.createElement('div');
+            alert.className = 'custom-alert';
+            
+            if (amount === 0 && customMessage) {
+                alert.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <i class="fas fa-info-circle" style="font-size: 60px; color: #6c757d; margin-bottom: 15px;"></i>
+                        <div style="font-size: 1.2em; font-weight: bold; color: #6c757d;">${customMessage}</div>
+                    </div>
+                    <button class="nav-button" onclick="closeAlert()" style="margin: 0 auto;">OK</button>
+                `;
+            } else {
+                alert.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <svg style="width: 60px; height: 60px; margin-bottom: 15px; animation: bounce 0.6s ease;" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="11" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+                            <text x="12" y="16" font-size="14" text-anchor="middle" fill="#DAA520" font-weight="bold">B</text>
+                        </svg>
+                        <div style="font-size: 1.3em; font-weight: bold; color: var(--accent-color);">Well done!</div>
+                        <div style="font-size: 1.1em; margin-top: 10px;">You earned ${amount} buckle${amount > 1 ? 's' : ''}!</div>
+                    </div>
+                    <button class="nav-button" onclick="closeAlert()" style="margin: 0 auto;">Continue</button>
+                `;
+            }
+            
+            overlay.appendChild(alert);
+            document.body.appendChild(overlay);
+            
+            // Auto-close after 3 seconds
+            setTimeout(closeAlert, 3000);
+        }
+        
+        // Custom alert system (fallback)
+        function showCustomAlert(message) {
+            showBucklesAlert(1);
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (2 + Math.random()) + 's';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 100);
+            }
+        }
+        
+        function closeAlert() {
+            const overlay = document.querySelector('.alert-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+        
+        // Save progress to localStorage
+        function saveProgress() {
+            const progressPercentage = Math.round((completedSteps.size / totalSteps) * 100);
+            const currentBuckles = parseInt(document.getElementById('buckles-count').textContent);
+            
+            const progressData = {
+                tutorialId: tutorialId,
+                completedSteps: Array.from(completedSteps),
+                quizAttempts: quizAttempts,
+                buckles: currentBuckles
+            };
+            
+            // Save tutorial-specific progress
+            localStorage.setItem(`tutorial-progress-${tutorialId}`, JSON.stringify(progressData));
+            
+            // Save progress percentage for index.html
+            localStorage.setItem(`tutorialProgress${tutorialId}`, progressPercentage.toString());
+            
+            // Update global buckles count
+            const globalBuckles = localStorage.getItem('totalBuckles') || '0';
+            const newGlobalBuckles = Math.max(parseInt(globalBuckles), currentBuckles);
+            localStorage.setItem('totalBuckles', newGlobalBuckles.toString());
+            
+            // Save buckles data structure
+            let bucklesData = JSON.parse(localStorage.getItem('bucklesData') || '{}');
+            if (!bucklesData[tutorialId]) {
+                bucklesData[tutorialId] = {};
+            }
+            completedSteps.forEach(stepIndex => {
+                bucklesData[tutorialId][stepIndex] = true;
+            });
+            localStorage.setItem('bucklesData', JSON.stringify(bucklesData));
+        }
+        
+        // Load progress from localStorage
+        function loadProgress() {
+            // Load tutorial-specific progress
+            const saved = localStorage.getItem(`tutorial-progress-${tutorialId}`);
+            if (saved) {
+                const progressData = JSON.parse(saved);
+                completedSteps = new Set(progressData.completedSteps || []);
+                quizAttempts = progressData.quizAttempts || {};
+            }
+            
+            // Load global buckles count
+            const globalBuckles = localStorage.getItem('totalBuckles') || '0';
+            document.getElementById('buckles-count').textContent = globalBuckles;
+            
+            // Check if tutorial was already completed
+            const tutorialCompletedKey = `tutorial-${tutorialId}-fully-completed`;
+            const tutorialCompleted = localStorage.getItem(tutorialCompletedKey) === 'true';
+            
+            if (tutorialCompleted) {
+                // Update Complete Tutorial button to show it's already done
+                setTimeout(() => {
+                    const completeButton = document.querySelector('.navigation-buttons .nav-button:last-child');
+                    if (completeButton) {
+                        completeButton.innerHTML = '<span>Tutorial Completed</span><i class="fas fa-trophy"></i>';
+                        completeButton.style.background = '#28a745';
+                    }
+                }, 1000);
+            }
+        }
+        
+        // Comprehensive glossary terms from backup
+        const glossaryTerms = {
+            // Excel Basic Terms
+            'cell': 'A box in your spreadsheet where you can type numbers, text, or formulas. Each cell has its own name, like A1 or B2, based on which column and row it\'s in.',
+            'column': 'The vertical lines in Excel, labeled with letters (A, B, C, etc.) at the top.',
+            'row': 'The horizontal lines in Excel, labeled with numbers (1, 2, 3, etc.) on the left side.',
+            'formula': 'A math problem you write in Excel. Always starts with an equals sign (=). For example, =A1+B1 adds the numbers in cells A1 and B1.',
+            'worksheet': 'A single sheet in your Excel file. You can see the worksheet tabs at the bottom of Excel.',
+            
+            // Math Operations
+            'operator': 'The math symbols you use in Excel formulas:\n• + for adding\n• - for subtracting\n• * for multiplying\n• / for dividing',
+            'addition': 'To add numbers in Excel, use the + symbol. Example: =A1+B1 adds the numbers in cells A1 and B1.',
+            'subtraction': 'To subtract numbers in Excel, use the - symbol. Example: =A1-B1 subtracts B1 from A1.',
+            'multiplication': 'To multiply numbers in Excel, use the * symbol. Example: =A1*B1 multiplies A1 by B1.',
+            'division': 'To divide numbers in Excel, use the / symbol. Example: =A1/B1 divides A1 by B1.',
+            
+            // Cell References
+            'reference': 'The name of a cell, like A1 or B2. You use these names in formulas to tell Excel which cells to use.',
+            'range': 'A group of cells next to each other. Written like A1:A10, which means "all cells from A1 down to A10".',
+            'absolute': 'When you put dollar signs in a cell reference (like $A$1), Excel will always use that exact cell, even if you copy the formula elsewhere.',
+            'relative': 'A normal cell reference (like A1) that changes when you copy it. If you copy =A1+B1 down one row, it becomes =A2+B2.',
+            
+            // Common Functions
+            'function': 'Special commands in Excel that do math for you. They start with an equals sign and the function name, like =SUM() or =AVERAGE().',
+            'sum': 'Adds up numbers in a range of cells. Format: =SUM(range). Example: =SUM(A1:A10) adds all numbers from A1 to A10.',
+            'average': 'The AVERAGE function calculates the mean average of a set of numbers. It adds all values and divides by how many there are. Skips empty cells and text. Example: =AVERAGE(A1:A10)',
+            'count': 'A function that counts how many numbers are in a group of cells. Example: =COUNT(A1:A10).',
+            'counta': 'Counts cells that aren\'t empty in a range. Format: =COUNTA(range). Counts both numbers and text.',
+            'max': 'Finds the highest value in a range. Format: =MAX(range). Example: =MAX(A1:A10) finds the largest number.',
+            'min': 'Finds the lowest value in a range. Format: =MIN(range). Example: =MIN(A1:A10) finds the smallest number.',
+            'countif': 'The COUNTIF function counts cells in a range that meet a specific condition. Can count numbers, text, or dates using comparison operators (>, <, =, etc). Example: =COUNTIF(A1:A10, ">100") or =COUNTIF(B1:B10, "Pass")',
+            'if': 'The IF function lets Excel make decisions based on conditions. It has three parts: the test condition, what to return if true, and what to return if false. Example: =IF(A1>100, "Over Budget", "Within Budget")',
+            
+            // Charts and Visualization
+            'pie_chart': 'A circular chart divided into segments showing how different parts contribute to a whole. Best for percentages and proportions.',
+            'bar_chart': 'A chart using horizontal or vertical bars to compare values across categories. Good for comparing quantities.',
+            'line_chart': 'A chart connecting data points with lines to show trends over time or sequences of values.',
+            'chart_elements': 'Parts of a chart including title, legend, axis labels, and data labels that help explain the data.',
+            
+            // Advanced Features
+            'filter': 'A tool that temporarily hides rows that don\'t match your criteria. Filtered data isn\'t deleted, just hidden from view.',
+            'gotospecial': 'An Excel feature that helps you quickly find cells with specific characteristics like blanks, formulas, or errors.',
+            'conditional_formatting': 'A visual styling tool that changes how cells look based on their values or formulas. Can use colour scales, data bars, icon sets, and custom rules to highlight important data automatically.'
+        };
+        
+        // Initialize glossary
+        function initGlossary() {
+            const glossaryContent = document.getElementById('glossary-content');
+            const terms = Object.keys(glossaryTerms).sort();
+            
+            glossaryContent.innerHTML = '';
+            
+            terms.forEach(term => {
+                const termElement = document.createElement('div');
+                termElement.className = 'term-item';
+                
+                const title = term.replace(/_/g, ' ').toUpperCase();
+                const definition = glossaryTerms[term].replace(/\\n/g, '\n');
+                
+                termElement.innerHTML = `
+                    <div class="term-title">${title}</div>
+                    <p style="white-space: pre-line;">${definition}</p>
+                `;
+                
+                glossaryContent.appendChild(termElement);
+            });
+        }
+        
+        // Update progress (no visual progress bar)
+        function updateProgress() {
+            // Just track progress percentage for saving
+        }
+        
+        // Create sparkles at specific element
+        function createSparklesAt(element) {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    const rect = element.getBoundingClientRect();
+                    sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                    sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 2000);
+                }, i * 100);
+            }
+        }
+        
+        // Toggle glossary panel
+        function toggleGlossary() {
+            const panel = document.getElementById('glossary-panel');
+            panel.classList.toggle('active');
+        }
+        
+        // Glossary search functionality
+        document.getElementById('glossary-search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const terms = document.querySelectorAll('.term-item');
+            
+            terms.forEach(term => {
+                const title = term.querySelector('.term-title').textContent.toLowerCase();
+                const content = term.textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    term.style.display = 'block';
+                } else {
+                    term.style.display = 'none';
+                }
+            });
+        });
+        
+        // Initialize tutorial
+        async function initTutorial() {
+    tutorialId = getTutorialId();
+    loadProgress();
+    
+    const tutorialData = await loadTutorialContent(tutorialId);
+    renderTutorialContent(tutorialData);
+    
+    // Ensure all content starts hidden
+    setTimeout(() => {
+        document.querySelectorAll('.step-content').forEach(content => {
+            content.style.display = 'none';
+            content.classList.add('collapsed');
+            content.classList.remove('open');
+            
+            const quizWrapper = content.querySelector('.quiz-wrapper');
+            const stepActions = content.querySelector('.step-actions');
+            if (quizWrapper) quizWrapper.style.display = 'none';
+            if (stepActions) stepActions.style.display = 'none';
+        });
+    }, 100);
+    
+    initGlossary();
+}
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initTutorial();
         });
     </script>
-   </body>
-   </html>
+</body>
+</html>
