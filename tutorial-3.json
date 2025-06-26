@@ -1,0 +1,50 @@
+{
+    "id": 3,
+    "title": "Excel Data Cleaning Basics",
+    "steps": [
+        {
+            "title": "Filters",
+            "content": "<h2>Using Filters in Excel</h2><div class=\"download-notice\">To follow along, please download and open the <strong>Data_Cleaning_Practice.xlsx</strong> file. This tutorial uses data from that file.</div><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Switch to Worksheet</span></div><p>For this exercise, please navigate to the <strong>'Filters Practice'</strong> worksheet.</p></div><p>Filters help you temporarily hide data that doesn't meet your criteria. Let's learn how to use them effectively.</p><h3>How to Apply Filters:</h3><ol><li>Select the column header you want to filter (e.g., cell <span class=\"cell-ref\">B1</span> for 'Genre').</li><li>Go to the <strong>Data</strong> tab in the ribbon.</li><li>Click the <strong>Filter</strong> button (it looks like a funnel).</li><li>A dropdown arrow will appear in your column header. Click it.</li></ol><div class=\"video-container\"><video controls><source src=\"https://i.imgur.com/jUvNS8e.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div><p>Once the filter menu is open, you can:</p><ul><li>Uncheck \"(Select All)\" and manually check the boxes for values you want to see.</li><li>Use the Search box to find specific values.</li><li>Sort A to Z or Z to A directly from this menu.</li><li>Use number or text filters (e.g., 'Greater Than...', 'Begins With...') for more advanced filtering.</li></ul><div class=\"key-point\"><strong>Pro Tip:</strong> You can press <span class=\"key-combo\"><span class=\"key function\">Ctrl</span><span class=\"key-plus\">+</span><span class=\"key\">A</span></span> to select all your data and then click the Filter button to add filter dropdowns to all columns at once.</div><h3>How to Clear a Filter:</h3><ol><li>Click the filter dropdown arrow on the column you want to clear.</li><li>Select \"Clear Filter from [Column Name]\".</li><li>Alternatively, go to the <strong>Data</strong> tab and click the <strong>Clear</strong> button to remove all active filters from the sheet.</li></ol>",
+            "quiz": [
+                {
+                    "question": "What happens to rows that don't meet your filter criteria?",
+                    "options": ["They are permanently deleted", "They are hidden but still exist", "They are moved to another sheet", "They are highlighted in red"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Deleting Data/Columns",
+            "content": "<h2>Cleaning Unnecessary Data</h2><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Switch to Worksheet</span></div><p>For this exercise, please navigate to the <strong>'Delete Columns Practice'</strong> worksheet. The goal is to remove the 'Internal_Code' and 'Notes' columns.</p></div><p>Not all columns are necessary for analysis. Learning to remove irrelevant data helps keep your workbook focused and manageable.</p><h3>How to Delete Columns:</h3><ol><li>To delete multiple columns that aren't next to each other, hold down the <span class=\"key function\">Ctrl</span> key and click on the column letters at the top (e.g., click 'D' then click 'E').</li><li>Right-click on any of the selected column headers.</li><li>Select <strong>Delete</strong> from the menu that appears.</li></ol><div class=\"video-container\"><video controls><source src=\"https://i.imgur.com/py8ypKT.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div><div class=\"warning-box\"><div class=\"warning-header\"><i class=\"fas fa-exclamation-triangle\"></i><span>Important</span></div><p>Before deleting columns, always make sure no formulas on other sheets rely on them. Deleting data is permanent, so it's a good idea to save a backup copy of your file first.</p></div>",
+            "quiz": [
+                {
+                    "question": "What is the best way to delete multiple columns that aren't next to each other?",
+                    "options": ["Delete them one at a time", "Use Find and Replace", "Hold <span class=\"key function\">Ctrl</span> while selecting columns, then right-click and delete", "Copy the data you want to keep to a new sheet"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Finding and Replacing",
+            "content": "<h2>Finding and Fixing Data Errors</h2><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Switch to Worksheet</span></div><p>For this exercise, please navigate to the <strong>'Find & Replace Practice'</strong> worksheet.</p></div><p>Clean data is crucial for accurate analysis. We'll find and fix two common issues: blank cells and error text.</p><h3>Finding and Deleting Rows with Blank Cells:</h3><ol><li>Select the column where you want to find blanks (e.g., column <span class=\"cell-ref\">C</span>, 'Rating').</li><li>Go to the <strong>Home</strong> tab, click <strong>Find & Select</strong>, and then choose <strong>Go To Special...</strong></li><li>In the Go To Special window, select <strong>Blanks</strong> and click OK.</li><li>All blank cells in your selection are now highlighted. To delete these rows, go to <strong>Home</strong> → <strong>Delete</strong> → <strong>Delete Sheet Rows</strong>.</li></ol><h3>Finding and Replacing Error Text:</h3><ol><li>Press the shortcut <span class=\"key-combo\"><span class=\"key function\">Ctrl</span><span class=\"key-plus\">+</span><span class=\"key\">H</span></span> to open the Find and Replace window.</li><li>In the 'Find what:' box, type the error text (e.g., <span class=\"cell-ref\">#N/A</span>).</li><li>Leave the 'Replace with:' box empty to delete the text.</li><li>Click <strong>Replace All</strong>. Excel will confirm how many instances were replaced.</li></ol><div class=\"video-container\"><video controls><source src=\"https://i.imgur.com/wpwVcLJ.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div>",
+            "quiz": [
+                {
+                    "question": "Which Excel feature helps you quickly select all empty cells in a range?",
+                    "options": ["Find & Replace", "Go To Special", "Sort & Filter", "Conditional Formatting"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Sorting Data",
+            "content": "<h2>Organizing Data with Sort</h2><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Switch to Worksheet</span></div><p>For this exercise, please navigate to the <strong>'Sorting Practice'</strong> worksheet. We will perform a multi-level sort.</p></div><p>Sorting helps you organize data logically and can make it easier to find trends or outliers.</p><h3>How to Perform a Multi-Level Sort:</h3><ol><li>Click anywhere inside your data table. You can also press <span class=\"key-combo\"><span class=\"key function\">Ctrl</span><span class=\"key-plus\">+</span><span class=\"key\">A</span></span> to be sure all data is selected.</li><li>Go to the <strong>Data</strong> tab and click the large <strong>Sort</strong> button.</li><li>In the Sort window, ensure the 'My data has headers' box is checked.</li><li>For the first level, set 'Sort by' to <strong>Genre</strong> and 'Order' to <strong>A to Z</strong>.</li><li>Click the <strong>Add Level</strong> button to add a second sorting rule.</li><li>For the second level, set 'Then by' to <strong>Rating</strong> and 'Order' to <strong>Largest to Smallest</strong>.</li><li>Click OK to apply the sort.</li></ol><div class=\"video-container\"><video controls><source src=\"https://i.imgur.com/zqJ7ZaD.mp4\" type=\"video/mp4\">Your browser does not support the video tag.</video></div><div class=\"tip-box\"><div class=\"tip-header\"><i class=\"fas fa-lightbulb\"></i><span>Data Integrity is Key!</span></div><p>Always make sure your entire data range is selected before sorting. Sorting only a single column can scramble your data by unlinking it from the other columns in the same row!</p></div>",
+            "quiz": [
+                {
+                    "question": "What is the most important reason to select all your data before sorting?",
+                    "options": ["It makes the file smaller", "To maintain the relationship between data in each row", "It sorts faster", "To apply a color to the headers"],
+                    "correctAnswer": 1
+                }
+            ]
+        }
+    ]
+}

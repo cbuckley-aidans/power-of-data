@@ -1,0 +1,50 @@
+{
+    "id": 5,
+    "title": "Excel Functions and Charts",
+    "steps": [
+        {
+            "title": "Understanding Excel Functions",
+            "content": "<h2>What is a Function?</h2><div class=\"download-notice\">To follow along, please open your practice file and navigate to the <strong>'Functions & Charts Practice'</strong> worksheet.</div><p>A <span class=\"term\" id=\"function\">function</span> in Excel is a predefined formula that performs calculations using specific values in a particular order. Think of functions as shortcuts for common or complex calculations.</p><h3>The Structure of a Function</h3><p>Every Excel function follows this basic structure:</p><div class=\"formula\"><span class=\"key operator\">=</span>FUNCTION_NAME(Argument1, Argument2, ...)</div><p>This structure consists of:</p><ul><li>The equals sign (<span class=\"key operator\">=</span>) which tells Excel you are starting a formula.</li><li>The <strong>Function Name</strong> (e.g., SUM, AVERAGE) which is the action you want to perform.</li><li><strong>Arguments</strong> inside parentheses, which are the inputs for the function, such as numbers, cell references, or text.</li></ul><div class=\"image-frame\"><img src=\"https://i.imgur.com/uDTvmll.png\" alt=\"Excel function example\" /></div><h3>Common Functions We'll Use</h3><ul class=\"list-disc list-inside ml-6 mt-2 space-y-1\"><li><strong>SUM:</strong> Adds all numbers in a range.</li><li><strong>COUNTA:</strong> Counts how many non-empty cells are in a range.</li><li><strong>MAX:</strong> Returns the largest value in a range.</li><li><strong>MIN:</strong> Returns the smallest value in a range.</li></ul>",
+            "quiz": [
+                {
+                    "question": "What symbol must you start with when writing a function in Excel?",
+                    "options": ["@", "#", "<span class=\"key operator\">=</span>", "$"],
+                    "correctAnswer": 2
+                }
+            ]
+        },
+        {
+            "title": "Practice: Using SUM and COUNTA",
+            "content": "<h2>Adding Numbers and Counting Cells</h2><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Practice Exercise</span></div><p>Using the <strong>'Functions & Charts Practice'</strong> sheet, we will calculate the 'Total Units Sold' and the 'Number of Products'.</p></div><h3>1. Calculate Total Units Sold with SUM</h3><p>The <span class=\"term\" id=\"sum\">SUM function</span> adds all numeric values in a range of cells.</p><ol><li>Click on cell <span class=\"cell-ref\">C12</span>, next to 'Total Units Sold:'.</li><li>Type the following formula and press <span class=\"key function\">Enter</span>:</li></ol><div class=\"formula\"><span class=\"key operator\">=</span>SUM(<span class=\"cell-ref\">C2:C9</span>)</div><p>This formula adds up all the numbers in the 'Units Sold' column.</p><h3>2. Count Products with COUNTA</h3><p>The <span class=\"term\" id=\"counta\">COUNTA function</span> counts any cell that is not empty. It's great for counting items in a list.</p><ol><li>Click on cell <span class=\"cell-ref\">C13</span>, next to 'Number of Products:'.</li><li>Type the following formula and press <span class=\"key function\">Enter</span>:</li></ol><div class=\"formula\"><span class=\"key operator\">=</span>COUNTA(<span class=\"cell-ref\">A2:A9</span>)</div><p>This formula counts every product name listed in column A.</p><div class=\"tip-box\"><div class=\"tip-header\"><i class=\"fas fa-lightbulb\"></i><span>SUM vs. COUNTA</span></div><p>Remember, <span class=\"cell-ref\">SUM</span> adds numbers together, while <span class=\"cell-ref\">COUNTA</span> just counts how many cells have something in them. The <span class=\"cell-ref\">SUM</span> of prices would be a large number, but the <span class=\"cell-ref\">COUNTA</span> of prices would just be the number of products with a price listed.</p></div>",
+            "quiz": [
+                {
+                    "question": "Which function would you use to count how many cells in a list of names contain any data?",
+                    "options": ["SUM", "COUNTA", "TOTAL", "COUNT"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Practice: Using MAX and MIN",
+            "content": "<h2>Finding Highest and Lowest Values</h2><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Practice Exercise</span></div><p>Now, let's find the highest and lowest product prices using the <strong>'Functions & Charts Practice'</strong> sheet.</p></div><h3>1. Find the Highest Price with MAX</h3><p>The <span class=\"term\" id=\"max\">MAX function</span> finds the largest number in a range of cells.</p><ol><li>Click on cell <span class=\"cell-ref\">C14</span>, next to 'Highest Price Per Unit:'.</li><li>Type the following formula and press <span class=\"key function\">Enter</span>:</li></ol><div class=\"formula\"><span class=\"key operator\">=</span>MAX(<span class=\"cell-ref\">D2:D9</span>)</div><p>This will find the highest value in the 'Price Per Unit' column.</p><h3>2. Find the Lowest Price with MIN</h3><p>The <span class=\"term\" id=\"min\">MIN function</span> finds the smallest number in a range.</p><ol><li>Click on cell <span class=\"cell-ref\">C15</span>, next to 'Lowest Price Per Unit:'.</li><li>Type the following formula and press <span class=\"key function\">Enter</span>:</li></ol><div class=\"formula\"><span class=\"key operator\">=</span>MIN(<span class=\"cell-ref\">D2:D9</span>)</div><p>This will find the lowest value in the same column.</p>",
+            "quiz": [
+                {
+                    "question": "If you wanted to find the highest value in both columns C and D, which formula would you use?",
+                    "options": ["<span class=\"formula-inline\">=MAX(C2:C9,D2:D9)</span>", "<span class=\"formula-inline\">=MAX(C:D)</span>", "<span class=\"formula-inline\">=MAXIMUM(C,D)</span>", "<span class=\"formula-inline\">=HIGHEST(C:D)</span>"],
+                    "correctAnswer": 0
+                }
+            ]
+        },
+        {
+            "title": "Creating Charts",
+            "content": "<h2>Visualizing Data with Charts</h2><p>Charts are powerful tools for turning numbers into an easy-to-understand visual story. Let's create a chart to compare the revenue of each product.</p><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-chart-bar\"></i><span>Chart Practice</span></div><p>We will use the data in the <strong>'Functions & Charts Practice'</strong> sheet for this exercise.</p></div><h3>How to Create a Column Chart</h3><ol><li>Select the data you want to chart. For this, click cell <span class=\"cell-ref\">A1</span>, hold <span class=\"key function\">Shift</span>, and click cell <span class=\"cell-ref\">A9</span>. Then, hold <span class=\"key function\">Ctrl</span> and select from <span class=\"cell-ref\">E1</span> to <span class=\"cell-ref\">E9</span>. This selects the 'Product' and 'Total Revenue' columns, including their headers.</li><li>Go to the <strong>Insert</strong> tab on the ribbon.</li><li>In the <strong>Charts</strong> group, click the <strong>'Insert Column or Bar Chart'</strong> icon.</li><li>Choose the first option, '2-D Clustered Column'.</li></ol><h3>Customizing Your Chart</h3><p>Once your chart is created, you can easily customize it.</p><ul><li><strong>Chart Title:</strong> Double-click the title to rename it to something descriptive, like 'Total Revenue by Product'.</li><li><strong>Add/Remove Elements:</strong> Click on the chart, then click the green <span class=\"key operator\">+</span> button that appears on the right to add data labels, axis titles, and more.</li><li><strong>Change Style/Colors:</strong> With the chart selected, use the <strong>Chart Design</strong> tab that appears in the ribbon to quickly change the look and feel.</li></ul>",
+            "quiz": [
+                {
+                    "question": "Which chart type is best for showing how different parts make up a total (e.g., each product's revenue as a percentage of all revenue)?",
+                    "options": ["Bar Chart", "Line Chart", "Pie Chart", "Scatter Plot"],
+                    "correctAnswer": 2
+                }
+            ]
+        }
+    ]
+}

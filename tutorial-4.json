@@ -1,0 +1,50 @@
+{
+    "id": 4,
+    "title": "Data Cleaning Practice: Movie Dataset",
+    "steps": [
+        {
+            "title": "Filter Practice",
+            "content": "<h2>Practice: Filtering Movie Data</h2><div class=\"download-notice\">For this set of activities, you will need the <strong>movie_sample_dataset</strong> file.</div><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Create a New Worksheet</span></div><p>First, create a new sheet named 'Filter Practice' to store your results.</p></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 1: Basic Filtering</span></div><p>Follow these steps:</p><ol><li>Apply a filter to the 'imdb_score' column.</li><li>Use the number filter to show only movies with an IMDB score <strong>greater than 8.0</strong>.</li><li>Count the number of movies that meet this criteria.</li><li>In your 'Filter Practice' sheet, write the total count of movies with a score > 8.0.</li></ol></div><div class=\"view-solution\"><button class=\"solution-toggle\" onclick=\"toggleSolution(this)\">View Solution for Exercise 1 <i class=\"fas fa-chevron-down\"></i></button><div class=\"solution-content\"><div class=\"image-frame\"><img src=\"https://i.imgur.com/tGUjewj.png\" alt=\"Filter solution showing high-rated movies\" /></div><div class=\"image-frame\"><img src=\"https://i.imgur.com/cpmWo13.png\" alt=\"Filter solution showing high-rated movies\" /></div></div></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 2: Multiple Filters</span></div><p>Now, with the first filter still active:</p><ol><li>Add a second filter to the 'budget' column for movies with a budget <strong>less than $50,000,000</strong>.</li><li>Copy the filtered results (the movie titles, scores, and budgets).</li><li>Paste them into your 'Filter Practice' sheet below the count from Exercise 1.</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "How can you apply multiple filters at once in Excel?",
+                    "options": ["You can't - you must choose one filter only", "Apply filters to different columns one after another", "Use the Advanced Filter feature", "Create a new sheet for each filter"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Column Management Practice",
+            "content": "<h2>Practice: Managing Dataset Columns</h2><div class=\"stop-warning\">Clear any filters from the previous activity before continuing.</div><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Create a New Worksheet</span></div><p>Create a new sheet named 'Column Management'.</p></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 1: Column Cleanup</span></div><p>For this analysis, we'll delete some data that isn't important. It's best practice to work on a copy of your data.</p><ol><li>Identify columns not needed for financial analysis (e.g., 'movie_facebook_likes', 'language', etc.).</li><li>Delete these non-essential columns.</li><li>Keep only: <strong>movie_title, director_name, gross, budget, imdb_score</strong>.</li></ol></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 2: ROI Calculation</span></div><p>With your cleaned dataset:</p><ol><li>Insert a new column called 'ROI' after the budget column.</li><li>In the first data row of that column, calculate Return on Investment using the formula: <span class=\"formula-inline\">(gross - budget) / budget</span>.</li><li>Use the Fill Handle (the small square in the bottom-right of the cell) to drag or double-click this formula down for all movies.</li><li><strong>Extension:</strong> Format this column as a percentage.</li><li>Copy your final table (with all remaining columns including ROI) and paste it into your 'Column Management' sheet.</li></ol></div><div class=\"view-solution\"><button class=\"solution-toggle\" onclick=\"toggleSolution(this)\">View Solution for Exercise 2<i class=\"fas fa-chevron-down\"></i></button><div class=\"solution-content\"><div class=\"image-frame\"><img src=\"https://i.imgur.com/X7Wzbvm.png\" alt=\"ROI calculation solution\" /></div></div></div>",
+            "quiz": [
+                {
+                    "question": "What's the best practice before deleting columns in a dataset?",
+                    "options": ["Just delete them - you can always undo", "Create a backup or work on a copy of your dataset", "Print the dataset first", "Ask a colleague for permission"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Find & Replace Practice",
+            "content": "<h2>Practice: Data Cleanup</h2><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Create a New Worksheet</span></div><p>Create a new sheet named 'Find and Replace'.</p></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 1: Language Standardization</span></div><p>Clean up the 'language' column on your original data sheet:</p><ol><li>Use Find & Replace (<span class=\"key-combo\"><span class=\"key function\">Ctrl</span><span class=\"key-plus\">+</span><span class=\"key\">H</span></span>).</li><li>Find 'English' and Replace with 'ENG'.</li><li>Find 'French' and Replace with 'FRA'.</li><li>Copy your updated language column to your 'Find and Replace' sheet.</li></ol></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 2: Missing Data</span></div><p>Handle missing values in the 'budget' column:</p><ol><li>Use <strong>Go To Special</strong> to find all blank cells in the budget column.</li><li>With the blank cells selected, type 'No Data' and press <span class=\"key-combo\"><span class=\"key function\">Ctrl</span><span class=\"key-plus\">+</span><span class=\"key function\">Enter</span></span> to fill them all at once.</li><li>Count how many movies are missing budget information.</li><li>In your 'Find and Replace' sheet, write the count of movies missing budget data.</li></ol></div>",
+            "quiz": [
+                {
+                    "question": "When standardizing text data, what's the advantage of using Find & Replace over manual corrections?",
+                    "options": ["It's more fun", "It ensures consistency across all entries", "It makes the file bigger", "It changes the font automatically"],
+                    "correctAnswer": 1
+                }
+            ]
+        },
+        {
+            "title": "Sorting Practice",
+            "content": "<h2>Practice: Movie Data Analysis</h2><div class=\"new-sheet-frame\"><div class=\"frame-header\"><i class=\"fas fa-file-excel\"></i><span>Create a New Worksheet</span></div><p>Create a new sheet named 'Sorting Results'.</p></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 1: Multi-Level Sort</span></div><p>Identify top-performing directors:</p><ol><li>Select all your data.</li><li>Sort by <strong>director_name</strong> (A to Z).</li><li>Add a second level: sort by <strong>imdb_score</strong> (Largest to Smallest).</li><li>Copy the top 10 rows of your sorted data to your 'Sorting Results' sheet.</li></ol></div><div class=\"exercise-frame\"><div class=\"frame-header\"><i class=\"fas fa-tasks\"></i><span>Exercise 2: Financial Analysis</span></div><p>Analyze movie performance:</p><ol><li>Sort the original data by <strong>gross</strong> (Largest to Smallest).</li><li>Copy the top 5 highest-grossing movies to your 'Sorting Results' sheet.</li><li>Now sort by <strong>budget</strong> (Smallest to Largest).</li><li>Identify and copy the top 5 movies that had low budgets but high gross earnings to your 'Sorting Results' sheet.</li></ol></div><div class=\"submit-frame\"><div class=\"frame-header\"><i class=\"fas fa-upload\"></i><span>Submit Your Work</span></div><p>Once you've completed all exercises, your Excel file should contain these sheets:</p><ul><li>Filter Practice</li><li>Column Management</li><li>Find and Replace</li><li>Sorting Results</li></ul><p class=\"mt-4\">Save your file and submit it for review.</p></div>",
+            "quiz": [
+                {
+                    "question": "When performing a multi-level sort, what happens to rows where the first sort column has identical values?",
+                    "options": ["They remain in their original order", "They are sorted randomly", "They are sorted according to the next level criteria", "They are moved to the bottom"],
+                    "correctAnswer": 2
+                }
+            ]
+        }
+    ]
+}
