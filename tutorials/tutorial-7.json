@@ -7,7 +7,7 @@
             "content": "<h2 class=\"text-2xl font-bold mb-4\">Using AVERAGE in Excel</h2><div class=\"download-notice\">For this set of activities, you will need the Sports Day Fundraiser file.</div><p class=\"mb-4\">The <span class=\"term\" id=\"average\">AVERAGE function</span> calculates the arithmetic mean of a range of numbers.</p><p class=\"mb-4\">Example:</p><div class=\"formula mb-2\"><span class=\"key operator\">=</span>AVERAGE(<span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H21</span>)</div><p class=\"mb-4\">This calculates the average donation from the range <span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H21</span></p><div class=\"bg-gray-800 p-6 rounded-lg mb-6\"><h3 class=\"text-xl font-semibold mb-3\">Step-by-Step Guide:</h3><ol class=\"list-decimal list-inside mb-4 space-y-2\"><li>Select your target cell</li><li>Type <span class=\"key operator\">=</span>AVERAGE(</li><li>Select the 'Optional raffle donation' column range <span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H21</span></li><li>Close the parenthesis )</li><li>Press <span class=\"key\">Enter</span></li></ol></div><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/b1Wf6i7.png\" alt=\"AVERAGE function example\" /></div>",
             "quiz": [
                 {
-                    "question": "If you have donation amounts of $5, $10, $0, $15, and $20, what will <div class=\"formula\"><span class=\"key operator\">=</span>AVERAGE(<span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H6</span>)</div> return?",
+                    "question": "If you have donation amounts of $5, $10, $0, $15, and $20, what will <span class=\"formula-inline\">=AVERAGE(H2:H6)</span> return?",
                     "options": ["$5", "$10", "$15", "$20"],
                     "correctAnswer": 1
                 }
@@ -19,7 +19,7 @@
             "quiz": [
                 {
                     "question": "To count how many people donated more than $20, which formula would you use?",
-                    "options": ["<div class=\"formula\"><span class=\"key operator\">=</span>COUNTIF(<span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H21</span>, \"20\")</div>", "<div class=\"formula\"><span class=\"key operator\">=</span>COUNTIF(<span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H21</span>, \">20\")</div>", "<div class=\"formula\"><span class=\"key operator\">=</span>COUNTIF(<span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H21</span>, \">=20\")</div>", "<div class=\"formula\"><span class=\"key operator\">=</span>COUNTIF(<span class=\"cell-ref\">H2</span>:<span class=\"cell-ref\">H21</span>, \"<20\")</div>"],
+                    "options": ["<span class=\"formula-inline\">=COUNTIF(H2:H21, \"20\")</span>", "<span class=\"formula-inline\">=COUNTIF(H2:H21, \">20\")</span>", "<span class=\"formula-inline\">=COUNTIF(H2:H21, \">=20\")</span>", "<span class=\"formula-inline\">=COUNTIF(H2:H21, \"<20\")</span>"],
                     "correctAnswer": 1
                 }
             ]
@@ -29,7 +29,7 @@
             "content": "<h2 class=\"text-2xl font-bold mb-4\">Making Decisions with IF</h2><p class=\"mb-4\">The <span class=\"term\" id=\"if\">IF function</span> performs logical tests and returns different values based on whether the test is TRUE or FALSE.</p><p class=\"mb-4\">Formula Examples:</p><div class=\"formula mb-2\"><span class=\"key operator\">=</span>IF(<span class=\"cell-ref\">G2</span>>3, \"Large Group\", \"Small Group\")</div><p class=\"mb-2\">Classify group sizes based on attendance</p><div class=\"formula mb-2\"><span class=\"key operator\">=</span>IF(<span class=\"cell-ref\">H2</span>>15, \"High Donor\", \"Regular Donor\")</div><p class=\"mb-4\">Categorise donors based on donation amount</p><div class=\"image-frame bg-gray-600 rounded-lg shadow-md overflow-hidden mb-4\"><img src=\"https://i.imgur.com/in7i2TW.png\" alt=\"IF function example\" /></div>",
             "quiz": [
                 {
-                    "question": "What will <div class=\"formula\"><span class=\"key operator\">=</span>IF(<span class=\"cell-ref\">H2</span>>10, \"Thank You\", \"Welcome\")</div> return for a $15 donation?",
+                    "question": "What will <span class=\"formula-inline\">=IF(H2>10, \"Thank You\", \"Welcome\")</span> return for a $15 donation?",
                     "options": ["15", "Thank You", "Welcome", "TRUE"],
                     "correctAnswer": 1
                 }
