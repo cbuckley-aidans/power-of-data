@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to Data</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Favicon Icons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" style="overflow-y: auto; overflow-x: hidden;">
+        <div class="sidebar-logo">INTRO TO DATA</div>
+        <a href="index.html" class="home-button">
+            <i class="fas fa-home"></i>
+            HOME
+        </a>
+        <div class="sidebar-nav">
+            <button class="tab-button active" data-tab="lisc">
+                <i class="fas fa-clipboard-list"></i>
+                LI/SC
+            </button>
+            <button class="tab-button" data-tab="long-term-storage">
+                <i class="fas fa-archive"></i>
+                LONG-TERM STORAGE
+            </button>
+            <button class="tab-button" data-tab="what-is-big-data">
+                <i class="fas fa-database"></i>
+                WHAT IS BIG DATA?
+            </button>
+            <button class="tab-button" data-tab="cloud-storage">
+                <i class="fas fa-cloud"></i>
+                CLOUD STORAGE
+            </button>
+            <button class="tab-button" data-tab="google-trends">
+                <i class="fas fa-chart-line"></i>
+                GOOGLE TRENDS
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Learning Intentions and Success Criteria section -->
+        <section id="lisc" class="tab-content active light-section">
+            <h1>LEARNING INTENTIONS & SUCCESS CRITERIA <i class="fas fa-bullseye" style="margin-left: 15px;"></i></h1>
+            
+            <div class="card">
+                <div class="element-header" style="margin: -35px -40px 30px -40px; padding: 25px 35px;">
+                    <div class="element-number">1</div>
+                    <h3>Learning Intentions <i class="fas fa-bullseye" style="margin-left: 15px; color: var(--accent-color);"></i></h3>
+                </div>
+                
+                <ul>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Understand what big data is, how it differs from traditional data, and the challenges of storing data long-term</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Explore how data can be used for both positive and negative purposes in society</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Investigate how cloud storage works and its environmental impact</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Use data analysis tools to explore trends and represent ideas</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="element-header" style="margin: -35px -40px 30px -40px; padding: 25px 35px;">
+                    <div class="element-number">2</div>
+                    <h3>Success Criteria <i class="fas fa-trophy" style="margin-left: 15px; color: var(--accent-color);"></i></h3>
+                </div>
+                
+                <p>By the end of this lesson, you should be able to:</p>
+                
+                <ul>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Define big data using the 3 Vs (Volume, Velocity, Variety) and explain how data is stored as binary digits</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Compare different data storage methods and their lifespans, from USB drives to glass storage technology</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Identify at least three ways data can be used for good (e.g., healthcare, traffic management) and three ways it can cause harm (e.g., surveillance, discrimination)</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Explain what cloud storage really is and describe the environmental impact of data centres</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Use Google Trends to research market opportunities and present a data-driven marketing strategy</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Evaluate the ethical considerations surrounding data collection, use, and privacy</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Long-term Storage -->
+        <section id="long-term-storage" class="tab-content dark-section">
+            <h1>STORING DATA FOR ETERNITY <i class="fas fa-archive" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chew-section">
+                <div class="chew-badge">STUDENT ACTIVITY</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 15 mins</div>
+                
+                <h3>The 10,000 Year Challenge</h3>
+                
+                <div class="activity-goal">
+                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Consider the challenges of preserving information across vast time periods</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Compare different storage technologies and their lifespans</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Explore creative solutions for long-term communication</li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Think-Pair-Share: The Time Capsule Challenge <i class="fas fa-hourglass-start" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 25px; margin-bottom: 25px;">
+                        <h4 style="margin-top: 0;"><i class="fas fa-brain" style="color: var(--chew-color); margin-right: 10px;"></i> The Challenge</h4>
+                        <div style="background-color: #722ed1; color: white; padding: 30px; border-radius: var(--border-radius); margin: 20px 0; text-align: center;">
+                            <div style="font-size: 4em; margin-bottom: 20px;">🕰️</div>
+                            <h2 style="margin: 0 0 20px 0; font-size: 2em;">THE YEAR 12,025</h2>
+                            <p style="font-size: 1.3em; margin-bottom: 20px;">You need to send a crucial message to humans living 10,000 years in the future</p>
+                            <p style="font-size: 1.1em; margin: 0;">The message: "Dangerous radioactive waste buried here - do not dig!"</p>
+                        </div>
+                        
+                        <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); margin: 20px 0;">
+                            <h5 style="margin-top: 0;">Think About:</h5>
+                            <ul style="margin: 10px 0 0 20px; font-size: 1.1em;">
+                                <li style="margin-bottom: 8px;">What storage method would last 10,000 years?</li>
+                                <li style="margin-bottom: 8px;">How would you make sure future people understand your language?</li>
+                                <li style="margin-bottom: 8px;">What if their technology is completely different?</li>
+                                <li style="margin-bottom: 8px;">How do you make them take the warning seriously?</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                        <div style="background-color: #1890ff; color: white; padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                            <div style="font-size: 2.5em; margin-bottom: 10px;">🤔</div>
+                            <h5>THINK</h5>
+                        </div>
+                        
+                        <div style="background-color: #52c41a; color: white; padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                            <div style="font-size: 2.5em; margin-bottom: 10px;">👥</div>
+                            <h5>PAIR</h5>
+                        </div>
+                        
+                        <div style="background-color: #fa8c16; color: white; padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                            <div style="font-size: 2.5em; margin-bottom: 10px;">🗣️</div>
+                            <h5>SHARE</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>REVISION: Understanding Data as 1s and 0s <i class="fas fa-binary" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: var(--border-radius); padding: 30px; margin: 20px 0; position: relative; overflow: hidden; min-height: 300px;">
+                        <p style="color: white; font-size: 1.2em; text-align: center; margin-bottom: 20px;">
+                            REMINDER: All digital data we are familiar with is stored as binary digits (bits) - combinations of electrical signals of 1s and 0s. 
+                        </p>
+                        
+                        
+                        
+                        <p style="color: white; font-size: 1.2em; text-align: center; margin-bottom: 20px;">Watch as we decode an emoji!</p>
+                        
+                        <div style="font-size: 4em; text-align: center; margin: 20px 0; animation: pulse 2s ease-in-out infinite;" id="emojiDisplay">🤖</div>
+                        
+                        <button id="decodeBtn" class="action-btn" style="display: block; margin: 20px auto;">
+                            <i class="fas fa-play"></i>
+                            Decode to Binary
+                        </button>
+                        
+                        <div style="font-family: 'Courier New', monospace; font-size: 1.2em; color: #00ff00; text-align: center; margin: 20px 0; text-shadow: 0 0 10px #00ff00; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;" id="binaryDisplay"></div>
+                        
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); padding: 20px; margin: 20px 0; text-align: center; color: white;">
+                            <h4>Understanding Scale</h4>
+                            <p>That emoji is represented by <span id="bitCount">0</span> bits</p>
+                            <p>1 kilobyte = 8,000 bits</p>
+                            <p>1 megabyte = 8,000,000 bits</p>
+                            <p>1 gigabyte = 8,000,000,000 bits</p>
+                            <p>1 petabyte = 8,000,000,000,000,000 bits!</p>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); padding: 20px; margin: 20px 0; color: white;">
+                            <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-save" style="margin-right: 10px; color: #00ff00;"></i> The Storage Challenge</h4>
+                            <p style="font-size: 1.1em; text-align: center; margin-bottom: 15px;">
+                                But having 1s and 0s is only half the story! We need <strong>physical methods</strong> to:
+                            </p>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5em; margin-bottom: 10px;">💾</div>
+                                    <h5>STORE the bits</h5>
+                                    <p style="font-size: 0.9em;">Write 1s and 0s onto magnetic disks, flash memory, or other storage media</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5em; margin-bottom: 10px;">🔍</div>
+                                    <h5>RETRIEVE the bits</h5>
+                                    <p style="font-size: 0.9em;">Read the 1s and 0s back from storage and convert them into usable data</p>
+                                </div>
+                            </div>
+                            <p style="font-size: 1em; text-align: center; margin-top: 15px; font-style: italic;">
+                                Different storage technologies have vastly different lifespans and reliability - which we'll explore next!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Storage Medium Lifespan Reality Check <i class="fas fa-history" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div class="two-column-grid" style="margin-top: 0;">
+                        <div>
+                            <p style="font-size: 1.2em; margin-bottom: 20px;">Now let's see how your ideas compare to real storage technologies. Different storage methods have dramatically different lifespans!</p>
+                            
+                            <div style="background-color: rgba(255, 77, 79, 0.1); border-radius: var(--border-radius); padding: 20px; margin-bottom: 20px; border-left: 4px solid #ff4d4f;">
+                                <h4 style="margin-top: 0;"><i class="fas fa-skull" style="color: #ff4d4f; margin-right: 10px;"></i> Short-Term Storage (Years)</h4>
+                                <ul style="font-size: 1.1em; margin: 15px 0;">
+                                    <li style="margin-bottom: 10px;"><strong>USB drives:</strong> 10-20 years (if you're lucky!)</li>
+                                    <li style="margin-bottom: 10px;"><strong>Hard drives:</strong> 3-5 years with heavy use</li>
+                                    <li style="margin-bottom: 10px;"><strong>SSDs:</strong> 5-10 years depending on usage</li>
+                                    <li style="margin-bottom: 10px;"><strong>Cloud storage:</strong> As long as the company exists</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background-color: rgba(250, 140, 22, 0.1); border-radius: var(--border-radius); padding: 20px; margin-bottom: 20px; border-left: 4px solid #faad14;">
+                                <h4 style="margin-top: 0;"><i class="fas fa-clock" style="color: #faad14; margin-right: 10px;"></i> Medium-Term Storage (Decades)</h4>
+                                <ul style="font-size: 1.1em; margin: 15px 0;">
+                                    <li style="margin-bottom: 10px;"><strong>CDs/DVDs:</strong> 20-100 years (if stored perfectly)</li>
+                                    <li style="margin-bottom: 10px;"><strong>Magnetic tape:</strong> 30-50 years</li>
+                                    <li style="margin-bottom: 10px;"><strong>Printed photos:</strong> 50-200 years</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background-color: rgba(82, 196, 26, 0.1); border-radius: var(--border-radius); padding: 20px; border-left: 4px solid #52c41a;">
+                                <h4 style="margin-top: 0;"><i class="fas fa-mountain" style="color: #52c41a; margin-right: 10px;"></i> Long-Term Storage (Centuries+)</h4>
+                                <ul style="font-size: 1.1em; margin: 15px 0;">
+                                    <li style="margin-bottom: 10px;"><strong>Paper:</strong> 500-1000 years (acid-free paper)</li>
+                                    <li style="margin-bottom: 10px;"><strong>Stone carvings:</strong> 1000s of years</li>
+                                    <li style="margin-bottom: 10px;"><strong>DNA storage:</strong> 1000+ years (experimental)</li>
+                                    <li style="margin-bottom: 10px;"><strong>Glass storage:</strong> 1 million+ years!</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div class="sketchfab-embed-wrapper" style="border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); width: 100%;"> 
+                                <iframe title="Computer Hard Drive" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b3aca078cfc343128ec3cf64989d523c/embed" style="width: 100%; height: 400px;"> </iframe> 
+                                <p style="font-size: 11px; font-weight: normal; margin: 8px 5px; color: #4A4A4A;"> 
+                                    <a href="https://sketchfab.com/3d-models/computer-hard-drive-b3aca078cfc343128ec3cf64989d523c?utm_medium=embed&utm_campaign=share-popup&utm_content=b3aca078cfc343128ec3cf64989d523c" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Computer Hard Drive </a> by <a href="https://sketchfab.com/arloopa?utm_medium=embed&utm_campaign=share-popup&utm_content=b3aca078cfc343128ec3cf64989d523c" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> arloopa </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=b3aca078cfc343128ec3cf64989d523c" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                </p>
+                            </div>
+                            <p style="margin-top: 15px; font-size: 1.1em; color: #666;">A hard drive - your data spins at 7200 RPM but may only last 3-5 years!</p>
+                            
+                            <div style="background-color: rgba(255, 77, 79, 0.1); padding: 20px; border-radius: var(--border-radius); margin-top: 20px; border-left: 4px solid #ff4d4f;">
+                                <h4 style="margin-top: 0;">⚠️ Digital Dark Age Warning</h4>
+                                <p style="margin: 0; font-size: 1.1em;">We might lose more digital history from 2000-2020 than we have from 1900-2000!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/ojGvHDjHPb4?si=7rDCykxRs0V3VV-K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: var(--border-radius); box-shadow: 0 8px 24px rgba(0,0,0,0.15); max-width: 560px;"></iframe>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">4</div>
+                        <h3>Microsoft Project Silica: Glass Storage <i class="fas fa-wine-glass" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(24, 144, 255, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px; border-left: 4px solid #1890ff;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-gem" style="margin-right: 15px;"></i> Storing Data in Glass for 1 Million Years</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius);">
+                                <h5><i class="fas fa-microscope" style="color: var(--accent-color); margin-right: 10px;"></i> How It Works</h5>
+                                <p style="margin: 0; font-size: 1.1em;">Lasers create tiny structures inside glass that can store data. The glass is super durable and can survive extreme conditions.</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius);">
+                                <h5><i class="fas fa-shield-alt" style="color: var(--accent-color); margin-right: 10px;"></i> Extreme Durability</h5>
+                                <p style="margin: 0; font-size: 1.1em;">Survives being baked at 1000°C, frozen, flooded, microwaved, and even scratched with steel wool!</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius);">
+                                <h5><i class="fas fa-database" style="color: var(--accent-color); margin-right: 10px;"></i> Storage Capacity</h5>
+                                <p style="margin: 0; font-size: 1.1em;">One piece of glass the size of a coaster can store 75GB - that's about 3,500 songs!</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <a href="https://unlocked.microsoft.com/sealed-in-glass/" target="_blank" class="action-btn" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1.1em; padding: 15px 25px;">
+                                <i class="fas fa-external-link-alt"></i>
+                                Learn About Project Silica
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">5</div>
+                        <h3>The Ray Cat Solution: Communicating Danger Across Millennia <i class="fas fa-cat" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(250, 140, 22, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px; border-left: 4px solid #fa8c16;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-radiation" style="margin-right: 15px;"></i> A Wild Idea for Nuclear Warnings</h4>
+                        
+                        <div class="two-column-grid" style="margin-top: 20px;">
+                            <div>
+                                <p style="font-size: 1.2em; margin-bottom: 15px;">Scientists had a bizarre idea: genetically engineer cats to change colour when exposed to radiation, then create songs and stories about these "ray cats" so future humans know to stay away from nuclear waste sites!</p>
+                                
+                                <h5 style="margin-top: 20px;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> Why Cats?</h5>
+                                <ul style="font-size: 1.1em; margin: 15px 0;">
+                                    <li style="margin-bottom: 8px;">Cats live close to humans</li>
+                                    <li style="margin-bottom: 8px;">People would notice colour changes</li>
+                                    <li style="margin-bottom: 8px;">Cultural stories could preserve the warning</li>
+                                    <li style="margin-bottom: 8px;">Biological systems can last thousands of years</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="text-align: center;">
+                                <div style="font-size: 6em; margin: 20px 0;">🐱</div>
+                                <div style="background-color: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: var(--border-radius);">
+                                    <p style="margin: 0; font-size: 1.1em; font-style: italic;">
+                                        "Don't change color, kitty.<br>
+                                        Keep your color, kitty.<br>
+                                        Stay that pretty gray.<br>
+                                        Don't change color, kitty.<br>
+                                        Keep your color, kitty.<br>
+                                        Keep sickness away."
+                                    </p>
+                                    <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #666;">Proposed warning song</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <a href="https://en.wikipedia.org/wiki/Ray_cat" target="_blank" class="action-btn" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1.1em; padding: 15px 25px;">
+                                <i class="fas fa-external-link-alt"></i>
+                                Read About Ray Cats
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is Big Data? -->
+        <section id="what-is-big-data" class="tab-content dark-section">
+            <h1>WHAT IS BIG DATA? <i class="fas fa-database" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chunk-section">
+                <div class="chunk-badge">TEACHER CHUNK</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 12 mins</div>
+                
+                <h3>Understanding the Scale and Power of Modern Data</h3>
+                
+                <div style="background-color: #667eea; color: white; padding: 40px; border-radius: var(--border-radius); margin-bottom: 30px; text-align: center;">
+                    <div style="font-size: 4em; margin-bottom: 20px;">
+                        📊 🌐 💻
+                    </div>
+                    <h2 style="margin: 0 0 20px 0; font-size: 2.5em;">THE DATA REVOLUTION</h2>
+                    <p style="font-size: 1.5em; margin-bottom: 20px;">Every digital action you take creates data that companies, governments, and researchers collect and analyse</p>
+                    <p style="font-size: 1.2em; margin: 0;">Right now, more data is created every day than existed in the entire world just 20 years ago!</p>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>The Scale of 6 Petabytes <i class="fas fa-infinity" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: var(--border-radius); padding: 40px; margin: 30px 0; color: white; text-align: center; position: relative; overflow: hidden; min-height: 400px;" id="petabytesViz">
+                        <h3 style="margin-bottom: 20px;">Visualising 6 Petabytes of Data</h3>
+                        <p style="font-size: 1.2em; margin-bottom: 20px;">
+                            Netflix delivers about 6 petabytes of data daily. That's roughly <strong>48,000,000,000,000,000 bits</strong> per day!
+                        </p>
+                        
+                        <div style="font-size: 6em; margin: 20px 0;">📊</div>
+                        
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); padding: 20px; margin-top: 20px;">
+                            <h4>To Put This in Perspective:</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0;">
+                                <div>
+                                    <strong>1 Bit:</strong> A single 1 or 0
+                                </div>
+                                <div>
+                                    <strong>1 Kilobyte:</strong> 8,000 bits
+                                </div>
+                                <div>
+                                    <strong>1 Megabyte:</strong> 8 million bits
+                                </div>
+                                <div>
+                                    <strong>1 Gigabyte:</strong> 8 billion bits
+                                </div>
+                                <div>
+                                    <strong>1 Terabyte:</strong> 8 trillion bits
+                                </div>
+                                <div>
+                                    <strong>1 Petabyte:</strong> 8 quadrillion bits
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; font-size: 1.1em; font-weight: bold;">
+                                Netflix streams 6 petabytes = 48 QUADRILLION bits every single day!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>The 3 Vs of Big Data <i class="fas fa-cubes" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 30px 0;">
+                        <div style="background-color: #ff9a8b; padding: 25px; border-radius: var(--border-radius); color: #333; text-align: center;">
+                            <div style="font-size: 3em; margin-bottom: 15px;">📏</div>
+                            <h4>VOLUME</h4>
+                            <p style="margin: 10px 0 0 0; font-size: 1.1em;">Massive amounts of data - petabytes and exabytes!</p>
+                            <p style="margin: 5px 0 0 0; font-size: 0.9em; opacity: 0.8;">Netflix delivers over 6 petabytes of data to viewers daily</p>
+                        </div>
+                        
+                        <div style="background-color: #a8edea; padding: 25px; border-radius: var(--border-radius); color: #333; text-align: center;">
+                            <div style="font-size: 3em; margin-bottom: 15px;">⚡</div>
+                            <h4>VELOCITY</h4>
+                            <p style="margin: 10px 0 0 0; font-size: 1.1em;">Real-time speed - data processed instantly</p>
+                            <p style="margin: 5px 0 0 0; font-size: 0.9em; opacity: 0.8;">Google processes 99,000+ searches per second</p>
+                        </div>
+                        
+                        <div style="background-color: #ffecd2; padding: 25px; border-radius: var(--border-radius); color: #333; text-align: center;">
+                            <div style="font-size: 3em; margin-bottom: 15px;">🎨</div>
+                            <h4>VARIETY</h4>
+                            <p style="margin: 10px 0 0 0; font-size: 1.1em;">Different types - text, images, videos, audio</p>
+                            <p style="margin: 5px 0 0 0; font-size: 0.9em; opacity: 0.8;">Spotify receives 100,000 new songs uploaded daily</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Traditional Data vs Big Data <i class="fas fa-exchange-alt" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div class="two-column-grid" style="margin-top: 0;">
+                        <div style="background-color: rgba(82, 196, 26, 0.1); padding: 25px; border-radius: var(--border-radius); border-left: 4px solid #52c41a;">
+                            <h4><i class="fas fa-book" style="color: #52c41a; margin-right: 10px;"></i> Traditional Data</h4>
+                            <ul style="font-size: 1.1em; margin: 15px 0;">
+                                <li style="margin-bottom: 10px;">School grades and attendance</li>
+                                <li style="margin-bottom: 10px;">Survey responses</li>
+                                <li style="margin-bottom: 10px;">Census information</li>
+                                <li style="margin-bottom: 10px;">Bank account balances</li>
+                            </ul>
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin-top: 15px;">
+                                <p style="margin: 0; font-weight: 600;">Like reading one book at a time</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background-color: rgba(24, 144, 255, 0.1); padding: 25px; border-radius: var(--border-radius); border-left: 4px solid #1890ff;">
+                            <h4><i class="fas fa-rocket" style="color: #1890ff; margin-right: 10px;"></i> Big Data</h4>
+                            <ul style="font-size: 1.1em; margin: 15px 0;">
+                                <li style="margin-bottom: 10px;">Every click, swipe, and tap</li>
+                                <li style="margin-bottom: 10px;">GPS location tracking</li>
+                                <li style="margin-bottom: 10px;">Social media posts and likes</li>
+                                <li style="margin-bottom: 10px;">Online purchase patterns</li>
+                            </ul>
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin-top: 15px;">
+                                <p style="margin: 0; font-weight: 600;">Like reading every book in the world simultaneously while people are still writing them</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">4</div>
+                        <h3>Big Data in Your Daily Life <i class="fas fa-mobile-alt" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(255, 77, 79, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-eye" style="margin-right: 15px;"></i> You're Creating Data Right Now!</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">📱</div>
+                                <h5>Netflix</h5>
+                                <p style="margin: 0; font-size: 0.9em;">Tracks what you watch, when you pause, what you skip</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🗺️</div>
+                                <h5>Google Maps</h5>
+                                <p style="margin: 0; font-size: 0.9em;">Records everywhere you go and how fast you travel</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🛒</div>
+                                <h5>Amazon</h5>
+                                <p style="margin: 0; font-size: 0.9em;">Analyses what you view, buy, and return</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">💬</div>
+                                <h5>Social Media</h5>
+                                <p style="margin: 0; font-size: 0.9em;">Monitors likes, shares, time spent on posts</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: rgba(82, 196, 26, 0.1); border-radius: var(--border-radius); padding: 20px; border-left: 4px solid #52c41a;">
+                        <p style="margin: 0; text-align: center; font-size: 1.2em; font-weight: 600;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 15px;"></i> Key insight: Big data is collected automatically and constantly - often without you realising it!</p>
+                    </div>
+                </div>
+
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">5</div>
+                        <h3>Big Data: The Power of Good and Evil <i class="fas fa-balance-scale" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(255, 77, 79, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-yin-yang" style="margin-right: 15px;"></i> The Same Data, Different Intentions</h4>
+                        <p style="font-size: 1.2em; text-align: center; margin-bottom: 20px;">
+                            Big data is neither inherently good nor evil - it's how humans choose to use it that determines its impact on society.
+                        </p>
+                    </div>
+                    
+                    <div class="two-column-grid" style="margin-top: 0;">
+                        <div style="background-color: rgba(82, 196, 26, 0.1); padding: 25px; border-radius: var(--border-radius); border-left: 4px solid #52c41a;">
+                            <h4><i class="fas fa-heart" style="color: #52c41a; margin-right: 10px;"></i> Using Data for Good</h4>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-car" style="color: var(--accent-color); margin-right: 10px;"></i> Traffic Management</h5>
+                                <img src="https://res.cloudinary.com/total-dealer/image/upload/v1/production/tb9770tkqpxdbvyk55anx9macmif.png?_a=BACADKEv" alt="Road traffic data collection tubes" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--border-radius); margin: 10px 0;">
+                                <p style="margin: 10px 0 0 0; font-size: 1em;">Ever seen these tubes on the road? As an example, these black tubes collect massive amounts of traffic data to optimise traffic lights, plan safer roads, and reduce pollution through better traffic flow.</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-heartbeat" style="color: var(--accent-color); margin-right: 10px;"></i> Healthcare Breakthroughs</h5>
+                                <p style="margin: 0; font-size: 1em;">Hospitals use big data to predict sepsis infections hours before symptoms appear, detect cancer patterns in medical images, and personalise treatments based on genetic data.</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-shield-alt" style="color: var(--accent-color); margin-right: 10px;"></i> Disaster Response</h5>
+                                <p style="margin: 0; font-size: 1em;">Emergency services analyse mobile phone data during natural disasters to locate trapped survivors and coordinate rescue efforts more efficiently.</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-leaf" style="color: var(--accent-color); margin-right: 10px;"></i> Climate Research</h5>
+                                <p style="margin: 0; font-size: 1em;">Scientists process massive datasets from satellites, weather stations, and sensors to understand climate change and develop environmental solutions.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background-color: rgba(255, 77, 79, 0.1); padding: 25px; border-radius: var(--border-radius); border-left: 4px solid #ff4d4f;">
+                            <h4><i class="fas fa-exclamation-triangle" style="color: #ff4d4f; margin-right: 10px;"></i> Data Used for Harm</h4>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-video" style="color: var(--accent-color); margin-right: 10px;"></i> Surveillance Overreach</h5>
+                                <p style="margin: 0; font-size: 1em;">Facial recognition systems have led to wrongful arrests of innocent people, particularly affecting people of colour due to algorithmic bias and inaccurate matching.</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-credit-card" style="color: var(--accent-color); margin-right: 10px;"></i> Algorithmic Discrimination</h5>
+                                <p style="margin: 0; font-size: 1em;">Credit scoring algorithms can perpetuate racial and economic bias, denying loans to qualified applicants based on factors like postcode or shopping patterns.</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-eye" style="color: var(--accent-color); margin-right: 10px;"></i> Privacy Invasion</h5>
+                                <p style="margin: 0; font-size: 1em;">Data brokers sell personal information without consent, enabling stalking, identity theft, and unauthorised tracking of individuals' movements and behaviour.</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: var(--border-radius); margin: 15px 0;">
+                                <h5><i class="fas fa-home" style="color: var(--accent-color); margin-right: 10px;"></i> Housing Discrimination</h5>
+                                <p style="margin: 0; font-size: 1em;">AI-powered tenant screening tools perpetuate historical housing discrimination, making it harder for minorities to find rental accommodation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: rgba(24, 144, 255, 0.1); border-radius: var(--border-radius); padding: 20px; margin: 20px 0; border-left: 4px solid #1890ff;">
+                        <h4 style="margin-top: 0;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> Key Questions for Ethical Data Use</h4>
+                        <ul style="font-size: 1.1em; margin: 10px 0;">
+                            <li style="margin-bottom: 8px;"><strong>Consent:</strong> Did people agree to have their data collected and used this way?</li>
+                            <li style="margin-bottom: 8px;"><strong>Transparency:</strong> Do people understand how their data is being used?</li>
+                            <li style="margin-bottom: 8px;"><strong>Fairness:</strong> Does the system treat all groups of people equally?</li>
+                            <li style="margin-bottom: 8px;"><strong>Purpose:</strong> Is the data being used to help people or exploit them?</li>
+                            <li style="margin-bottom: 8px;"><strong>Accountability:</strong> Who is responsible when things go wrong?</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background-color: rgba(82, 196, 26, 0.1); border-radius: var(--border-radius); padding: 20px; border-left: 4px solid #52c41a;">
+                        <p style="margin: 0; text-align: center; font-size: 1.2em; font-weight: 600;">
+                            <i class="fas fa-users" style="color: var(--accent-color); margin-right: 15px;"></i> 
+                            Remember: Behind every data point is a real person whose life can be impacted by how that data is used.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cloud Storage -->
+        <section id="cloud-storage" class="tab-content light-section">
+            <h1>WHERE DOES YOUR DATA REALLY LIVE? <i class="fas fa-cloud" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chunk-section">
+                <div class="chunk-badge">TEACHER CHUNK</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 10 mins</div>
+                
+                <h3>The Truth About "The Cloud"</h3>
+                
+                <div style="background-color: #40a9ff; color: white; padding: 40px; border-radius: var(--border-radius); margin-bottom: 30px; text-align: center;">
+                    <div style="font-size: 4em; margin-bottom: 20px;">
+                        ☁️ 🏢 💾
+                    </div>
+                    <h2 style="margin: 0 0 20px 0; font-size: 2.5em;">CLOUD STORAGE MYTH-BUSTING</h2>
+                    <p style="font-size: 1.5em; margin-bottom: 20px;">When you save to OneDrive, Google Drive, or iCloud, your data doesn't float in the sky!</p>
+                    <p style="font-size: 1.2em; margin: 0;">It's stored on physical computers in massive data centres around the world</p>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>What "The Cloud" Really Is <i class="fas fa-server" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div class="two-column-grid" style="margin-top: 0;">
+                        <div>
+                            <p style="font-size: 1.2em; margin-bottom: 20px;">The "cloud" is just someone else's computer! When you upload a photo to Google Photos or save a document to OneDrive, it travels across the internet to huge warehouses full of servers.</p>
+                            
+                            <h4><i class="fas fa-building" style="color: var(--accent-color); margin-right: 10px;"></i> Inside a Data Centre</h4>
+                            <ul style="font-size: 1.1em; margin-bottom: 20px;">
+                                <li style="margin-bottom: 10px;"><i class="fas fa-server" style="color: var(--accent-color); margin-right: 10px;"></i> Thousands of powerful computers called servers</li>
+                                <li style="margin-bottom: 10px;"><i class="fas fa-snowflake" style="color: var(--accent-color); margin-right: 10px;"></i> Massive air conditioning systems to keep them cool</li>
+                                <li style="margin-bottom: 10px;"><i class="fas fa-bolt" style="color: var(--accent-color); margin-right: 10px;"></i> Backup power generators for 24/7 operation</li>
+                                <li style="margin-bottom: 10px;"><i class="fas fa-shield-alt" style="color: var(--accent-color); margin-right: 10px;"></i> Security guards and cameras protecting your data</li>
+                            </ul>
+                            
+                            <div style="background-color: rgba(24, 144, 255, 0.1); border-radius: var(--border-radius); padding: 15px; border-left: 4px solid #1890ff;">
+                                <p style="margin: 0;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> <strong>Key insight:</strong> Your data exists as magnetic patterns on spinning disks or electrical charges in memory chips!</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div class="sketchfab-embed-wrapper" style="border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); width: 100%;"> 
+                                <iframe title="Server V2 +console" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/f24594ece9634cec9c1210c041838371/embed" style="width: 100%; height: 400px;"> </iframe> 
+                                <p style="font-size: 11px; font-weight: normal; margin: 8px 5px; color: #4A4A4A;"> 
+                                    <a href="https://sketchfab.com/3d-models/server-v2-console-f24594ece9634cec9c1210c041838371?utm_medium=embed&utm_campaign=share-popup&utm_content=f24594ece9634cec9c1210c041838371" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Server V2 +console </a> by <a href="https://sketchfab.com/FlevasGR?utm_medium=embed&utm_campaign=share-popup&utm_content=f24594ece9634cec9c1210c041838371" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> FlevasGR </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=f24594ece9634cec9c1210c041838371" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                </p>
+                            </div>
+                            <p style="margin-top: 15px; font-size: 1.1em; color: #666;">A typical server rack - thousands of these store your cloud data!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Your Data's Global Journey <i class="fas fa-globe-americas" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px; border-left: 4px solid #10b981;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-route" style="margin-right: 15px;"></i> What Happens When You Save to OneDrive?</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">1️⃣</div>
+                                <h5>Upload</h5>
+                                <p style="margin: 0; font-size: 1.1em;">Your file travels through internet cables to Microsoft's data centre</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">2️⃣</div>
+                                <h5>Backup</h5>
+                                <p style="margin: 0; font-size: 1.1em;">It's automatically copied to multiple servers in different locations</p>
+                            </div>
+                            
+                            <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">3️⃣</div>
+                                <h5>Access</h5>
+                                <p style="margin: 0; font-size: 1.1em;">When you need it, the closest data centre sends it back to you</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+                        <div style="background-color: rgba(82, 196, 26, 0.1); padding: 20px; border-radius: var(--border-radius); border-left: 4px solid #52c41a;">
+                            <h5><i class="fas fa-thumbs-up" style="color: #52c41a; margin-right: 10px;"></i> Advantages</h5>
+                            <ul style="margin: 10px 0 0 0; font-size: 1.1em;">
+                                <li>Access from anywhere</li>
+                                <li>Automatic backups</li>
+                                <li>Professional security</li>
+                                <li>No storage limits</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background-color: rgba(255, 77, 79, 0.1); padding: 20px; border-radius: var(--border-radius); border-left: 4px solid #ff4d4f;">
+                            <h5><i class="fas fa-exclamation-triangle" style="color: #ff4d4f; margin-right: 10px;"></i> Considerations</h5>
+                            <ul style="margin: 10px 0 0 0; font-size: 1.1em;">
+                                <li>Need internet to access</li>
+                                <li>Company controls your data</li>
+                                <li>Privacy concerns</li>
+                                <li>Environmental impact</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>The Environmental Cost of Cloud Storage <i class="fas fa-leaf" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(250, 140, 22, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px; border-left: 4px solid #fa8c16;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-bolt" style="margin-right: 15px;"></i> Data Centres Use Massive Amounts of Energy</h4>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <div style="font-size: 4em; margin-bottom: 15px;">🏭</div>
+                            <p style="font-size: 1.2em; margin-bottom: 15px;">Global data centres consume about <strong>1% of all electricity</strong> produced on Earth!</p>
+                            <p style="font-size: 1.1em;">That's enough to power a country the size of Argentina</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">4</div>
+                        <h3>Virtual Data Centre Exploration <i class="fas fa-globe" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(24, 144, 255, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px; border-left: 4px solid #1890ff;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-building" style="margin-right: 15px;"></i> Go Inside a Real Microsoft Data Centre</h4>
+                        <p style="text-align: center; font-size: 1.1em; margin-bottom: 20px;">Take an interactive virtual tour and discover how these massive facilities really work.</p>
+                        
+                        <div style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: var(--border-radius); margin: 20px 0;">
+                            <h5 style="margin-top: 0;"><i class="fas fa-search" style="color: var(--accent-color); margin-right: 10px;"></i> Exploration Challenge - Find the answers to:</h5>
+                            <ol style="margin: 10px 0 0 20px; font-size: 1.1em;">
+                                <li style="margin-bottom: 10px;">How are servers cooled?</li>
+                                <li style="margin-bottom: 10px;">How are servers powered?</li>
+                                <li style="margin-bottom: 10px;">What do they do with leftover/broken parts?</li>
+                            </ol>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <a href="https://datacenters.microsoft.com/globe/explore/datacenter/" target="_blank" class="action-btn" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1.1em; padding: 15px 25px;">
+                                <i class="fas fa-external-link-alt"></i>
+                                Take the Virtual Tour
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Google Trends -->
+        <section id="google-trends" class="tab-content dark-section">
+            <h1>DATA STORIES & MARKETING WITH GOOGLE TRENDS <i class="fas fa-chart-line" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chew-section">
+                <div class="chew-badge">STUDENT ACTIVITY</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 35 mins</div>
+                
+                <h3>Discovering Stories Hidden in Search Data</h3>
+                
+                <div class="activity-goal">
+                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Explore how search data reveals patterns about human behaviour</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Use Google Trends to represent and propose ideas</li>
+                    </ul>
+                </div>
+
+                <div style="background-color: #667eea; color: white; padding: 40px; border-radius: var(--border-radius); margin-bottom: 30px; text-align: center;">
+                    <div style="font-size: 4em; margin-bottom: 20px;">🔍 📊 💡</div>
+                    <h2 style="margin: 0 0 20px 0; font-size: 2.5em;">FROM SEARCHES TO STORIES</h2>
+                    <p style="font-size: 1.5em; margin-bottom: 20px;">Every Google search is a window into human curiosity, needs, and desires</p>
+                    <p style="font-size: 1.2em; margin: 0;">Let's explore what the world is searching for and what it tells us!</p>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Data Visualisation Gallery: Stories from Search <i class="fas fa-gallery" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; margin-bottom: 20px; text-align: center;">
+                        Explore some examples of how people have used the big data of Google Trends to visualise concepts and public interest.
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0;">
+                        <!-- Time Capsule -->
+                        <div style="background: white; color: var(--text-color); padding: 25px; border-radius: var(--border-radius); text-align: center; transition: transform 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">🕰️</div>
+                            <h4>Google Trends Time Capsule</h4>
+                            <a href="https://trendstimecapsule.ue.r.appspot.com/" target="_blank" class="action-btn" style="margin-top: 15px;">
+                                <i class="fas fa-external-link-alt"></i>
+                                Explore Time Capsule
+                            </a>
+                        </div>
+
+                        <!-- Cats & Dogs -->
+                        <div style="background: white; color: var(--text-color); padding: 25px; border-radius: var(--border-radius); text-align: center; transition: transform 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">🐱🐶</div>
+                            <h4>Why Do Cats & Dogs...?</h4>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                <a href="https://whydocatsanddogs.visualcinnamon.com/cats" target="_blank" class="action-btn" style="flex: 1;">
+                                    <i class="fas fa-cat"></i>
+                                    Cats
+                                </a>
+                                <a href="https://whydocatsanddogs.visualcinnamon.com/dogs" target="_blank" class="action-btn" style="flex: 1;">
+                                    <i class="fas fa-dog"></i>
+                                    Dogs
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Frightgeist -->
+                        <div style="background: white; color: var(--text-color); padding: 25px; border-radius: var(--border-radius); text-align: center; transition: transform 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">🎃</div>
+                            <h4>Frightgeist Halloween Trends</h4>
+                            <a href="https://frightgeist.withgoogle.com/costumes#map" target="_blank" class="action-btn" style="margin-top: 15px;">
+                                <i class="fas fa-map"></i>
+                                View Costume Map
+                            </a>
+                        </div>
+
+                        <!-- Migration -->
+                        <div style="background: white; color: var(--text-color); padding: 25px; border-radius: var(--border-radius); text-align: center; transition: transform 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">🌍</div>
+                            <h4>Migration in Search</h4>
+                            <a href="https://migrationinsearch.com/" target="_blank" class="action-btn" style="margin-top: 15px;">
+                                <i class="fas fa-globe"></i>
+                                Explore Migration
+                            </a>
+                        </div>
+
+                        <!-- Food Rhythm -->
+                        <div style="background: white; color: var(--text-color); padding: 25px; border-radius: var(--border-radius); text-align: center; transition: transform 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">🍽️</div>
+                            <h4>Rhythm of Food</h4>
+                            <a href="https://rhythm-of-food.net/" target="_blank" class="action-btn" style="margin-top: 15px;">
+                                <i class="fas fa-utensils"></i>
+                                View Food Trends
+                            </a>
+                        </div>
+
+                        <!-- Health Search -->
+                        <div style="background: white; color: var(--text-color); padding: 25px; border-radius: var(--border-radius); text-align: center; transition: transform 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">⚕️</div>
+                            <h4>Searching for Health</h4>
+                            <a href="https://www.searching-for-health.com/" target="_blank" class="action-btn" style="margin-top: 15px;">
+                                <i class="fas fa-heartbeat"></i>
+                                Explore Health Data
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 20px; margin: 20px 0; border-left: 4px solid var(--chew-color);">
+                        <h4 style="margin-top: 0;"><i class="fas fa-lightbulb" style="color: var(--chew-color); margin-right: 10px;"></i> Discussion Questions</h4>
+                        <ul style="font-size: 1.1em; margin: 10px 0;">
+                            <li style="margin-bottom: 8px;">What patterns surprised you in these visualisations?</li>
+                            <li style="margin-bottom: 8px;">How could businesses use this kind of search data?</li>
+                            <li style="margin-bottom: 8px;">What ethical concerns might arise from analysing search behaviour?</li>
+                            <li style="margin-bottom: 8px;">How accurately do you think search trends reflect real-world behaviour?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Marketing Team Challenge: Data-Driven Campaign <i class="fas fa-bullhorn" style="margin-left: 10px;"></i></h3>
+                    </div>
+
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 25px; margin-bottom: 25px;">
+                        <h4 style="margin-top: 0;"><i class="fas fa-users" style="color: var(--chew-color); margin-right: 10px;"></i> Your Mission</h4>
+                        <p style="font-size: 1.2em; margin-bottom: 15px;">You're a marketing team tasked with using Google Trends to research consumer interests and create a winning campaign!</p>
+                        
+                        <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 30px; margin: 20px 0; border-left: 4px solid var(--chew-color); text-align: center;">
+                            <h4><i class="fas fa-random" style="color: var(--chew-color); margin-right: 10px;"></i> Random Challenge Generator</h4>
+                            <p>Click below to get your team's marketing challenge:</p>
+                            
+                            <div style="background: rgba(255, 255, 255, 0.9); border-radius: var(--border-radius); padding: 25px; margin: 20px 0; font-size: 1.2em; font-weight: 600; color: var(--text-color); min-height: 100px; display: flex; align-items: center; justify-content: center; text-align: center;" id="marketingPrompt">
+                                Click "Generate Challenge" to get your marketing scenario!
+                            </div>
+                            
+                            <button style="background: linear-gradient(135deg, var(--chew-color), #059669); color: white; padding: 15px 30px; border: none; border-radius: var(--border-radius); font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 1.1em;" onclick="generateMarketingPrompt()">
+                                <i class="fas fa-dice"></i>
+                                Generate Challenge
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="background-color: rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); padding: 30px; margin-bottom: 20px;">
+                        <h4 style="margin-top: 0; text-align: center;"><i class="fas fa-clipboard-list" style="margin-right: 15px;"></i> Your Research Process</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                            <div style="background-color: rgba(24, 144, 255, 0.2); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🔍</div>
+                                <h5>Research Phase (15 mins)</h5>
+                                <ul style="text-align: left; font-size: 1em; margin: 10px 0;">
+                                    <li>Compare search terms on Google Trends</li>
+                                    <li>Check rising queries and related topics</li>
+                                    <li>Analyse regional interest patterns</li>
+                                    <li>Look for seasonal trends</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background-color: rgba(16, 185, 129, 0.2); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">💡</div>
+                                <h5>Strategy Development (10 mins)</h5>
+                                <ul style="text-align: left; font-size: 1em; margin: 10px 0;">
+                                    <li>Define target audience</li>
+                                    <li>Choose key markets/regions</li>
+                                    <li>Plan launch timing</li>
+                                    <li>Develop marketing hook</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background-color: rgba(233, 69, 96, 0.2); padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🎯</div>
+                                <h5>Pitch Presentation (2-3 mins)</h5>
+                                <ul style="text-align: left; font-size: 1em; margin: 10px 0;">
+                                    <li>Present your findings</li>
+                                    <li>Show Google Trends screenshots</li>
+                                    <li>Justify your strategy</li>
+                                    <li>Convince the "client"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background-color: rgba(250, 140, 22, 0.1); border-radius: var(--border-radius); padding: 20px; border-left: 4px solid #fa8c16;">
+                        <h4 style="margin-top: 0;"><i class="fas fa-link" style="color: #fa8c16; margin-right: 10px;"></i> Essential Tool</h4>
+                        <p style="margin-bottom: 15px; font-size: 1.1em;">Use Google Trends to research your challenge:</p>
+                        <br>
+                        <div style="text-align: center;">
+                            <a href="https://trends.google.com/trends/explore?geo=AU&hl=en-US" target="_blank" class="action-btn" style="font-size: 1.1em;">
+                                <i class="fas fa-chart-line"></i>
+                                Open Google Trends (Australia)
+                            </a>
+                        </div>
+                        <br>
+                    </div>
+
+                    <div style="background-color: rgba(82, 196, 26, 0.1); border-radius: var(--border-radius); padding: 20px; margin-top: 20px; border-left: 4px solid #52c41a;">
+                        <h4 style="margin-top: 0;"><i class="fas fa-trophy" style="color: #52c41a; margin-right: 10px;"></i> Winning Criteria</h4>
+                        <p style="margin: 0; font-size: 1.1em;">The class will vote for the best pitch based on:</p>
+                        <ul style="font-size: 1em; margin: 10px 0 0 20px;">
+                            <li>Creative use of Google Trends data</li>
+                            <li>Clear target audience identification</li>
+                            <li>Convincing market timing strategy</li>
+                            <li>Professional presentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and tabs
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to selected button and tab
+                    this.classList.add('active');
+                    document.getElementById(tab).classList.add('active');
+                });
+            });
+
+            // Initialize animations
+            initializeBinaryAnimation();
+        });
+
+        // Binary Animation
+        function initializeBinaryAnimation() {
+            const decodeBtn = document.getElementById('decodeBtn');
+            const binaryDisplay = document.getElementById('binaryDisplay');
+            const bitCountSpan = document.getElementById('bitCount');
+            
+            if (!decodeBtn || !binaryDisplay || !bitCountSpan) return;
+            
+            decodeBtn.addEventListener('click', function() {
+                // Simulate encoding emoji to binary
+                const binaryData = "11110000100111111001100010000001100110001001100010001000";
+                
+                // Animate the binary appearing
+                binaryDisplay.textContent = '';
+                let currentIndex = 0;
+                
+                const binaryAnimation = setInterval(() => {
+                    if (currentIndex < binaryData.length) {
+                        binaryDisplay.textContent += binaryData[currentIndex];
+                        currentIndex++;
+                        bitCountSpan.textContent = currentIndex;
+                    } else {
+                        clearInterval(binaryAnimation);
+                        decodeBtn.innerHTML = '<i class="fas fa-check"></i> Decoded!';
+                        decodeBtn.style.background = 'linear-gradient(135deg, #52c41a, #389e0d)';
+                    }
+                }, 50);
+            });
+        }
+
+        // Marketing Prompt Generator
+        const marketingPrompts = [
+            "A retro toy company wants to relaunch a 90s toy. Which toy should they bring back?",
+            "A fast-food chain wants to make a viral limited-time burger. What flavour should they pick?",
+            "A sportswear brand is developing new sustainable activewear. Which market should they focus on?",
+            "A phone company is launching a new smartphone. What features are trending globally?",
+            "A streaming service wants to create the next viral show. What genre should they focus on?",
+            "A beauty brand is launching eco-friendly makeup. Which products should they prioritise?",
+            "A gaming company wants to develop a mobile game. What type of game is most popular?",
+            "A coffee chain is expanding internationally. Which country should they target first?",
+            "A fitness app wants to add new workout features. What exercise trends are rising?",
+            "A bookstore chain wants to promote a genre. Which book category is gaining popularity?",
+            "A music streaming platform wants to promote artists. Which music genre is trending up?",
+            "A food delivery service wants to add cuisine types. Which international food is rising?",
+            "A home decor brand wants to launch a new collection. What interior design trend should they follow?",
+            "A travel company wants to promote destinations. Which type of vacation is trending?",
+            "A pet supply company wants to expand their range. Which pet-related products are hot?",
+            "A car manufacturer wants to develop their next electric vehicle. What features should they focus on?",
+            "A clothing brand wants to collaborate with an influencer. What type of content creator is trending?",
+            "A chocolate company wants to launch a limited edition flavour. What taste combinations are popular?",
+            "A furniture retailer is planning their spring catalogue. Which room should they focus on?",
+            "A vitamin company wants to target health-conscious millennials. Which supplements are trending?",
+            "A podcast network wants to commission a new series. What topics are audiences searching for?",
+            "A craft beer brewery wants to create a seasonal brew. What flavours match current trends?",
+            "A shoe company is designing their next sneaker line. What style elements are gaining popularity?",
+            "A subscription box service wants to enter a new market. Which hobby or interest is trending up?",
+            "A theme park wants to build a new attraction. What entertainment experiences are people seeking?",
+            "A skincare brand wants to target specific skin concerns. Which issues are people searching about most?",
+            "A food truck business wants to choose their cuisine type. What street food is gaining popularity?",
+            "A board game company wants to develop their next hit game. What themes or mechanics are trending?",
+            "A plant nursery wants to promote trendy houseplants. Which plants are people searching for?",
+            "A festival organiser wants to book the perfect headliner. What music acts are gaining momentum?",
+            "A wedding planning service wants to offer trendy packages. What wedding styles are couples searching for?",
+            "A tech startup wants to develop a productivity app. What work-from-home tools are people seeking?",
+            "A jewellery brand wants to design engagement rings. What styles and stones are trending?",
+            "A language learning app wants to add new courses. Which languages are people most interested in learning?"
+        ];
+
+        function generateMarketingPrompt() {
+            const promptDisplay = document.getElementById('marketingPrompt');
+            if (!promptDisplay) return;
+            
+            const randomPrompt = marketingPrompts[Math.floor(Math.random() * marketingPrompts.length)];
+            
+            // Simple animation
+            promptDisplay.style.opacity = '0';
+            setTimeout(() => {
+                promptDisplay.textContent = randomPrompt;
+                promptDisplay.style.opacity = '1';
+            }, 300);
+        }
+    </script>
+
+    <style>
+        /* Additional styles for this lesson */
+        .activity-goal {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--chew-color);
+        }
+        
+        .activity-goal h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        input[type="checkbox"] {
+            accent-color: var(--accent-color);
+        }
+    </style>
+</body>
+</html>
