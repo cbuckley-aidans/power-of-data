@@ -25,6 +25,11 @@
             background-color: #10b981;
             color: white;
         }
+        
+        /* Center single card in advanced functions section */
+        .chew-section .elements-grid {
+            justify-content: center;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <!-- Favicon Icons -->
@@ -207,9 +212,9 @@
             <!-- Advanced Functions -->
             <div class="chew-section">
                 <div class="chew-badge">ADVANCED FUNCTIONS</div>
-                <div class="timer-badge"><i class="fas fa-clock"></i> 2 tutorials</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 1 tutorial</div>
                 
-                <h3>Master Complex Data Analysis</h3>
+                <h3>Utilise More Complex Functions</h3>
                 
                 <div class="elements-grid">
                     <div class="element-card card" data-id="7" style="cursor: pointer;">
@@ -219,23 +224,6 @@
                         </div>
                         <div class="element-content">
                             <p>Learn how to use AVERAGE, COUNTIF, IF functions and apply conditional formatting to analyse data effectively.</p>
-                            
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span class="completion-pill">0% complete</span>
-                                <div class="assessment-completed" style="display: none; background-color: #48BB78; color: white; padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.7rem;">
-                                    <i class="fas fa-check" style="margin-right: 5px;"></i>Assessment
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="element-card card" data-id="8" style="cursor: pointer;">
-                        <div class="element-header">
-                            <div class="element-number">8</div>
-                            <h3>Practice Problems <i class="fas fa-trophy" style="margin-left: 10px;"></i></h3>
-                        </div>
-                        <div class="element-content">
-                            <p>Apply advanced Excel functions to analyse sports event data using AVERAGE, COUNTIF, IF and conditional formatting.</p>
                             
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <span class="completion-pill">0% complete</span>
@@ -271,8 +259,7 @@
                 { id: 4, title: "Data Cleaning: Practice Problems" },
                 { id: 5, title: "Functions and Charts" },
                 { id: 6, title: "Functions and Charts: Practice Problems" },
-                { id: 7, title: "Advanced Functions" },
-                { id: 8, title: "Advanced Functions: Practice" }
+                { id: 7, title: "Advanced Functions" }
             ];
             
             tutorials.forEach(tutorial => {
