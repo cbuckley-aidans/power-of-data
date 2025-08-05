@@ -1602,6 +1602,72 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Selecting Data from Another Sheet Skill -->
+                    <div class="skill-card" data-category="functions">
+                        <div class="skill-header" onclick="toggleSkill(this)">
+                            <div class="skill-header-content">
+                                <div class="skill-icon orange">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <h3 class="skill-title">Selecting Data from Another Sheet</h3>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-arrow"></i>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-details">
+                                <p>Reference and pull data from other worksheets in your workbook to create connections between different sets of information.</p>
+                                
+                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
+                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
+                                    <li>Click on the cell where you want the reference</li>
+                                    <li>Type = (equals sign) to start a formula</li>
+                                    <li>Click on the tab of the other sheet</li>
+                                    <li>Click on the cell you want to reference</li>
+                                    <li>Press Enter to confirm the reference</li>
+                                </ol>
+                                
+                                <div class="video-demo">
+                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
+                                    <div class="video-container">
+                                        <video width="100%" controls autoplay loop muted playsinline>
+                                            <source src="https://i.imgur.com/emqhAAd.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                                
+                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Cross-Sheet Reference Syntax:</h4>
+                                <div class="example-code">
+                                    Sheet1!A1              // Reference cell A1 from Sheet1<br>
+                                    'Sales Data'!B5       // Reference when sheet name has spaces<br>
+                                    Summary!C2:C10        // Reference a range from Summary sheet<br>
+                                    'Q1 Results'!$A$1     // Absolute reference with spaces in name
+                                </div>
+                                
+                                <div class="info-box usage">
+                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Creating summary sheets from detailed data</li>
+                                        <li>Building dashboards that pull from multiple sources</li>
+                                        <li>Consolidating data from different departments</li>
+                                        <li>Linking budget sheets to actual results</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="info-box tip">
+                                    <h4><i class="fas fa-star"></i> Pro Tip:</h4>
+                                    <p style="margin: 0;">If you rename a sheet that's referenced elsewhere, Excel automatically updates the references. Use descriptive sheet names for better organisation, and enclose names with spaces in single quotes.</p>
+                                </div>
+                                
+                                <div class="info-box warning">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Important:</h4>
+                                    <p style="margin: 0;">Avoid circular references (Sheet1 referencing Sheet2 which references Sheet1). Use absolute references ($A$1) when copying formulas to maintain specific cell connections across sheets.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
