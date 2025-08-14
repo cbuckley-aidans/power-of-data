@@ -109,6 +109,7 @@
         .skill-icon.indigo { background: #6366f1; }
         .skill-icon.pink { background: #ec4899; }
         .skill-icon.teal { background: #14b8a6; }
+        .skill-icon.emerald { background: #059669; }
         
         .skill-title {
             font-size: 1.4em;
@@ -887,6 +888,71 @@
                         </div>
                     </div>
                     
+                    <!-- Absolute Cell References Skill -->
+                    <div class="skill-card" data-category="functions">
+                        <div class="skill-header" onclick="toggleSkill(this)">
+                            <div class="skill-header-content">
+                                <div class="skill-icon emerald">
+                                    <i class="fas fa-anchor"></i>
+                                </div>
+                                <h3 class="skill-title">Absolute Cell References</h3>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-arrow"></i>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-details">
+                                <p>Lock specific cell references in formulas so they don't change when you copy the formula to other cells, ensuring consistent calculations.</p>
+                                
+                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
+                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
+                                    <li>Start creating your formula normally (e.g., =A1*B1)</li>
+                                    <li>When referencing the cell you want to lock, press F4</li>
+                                    <li>The cell reference will change to $A$1 (absolute)</li>
+                                    <li>Or manually type dollar signs before column and row</li>
+                                    <li>Copy the formula - absolute references stay fixed</li>
+                                </ol>
+                                
+                                <div class="video-demo">
+                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
+                                    <div class="video-container">
+                                        <video width="100%" controls autoplay loop muted playsinline>
+                                            <source src="https://i.imgur.com/1XCGNNY.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                                
+                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Reference Types:</h4>
+                                <div class="example-code">
+                                    A1      // Relative - changes when copied (A1, B2, C3...)<br>
+                                    $A$1    // Absolute - never changes when copied<br>
+                                    $A1     // Mixed - column locked, row changes<br>
+                                    A$1     // Mixed - row locked, column changes
+                                </div>
+                                
+                                <div class="info-box usage">
+                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Referencing tax rates or constants in calculations</li>
+                                        <li>Using lookup tables or price lists</li>
+                                        <li>Creating formulas that always reference specific cells</li>
+                                        <li>Building templates with fixed reference points</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="info-box tip">
+                                    <h4><i class="fas fa-star"></i> Pro Tip:</h4>
+                                    <p style="margin: 0;">Press F4 multiple times to cycle through reference types: A1 → $A$1 → A$1 → $A1 → back to A1. Use mixed references when you want only the column or row to stay fixed.</p>
+                                </div>
+                                
+                                <div class="info-box warning">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Remember:</h4>
+                                    <p style="margin: 0;">Think about which cells should stay fixed before copying formulas. Absolute references are essential for maintaining accuracy in calculations that depend on constants or specific data points.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- MINIMUM / MAXIMUM Function Skill -->
                     <div class="skill-card" data-category="functions">
                         <div class="skill-header" onclick="toggleSkill(this)">
@@ -1385,7 +1451,7 @@
                                     <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
                                     <ul style="margin: 0; padding-left: 20px;">
                                         <li>Counting pass/fail rates</li>
-                                        <li>Analyzing survey responses</li>
+                                        <li>Analysing survey responses</li>
                                         <li>Tracking inventory levels</li>
                                         <li>Creating frequency distributions</li>
                                     </ul>
