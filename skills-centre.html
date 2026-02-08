@@ -516,9 +516,95 @@
                     </div>
                 </div>
                 
+                <!-- Skills for Tasks 1-4 Section -->
+                <div style="margin: 40px 0 20px 0; padding: 20px; background: var(--accent-bg); border-left: 4px solid var(--accent-color); border-radius: var(--border-radius);">
+                    <h2 style="margin: 0; color: var(--accent-color); font-size: 1.6em;">
+                        <i class="fas fa-tasks" style="margin-right: 10px;"></i>Skills for Tasks 1-4
+                    </h2>
+                </div>
+                
                 <!-- Skills List -->
                 <div id="skills-container">
-                    
+                    <!-- Find and Replace Skill -->
+                    <div class="skill-card" data-category="data-cleaning">
+                        <div class="skill-header" onclick="toggleSkill(this)">
+                            <div class="skill-header-content">
+                                <div class="skill-icon orange">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                                <h3 class="skill-title">Find and Replace</h3>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-arrow"></i>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-details">
+                                <p>Quickly locate specific data and replace it with new values across your entire spreadsheet or selected range.</p>
+                                
+                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
+                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
+                                    <li>Press Ctrl+H to open Find & Replace dialog</li>
+                                    <li>Enter the text to find in "Find what" field</li>
+                                    <li>Enter the replacement text in "Replace with" field</li>
+                                    <li>Click "Replace All" or "Replace" for individual instances</li>
+                                    <li>Use "Find All" to see all matches first</li>
+                                </ol>
+                                
+                                <div class="video-demo">
+                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
+                                    <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAG_80T1lHk/9xMtmVFfzwM-vkZXmgRYHg/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+                                </div>
+                                
+                                <div class="info-box usage">
+                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Correcting spelling errors throughout document</li>
+                                        <li>Updating product codes or references</li>
+                                        <li>Standardizing data format (e.g., "Qty" to "Quantity")</li>
+                                        <li>Removing unwanted characters or spaces</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="info-box warning">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Warning:</h4>
+                                    <p style="margin: 0;">Always review matches before replacing all! Use "Match entire cell contents" option to avoid partial replacements. Save your file before major find/replace operations.</p>
+                                </div>
+                                
+                                <div class="simulation-container">
+                                    <div class="simulation-header">
+                                        <h4 class="simulation-title">Try Find & Replace:</h4>
+                                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                            <input type="text" id="find-text" placeholder="Find..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" value="Acme Corp">
+                                            <input type="text" id="replace-text" placeholder="Replace with..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" value="ACME Corporation">
+                                            <button class="excel-button" onclick="findAndReplace()">Replace All</button>
+                                            <button class="excel-button" onclick="resetFindReplace()">Reset Data</button>
+                                        </div>
+                                    </div>
+                                    <table class="excel-grid" id="find-replace-table">
+                                        <thead>
+                                            <tr><th>Company</th><th>Product</th><th>Status</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Acme Corp</td><td>Widget A</td><td>Active</td></tr>
+                                            <tr><td>Acme Corp</td><td>Widget B</td><td>Inactive</td></tr>
+                                            <tr><td>Beta Ltd</td><td>Gadget X</td><td>Active</td></tr>
+                                            <tr><td>Acme Corp</td><td>Widget C</td><td>Active</td></tr>
+                                            <tr><td>Gamma Inc</td><td>Tool Y</td><td>Inactive</td></tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                                        <strong>Try these examples:</strong> Find "Acme Corp" and replace with "ACME Corporation", or find "Inactive" and replace with "Discontinued"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Filtering Skill -->
                     <div class="skill-card" data-category="data-cleaning">
                         <div class="skill-header" onclick="toggleSkill(this)">
@@ -714,6 +800,191 @@
                         </div>
                     </div>
                     
+                    <!-- COUNTIF Function Skill -->
+                    <div class="skill-card" data-category="functions">
+                        <div class="skill-header" onclick="toggleSkill(this)">
+                            <div class="skill-header-content">
+                                <div class="skill-icon pink">
+                                    <i class="fas fa-hashtag"></i>
+                                </div>
+                                <h3 class="skill-title">COUNTIF Function</h3>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-arrow"></i>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-details">
+                                <p>Count cells that meet a specific condition - perfect for analyzing data patterns and creating reports.</p>
+                                
+                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
+                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
+                                    <li>Click on the cell where you want the count</li>
+                                    <li>Type =COUNTIF(</li>
+                                    <li>Select the range to check</li>
+                                    <li>Add comma, then the criteria in quotes</li>
+                                    <li>Close bracket and press Enter</li>
+                                </ol>
+                                
+                                <div class="example-code">
+                                    =COUNTIF(B2:B10, "Pass")     // Count cells containing "Pass"<br>
+                                    =COUNTIF(A2:A10, ">100")     // Count cells greater than 100<br>
+                                    =COUNTIF(C2:C10, "*Ltd")     // Count cells ending with "Ltd"
+                                </div>
+                                
+                                <div class="video-demo">
+                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
+                                    <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAG_8_ILlfo/SjYRp2lB7fjfhf8a5HMIcA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+                                </div>
+                                
+                                <div class="info-box usage">
+                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Counting pass/fail rates</li>
+                                        <li>Analysing survey responses</li>
+                                        <li>Tracking inventory levels</li>
+                                        <li>Creating frequency distributions</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="info-box tip">
+                                    <h4><i class="fas fa-star"></i> Pro Tip:</h4>
+                                    <p style="margin: 0;">Use wildcards: * for any characters, ? for single character. COUNTIFS allows multiple criteria. For blank cells use "" as criteria, for non-blank use "<>".</p>
+                                </div>
+                                
+                                <div class="simulation-container">
+                                    <div class="simulation-header">
+                                        <h4 class="simulation-title">Try COUNTIF function:</h4>
+                                        <div>
+                                            <button class="excel-button" onclick="countIf('pass')">Count "Pass" Grades</button>
+                                            <button class="excel-button" onclick="countIf('high')">Count Scores > 80</button>
+                                            <button class="excel-button" onclick="countIf('total')">Count All Non-Empty</button>
+                                            <button class="excel-button" onclick="resetCountIf()">Reset</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: flex; gap: 20px; align-items: flex-start;">
+                                        <table class="excel-grid" style="flex: 1;">
+                                            <thead>
+                                                <tr><th>Student</th><th>Score (%)</th><th>Grade</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>John</td><td>95</td><td>Pass</td></tr>
+                                                <tr><td>Mary</td><td>67</td><td>Fail</td></tr>
+                                                <tr><td>Peter</td><td>82</td><td>Pass</td></tr>
+                                                <tr><td>Sarah</td><td>78</td><td>Pass</td></tr>
+                                                <tr><td>Mike</td><td>59</td><td>Fail</td></tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        <div style="flex: 1;">
+                                            <!-- Formula Display -->
+                                            <div class="info-box usage" style="margin-bottom: 15px;">
+                                                <h4><i class="fas fa-calculator"></i> Formula:</h4>
+                                                <div id="countif-formula" style="font-family: 'Consolas', 'Monaco', monospace; font-size: 1.1em; background: var(--code-bg); color: var(--code-text); padding: 12px; border-radius: 6px; margin-top: 8px;">
+                                                    Click a button to see the formula
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Result Display -->
+                                            <div class="info-box tip">
+                                                <h4><i class="fas fa-hashtag"></i> Count Result:</h4>
+                                                <div id="countif-result" style="font-size: 1.8em; font-weight: bold; color: var(--chew-color); text-align: center; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; margin-top: 8px; border: 2px solid var(--chew-color);">
+                                                    ___
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Creating Charts Skill -->
+                    <div class="skill-card" data-category="visualization">
+                        <div class="skill-header" onclick="toggleSkill(this)">
+                            <div class="skill-header-content">
+                                <div class="skill-icon teal">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h3 class="skill-title">Creating Charts</h3>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-arrow"></i>
+                        </div>
+                        <div class="skill-content">
+                            <div class="skill-details">
+                                <p>Transform your data into visual charts and graphs to make trends, patterns, and insights easier to understand and communicate.</p>
+                                
+                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
+                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
+                                    <li>Select the data range including headers</li>
+                                    <li>Go to Insert tab in the ribbon</li>
+                                    <li>Choose a chart type (Column, Line, Pie, etc.)</li>
+                                    <li>Click on the specific chart style you want</li>
+                                    <li>Customize with Chart Tools if needed</li>
+                                </ol>
+                                
+                                <div class="video-demo">
+                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
+                                    <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAG_8ylLohs/2dM0_69GyfDugqa3N2BdJA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+                                </div>
+                                
+                                <div class="info-box usage">
+                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li><strong>Column charts:</strong> Comparing categories</li>
+                                        <li><strong>Line charts:</strong> Showing trends over time</li>
+                                        <li><strong>Pie charts:</strong> Showing parts of a whole</li>
+                                        <li><strong>Bar charts:</strong> Comparing items with long names</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="info-box tip">
+                                    <h4><i class="fas fa-star"></i> Pro Tip:</h4>
+                                    <p style="margin: 0;">Use F11 to quickly create a chart on a new sheet. Always include clear titles and axis labels. Choose colors that work for colorblind users, and avoid 3D effects unless necessary.</p>
+                                </div>
+                                
+                                <div class="simulation-container">
+                                    <div class="simulation-header">
+                                        <h4 class="simulation-title">Chart type selector:</h4>
+                                        <div>
+                                            <button class="excel-button" onclick="showChart('column')">Column Chart</button>
+                                            <button class="excel-button" onclick="showChart('line')">Line Chart</button>
+                                            <button class="excel-button" onclick="showChart('pie')">Pie Chart</button>
+                                            <button class="excel-button" onclick="hideChart()">Hide Chart</button>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 20px; align-items: flex-start;">
+                                        <table class="excel-grid" style="flex: 1;">
+                                            <thead>
+                                                <tr><th>Quarter</th><th>Sales</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Q1</td><td>150</td></tr>
+                                                <tr><td>Q2</td><td>200</td></tr>
+                                                <tr><td>Q3</td><td>175</td></tr>
+                                                <tr><td>Q4</td><td>225</td></tr>
+                                            </tbody>
+                                        </table>
+                                        <div id="chart-display" style="flex: 1; min-height: 200px; background: #f8f9fa; border: 2px dashed #ccc; border-radius: 8px; display: none; align-items: center; justify-content: center; font-style: italic; color: #666;">
+                                            Select a chart type to see visualization
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Deleting Columns Skill -->
                     <div class="skill-card" data-category="data-cleaning">
                         <div class="skill-header" onclick="toggleSkill(this)">
@@ -1411,271 +1682,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- COUNTIF Function Skill -->
-                    <div class="skill-card" data-category="functions">
-                        <div class="skill-header" onclick="toggleSkill(this)">
-                            <div class="skill-header-content">
-                                <div class="skill-icon pink">
-                                    <i class="fas fa-hashtag"></i>
-                                </div>
-                                <h3 class="skill-title">COUNTIF Function</h3>
-                            </div>
-                            <i class="fas fa-chevron-down toggle-arrow"></i>
-                        </div>
-                        <div class="skill-content">
-                            <div class="skill-details">
-                                <p>Count cells that meet a specific condition - perfect for analyzing data patterns and creating reports.</p>
-                                
-                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
-                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
-                                    <li>Click on the cell where you want the count</li>
-                                    <li>Type =COUNTIF(</li>
-                                    <li>Select the range to check</li>
-                                    <li>Add comma, then the criteria in quotes</li>
-                                    <li>Close bracket and press Enter</li>
-                                </ol>
-                                
-                                <div class="example-code">
-                                    =COUNTIF(B2:B10, "Pass")     // Count cells containing "Pass"<br>
-                                    =COUNTIF(A2:A10, ">100")     // Count cells greater than 100<br>
-                                    =COUNTIF(C2:C10, "*Ltd")     // Count cells ending with "Ltd"
-                                </div>
-                                
-                                <div class="video-demo">
-                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
-                                    <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAG_8_ILlfo/SjYRp2lB7fjfhf8a5HMIcA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-                                </div>
-                                
-                                <div class="info-box usage">
-                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
-                                    <ul style="margin: 0; padding-left: 20px;">
-                                        <li>Counting pass/fail rates</li>
-                                        <li>Analysing survey responses</li>
-                                        <li>Tracking inventory levels</li>
-                                        <li>Creating frequency distributions</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="info-box tip">
-                                    <h4><i class="fas fa-star"></i> Pro Tip:</h4>
-                                    <p style="margin: 0;">Use wildcards: * for any characters, ? for single character. COUNTIFS allows multiple criteria. For blank cells use "" as criteria, for non-blank use "<>".</p>
-                                </div>
-                                
-                                <div class="simulation-container">
-                                    <div class="simulation-header">
-                                        <h4 class="simulation-title">Try COUNTIF function:</h4>
-                                        <div>
-                                            <button class="excel-button" onclick="countIf('pass')">Count "Pass" Grades</button>
-                                            <button class="excel-button" onclick="countIf('high')">Count Scores > 80</button>
-                                            <button class="excel-button" onclick="countIf('total')">Count All Non-Empty</button>
-                                            <button class="excel-button" onclick="resetCountIf()">Reset</button>
-                                        </div>
-                                    </div>
-                                    
-                                    <div style="display: flex; gap: 20px; align-items: flex-start;">
-                                        <table class="excel-grid" style="flex: 1;">
-                                            <thead>
-                                                <tr><th>Student</th><th>Score (%)</th><th>Grade</th></tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td>John</td><td>95</td><td>Pass</td></tr>
-                                                <tr><td>Mary</td><td>67</td><td>Fail</td></tr>
-                                                <tr><td>Peter</td><td>82</td><td>Pass</td></tr>
-                                                <tr><td>Sarah</td><td>78</td><td>Pass</td></tr>
-                                                <tr><td>Mike</td><td>59</td><td>Fail</td></tr>
-                                            </tbody>
-                                        </table>
-                                        
-                                        <div style="flex: 1;">
-                                            <!-- Formula Display -->
-                                            <div class="info-box usage" style="margin-bottom: 15px;">
-                                                <h4><i class="fas fa-calculator"></i> Formula:</h4>
-                                                <div id="countif-formula" style="font-family: 'Consolas', 'Monaco', monospace; font-size: 1.1em; background: var(--code-bg); color: var(--code-text); padding: 12px; border-radius: 6px; margin-top: 8px;">
-                                                    Click a button to see the formula
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- Result Display -->
-                                            <div class="info-box tip">
-                                                <h4><i class="fas fa-hashtag"></i> Count Result:</h4>
-                                                <div id="countif-result" style="font-size: 1.8em; font-weight: bold; color: var(--chew-color); text-align: center; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; margin-top: 8px; border: 2px solid var(--chew-color);">
-                                                    ___
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Creating Charts Skill -->
-                    <div class="skill-card" data-category="visualization">
-                        <div class="skill-header" onclick="toggleSkill(this)">
-                            <div class="skill-header-content">
-                                <div class="skill-icon teal">
-                                    <i class="fas fa-chart-bar"></i>
-                                </div>
-                                <h3 class="skill-title">Creating Charts</h3>
-                            </div>
-                            <i class="fas fa-chevron-down toggle-arrow"></i>
-                        </div>
-                        <div class="skill-content">
-                            <div class="skill-details">
-                                <p>Transform your data into visual charts and graphs to make trends, patterns, and insights easier to understand and communicate.</p>
-                                
-                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
-                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
-                                    <li>Select the data range including headers</li>
-                                    <li>Go to Insert tab in the ribbon</li>
-                                    <li>Choose a chart type (Column, Line, Pie, etc.)</li>
-                                    <li>Click on the specific chart style you want</li>
-                                    <li>Customize with Chart Tools if needed</li>
-                                </ol>
-                                
-                                <div class="video-demo">
-                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
-                                    <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAG_8ylLohs/2dM0_69GyfDugqa3N2BdJA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-                                </div>
-                                
-                                <div class="info-box usage">
-                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
-                                    <ul style="margin: 0; padding-left: 20px;">
-                                        <li><strong>Column charts:</strong> Comparing categories</li>
-                                        <li><strong>Line charts:</strong> Showing trends over time</li>
-                                        <li><strong>Pie charts:</strong> Showing parts of a whole</li>
-                                        <li><strong>Bar charts:</strong> Comparing items with long names</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="info-box tip">
-                                    <h4><i class="fas fa-star"></i> Pro Tip:</h4>
-                                    <p style="margin: 0;">Use F11 to quickly create a chart on a new sheet. Always include clear titles and axis labels. Choose colors that work for colorblind users, and avoid 3D effects unless necessary.</p>
-                                </div>
-                                
-                                <div class="simulation-container">
-                                    <div class="simulation-header">
-                                        <h4 class="simulation-title">Chart type selector:</h4>
-                                        <div>
-                                            <button class="excel-button" onclick="showChart('column')">Column Chart</button>
-                                            <button class="excel-button" onclick="showChart('line')">Line Chart</button>
-                                            <button class="excel-button" onclick="showChart('pie')">Pie Chart</button>
-                                            <button class="excel-button" onclick="hideChart()">Hide Chart</button>
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; gap: 20px; align-items: flex-start;">
-                                        <table class="excel-grid" style="flex: 1;">
-                                            <thead>
-                                                <tr><th>Quarter</th><th>Sales</th></tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td>Q1</td><td>150</td></tr>
-                                                <tr><td>Q2</td><td>200</td></tr>
-                                                <tr><td>Q3</td><td>175</td></tr>
-                                                <tr><td>Q4</td><td>225</td></tr>
-                                            </tbody>
-                                        </table>
-                                        <div id="chart-display" style="flex: 1; min-height: 200px; background: #f8f9fa; border: 2px dashed #ccc; border-radius: 8px; display: none; align-items: center; justify-content: center; font-style: italic; color: #666;">
-                                            Select a chart type to see visualization
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Find and Replace Skill -->
-                    <div class="skill-card" data-category="data-cleaning">
-                        <div class="skill-header" onclick="toggleSkill(this)">
-                            <div class="skill-header-content">
-                                <div class="skill-icon orange">
-                                    <i class="fas fa-search-plus"></i>
-                                </div>
-                                <h3 class="skill-title">Find and Replace</h3>
-                            </div>
-                            <i class="fas fa-chevron-down toggle-arrow"></i>
-                        </div>
-                        <div class="skill-content">
-                            <div class="skill-details">
-                                <p>Quickly locate specific data and replace it with new values across your entire spreadsheet or selected range.</p>
-                                
-                                <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Quick Steps:</h4>
-                                <ol style="margin: 0 0 20px 20px; line-height: 1.8;">
-                                    <li>Press Ctrl+H to open Find & Replace dialog</li>
-                                    <li>Enter the text to find in "Find what" field</li>
-                                    <li>Enter the replacement text in "Replace with" field</li>
-                                    <li>Click "Replace All" or "Replace" for individual instances</li>
-                                    <li>Use "Find All" to see all matches first</li>
-                                </ol>
-                                
-                                <div class="video-demo">
-                                    <h4 style="color: var(--accent-color); margin: 20px 0 10px 0;">Watch how it works:</h4>
-                                    <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAG_80T1lHk/9xMtmVFfzwM-vkZXmgRYHg/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-                                </div>
-                                
-                                <div class="info-box usage">
-                                    <h4><i class="fas fa-lightbulb"></i> When to use:</h4>
-                                    <ul style="margin: 0; padding-left: 20px;">
-                                        <li>Correcting spelling errors throughout document</li>
-                                        <li>Updating product codes or references</li>
-                                        <li>Standardizing data format (e.g., "Qty" to "Quantity")</li>
-                                        <li>Removing unwanted characters or spaces</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="info-box warning">
-                                    <h4><i class="fas fa-exclamation-triangle"></i> Warning:</h4>
-                                    <p style="margin: 0;">Always review matches before replacing all! Use "Match entire cell contents" option to avoid partial replacements. Save your file before major find/replace operations.</p>
-                                </div>
-                                
-                                <div class="simulation-container">
-                                    <div class="simulation-header">
-                                        <h4 class="simulation-title">Try Find & Replace:</h4>
-                                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                                            <input type="text" id="find-text" placeholder="Find..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" value="Acme Corp">
-                                            <input type="text" id="replace-text" placeholder="Replace with..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" value="ACME Corporation">
-                                            <button class="excel-button" onclick="findAndReplace()">Replace All</button>
-                                            <button class="excel-button" onclick="resetFindReplace()">Reset Data</button>
-                                        </div>
-                                    </div>
-                                    <table class="excel-grid" id="find-replace-table">
-                                        <thead>
-                                            <tr><th>Company</th><th>Product</th><th>Status</th></tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><td>Acme Corp</td><td>Widget A</td><td>Active</td></tr>
-                                            <tr><td>Acme Corp</td><td>Widget B</td><td>Inactive</td></tr>
-                                            <tr><td>Beta Ltd</td><td>Gadget X</td><td>Active</td></tr>
-                                            <tr><td>Acme Corp</td><td>Widget C</td><td>Active</td></tr>
-                                            <tr><td>Gamma Inc</td><td>Tool Y</td><td>Inactive</td></tr>
-                                        </tbody>
-                                    </table>
-                                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                                        <strong>Try these examples:</strong> Find "Acme Corp" and replace with "ACME Corporation", or find "Inactive" and replace with "Discontinued"
                                     </div>
                                 </div>
                             </div>
